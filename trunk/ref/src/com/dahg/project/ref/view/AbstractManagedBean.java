@@ -12,7 +12,7 @@ public abstract class AbstractManagedBean {
 	@ManagedProperty("#{app}")
 	private ResourceBundle bundle;
 
-	private FacesContext getFacesContext() {
+	protected FacesContext getFacesContext() {
 		return FacesContext.getCurrentInstance();
 	}
 	
@@ -34,6 +34,10 @@ public abstract class AbstractManagedBean {
 	
 	public void addError(String msg) {
 		addMessage(msg, FacesMessage.SEVERITY_ERROR);
+	}
+	
+	public void addError(Throwable e) {
+		addMessage(e.getMessage(), FacesMessage.SEVERITY_ERROR);
 	}
 	
 	public void addWarn(String msg) {

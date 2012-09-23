@@ -1,6 +1,7 @@
 package com.dahg.project.ref.controller.beans.impl;
 
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import com.dahg.project.ref.controller.beans.AbstractBean;
@@ -19,17 +20,20 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 
 	@Override
 	public Usuario validate(String user, String pass) throws ValidationException,ControllerException {
-		String jPQL="Select u From Usuario u where u.id=:user and u.pass=:pass";
-		Query query = getEntityManager().createNativeQuery(jPQL, getClazz());
-		query.setParameter("user", user);
+		Usuario usuario=null;
+		String jpql="Select u From Usuario u where u.username=:id and u.password=:pass";
+		Query query = getEntityManager().createQuery(jpql);
+		query.setParameter("id", user);
 		try {
 			query.setParameter("pass", getDecrypt().hash(pass));
-		} catch (Exception e) {
-			throw new ControllerException(e);
+			usuario = (Usuario) query.getSingleResult();
+		} 
+		catch(NoResultException e) {
+			throw new ValidationException("Usuario o contraseña incorrectos");
 		}
-		Usuario usuario = (Usuario) query.getSingleResult();
-		
-		if(usuario==null) throw new ValidationException("Usuario o password incorrecto");
+		catch (Exception e) {
+			throw new ControllerException(e);
+		} 
 		
 		return usuario;
 	}

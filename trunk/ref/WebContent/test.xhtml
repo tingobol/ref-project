@@ -7,11 +7,9 @@
 
 	<ui:composition template="/main.xhtml">
 		<ui:define name="formBody">
-			<p:dataTable value="#{testBean.all}" var="d">
-				<p:column headerText="Descripcion">
-					<h:outputText value="#{d.descripcion}" />
-				</p:column>
-			</p:dataTable>
+		
+		<p:commandButton value="Prueba1" rendered="#{currentSession.isAuthorized('COMMON')}"/>
+		<p:commandButton value="Prueba2" rendered="#{currentSession.isAuthorized('COMMONS')}"/>
 		</ui:define>
 	</ui:composition>
 </html>

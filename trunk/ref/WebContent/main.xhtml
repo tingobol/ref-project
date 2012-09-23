@@ -10,7 +10,7 @@
 			<p:menubar>
 				<p:submenu label="#{app['app.menu.system']}" icon="ui-icon-gear" >
 		            <p:submenu label="#{app['app.menu.system.parameters']}" icon="ui-icon-contact">
-		                <p:menuitem value="#{app['app.menu.system.parameters.book_access']}" url="#" />
+		                <p:menuitem value="#{app['app.menu.system.parameters.book_access']}" url="test.jsf" />
 		                <p:menuitem value="#{app['app.menu.system.parameters.others']}" url="#" icon="ui-icon-document" />
 		                <p:menuitem value="#{app['app.menu.system.parameters.templates']}" icon="ui-icon-document" url="#" />
 		            </p:submenu>
@@ -18,7 +18,7 @@
 		            <p:menuitem value="#{app['app.menu.system.auth_books']}" url="#" />		            
 		            <p:menuitem value="#{app['app.menu.system.users']}" url="#" />
 		            <p:separator/>
-		            <p:menuitem value="#{app['app.menu.system.quit']}" url="#" icon="ui-icon-close" />
+		            <p:menuitem value="#{app['app.menu.system.quit']}" action="#{currentSession.logout}" icon="ui-icon-close" />
 		        </p:submenu>
 		
 		        <p:submenu label="#{app['app.menu.maintenance']}" icon="ui-icon-pencil">
@@ -110,15 +110,15 @@
 		
 		        <p:submenu label="Actions" icon="ui-icon-gear">
 		            <p:submenu label="Ajax" icon="ui-icon-refresh">
-		                <p:menuitem value="Save" actionListener="#{menuBean.save}" icon="ui-icon-disk" update="messages"/>
-		                <p:menuitem value="Update" actionListener="#{menuBean.update}" icon="ui-icon-arrowrefresh-1-w" update="messages"/>
+		                <p:menuitem value="Save" actionListener="#{menuBean.save}" icon="ui-icon-disk" update="msgs"/>
+		                <p:menuitem value="Update" actionListener="#{menuBean.update}" icon="ui-icon-arrowrefresh-1-w" update="msgs"/>
 		            </p:submenu>
 		            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
-		                <p:menuitem value="Delete" actionListener="#{menuBean.delete}" icon="ui-icon-close" update="messages" ajax="false"/>
+		                <p:menuitem value="Delete" actionListener="#{menuBean.delete}" icon="ui-icon-close" update="msgs" ajax="false"/>
 		            </p:submenu>
 		        </p:submenu>
 		
-		        <p:menuitem value="#{app['app.menu.system.quit']}" url="http://www.primefaces.org" icon="ui-icon-close" />
+		        <p:menuitem value="#{app['app.menu.system.quit']}" action="#{currentSession.logout}" icon="ui-icon-close" />
 			</p:menubar>
 			
 			<center>
