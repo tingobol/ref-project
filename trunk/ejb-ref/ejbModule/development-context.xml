@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+<context:property-placeholder location="app-config.properties"/>
+<jee:jndi-lookup id="dataSource" jndi-name="${app.datasource}"/>
+
+<bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+	<property name="dataSource" ref="dataSource"/>
+	<property name="changeLog" value="classpath:db-changelog.xml"/>
+</bean>
+
+<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory" depends-on="liquibase">
+   <property name="dataSource" ref="dataSource"></property>
+   <property name="persistenceUnitName" value="refPU"></property> 
+   <property name="jpaVendorAdapter">
+       <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+           <property name="showSql" value="true"></property>
+           <property name="generateDdl" value="false"></property>
+       </bean>
+   </property>
+   <property name="loadTimeWeaver">
+       <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"></bean>
+   </property>
+</bean>
+
+<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+    <property name="entityManagerFactory" ref="entityManagerFactory"></property>
+    <property name="dataSource" ref="dataSource"></property></bean>
+
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+<tx:annotation-driven transaction-manager="transactionManager"/>
+ 
+<!-- Activacion de los postprocesadores comunes. -->
+<context:annotation-config/>
+
+<bean id="persistence" class="com.dahg.project.ref.controller.persist.SpringPersistence"/>
+
+<bean id="decrypt" class="com.dahg.project.ref.controller.util.MD5Impl"/>
+
+</beans>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="refPU">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.dahg.project.ref.model.Departamento</class>
+		<class>com.dahg.project.ref.model.Articulo</class>
+		<class>com.dahg.project.ref.model.Barrio</class>
+		<class>com.dahg.project.ref.model.Canton</class>
+		<class>com.dahg.project.ref.model.Caserio</class>
+		<class>com.dahg.project.ref.model.Colonia</class>
+		<class>com.dahg.project.ref.model.Idioma</class>
+		<class>com.dahg.project.ref.model.Municipio</class>
+		<class>com.dahg.project.ref.model.Nacionalidad</class>
+		<class>com.dahg.project.ref.model.Parentesco</class>
+		<class>com.dahg.project.ref.model.Profesion</class>
+		<class>com.dahg.project.ref.model.Rol</class>
+		<class>com.dahg.project.ref.model.TipoMarginacion</class>
+		<class>com.dahg.project.ref.model.Usuario</class>
+		<class>com.dahg.project.ref.model.UsuarioRol</class>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+		</properties>
+	</persistence-unit>
+</persistence>

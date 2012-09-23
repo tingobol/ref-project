@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <preConditions>
+        <dbms type="postgresql" />
+    </preConditions>
+
+    <changeSet author="dani" id="1">
+    
+    	<createTable tableName="departamento">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="municipio">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    		<column name="fk_departamento" type="int">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<addForeignKeyConstraint constraintName="municipio_departamento"    	
+    	 referencedTableName="departamento" baseColumnNames="fk_departamento" baseTableName="municipio" referencedColumnNames="id"/>
+    	 
+    	 <createTable tableName="idioma">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="nacionalidad">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="parentesco">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="profesion">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="barrio">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="canton">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="colonia">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="caserio">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="articulo">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="texto" type="text">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="tipo_marginacion">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="texto" type="text">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    
+    </changeSet>
+    
+    <changeSet author="dani" id="2">
+    
+    	<createTable tableName="usuario">
+    		<column name="id" type="varchar(20)">
+    			<constraints primaryKey="true" nullable="false"/>
+    		</column>
+    		<column name="nombre" type="varchar"/>
+    		<column name="apellido" type="varchar"/>
+    		
+    		<column name="password" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    
+    	<createTable tableName="rol">
+    		<column name="id" type="varchar(6)">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<insert tableName="rol">
+    		<column name="id" value="ADMIN"/>
+    		<column name="descripcion" value="Administrador"/>
+    	</insert>
+    	
+    	<insert tableName="rol">
+    		<column name="id" value="COMMON"/>
+    		<column name="descripcion" value="Usurio comun"/>
+    	</insert>
+    	
+    	<createTable tableName="usuario_rol">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true" nullable="false"/>
+    		</column>
+    		<column name="fk_usuario" type="varchar(20)">
+    			<constraints nullable="false"/>
+    		</column>
+    		<column name="fk_rol" type="varchar(6)">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<addUniqueConstraint tableName="usuario_rol" columnNames="fk_usuario,fk_rol"/>
+    	
+    </changeSet>
+    <changeSet author="dani" id="3">
+    
+    	<addForeignKeyConstraint constraintName="ur_usuario" referencedTableName="usuario" baseColumnNames="fk_usuario" baseTableName="usuario_rol"
+    	 referencedColumnNames="id"/>
+    	 
+    	 <addForeignKeyConstraint constraintName="ur_rol" referencedTableName="rol" baseColumnNames="fk_rol" baseTableName="usuario_rol"
+    	 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="base.xhtml">
+		<ui:define name="body">
+			<center>
+			<p:panel>
+				<f:facet name="header">
+					<h2>#{app['app.title']}</h2>
+				</f:facet>
+					<p:panelGrid columns="2">
+						<f:facet name="header">
+							<h:outputText value="#{app['app.login.title']}"/>
+						</f:facet>
+						<h:outputLabel for="user" value="#{app['app.login.user']}" />  
+					    <p:inputText id="user" value="" label="Usuario" />  
+					  
+					    <h:outputLabel for="pass" value="#{app['app.login.pass']}" />  
+					    <p:password id="pass" value="" required="true" label="Password"/>
+					    
+					    <f:facet name="footer">
+					    	<center>
+					    	<p:commandButton value="#{app['app.login.ok']}" icon="ui-icon-check" />
+					    	</center>
+
+					    </f:facet>
+					</p:panelGrid>
+			</p:panel>
+			</center>
+		</ui:define>
+	</ui:composition>
+</html>
