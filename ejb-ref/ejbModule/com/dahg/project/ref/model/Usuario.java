@@ -14,27 +14,32 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	@Basic
+	@Column(name="username",precision=20)
+	private String username;
 
 	private String apellido;
 
 	private String nombre;
 
 	private String password;
+	
+	@Transient
+	private String passwordWithoutEncrypt;
 
 	//bi-directional many-to-one association to UsuarioRol
-	@OneToMany(mappedBy="usuario")
+	@OneToMany(mappedBy="usuario",fetch=FetchType.EAGER)
 	private List<UsuarioRol> usuarioRols;
 
 	public Usuario() {
+	}	
+
+	public String getUsername() {
+		return username;
 	}
 
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getApellido() {
@@ -67,6 +72,14 @@ public class Usuario implements Serializable {
 
 	public void setUsuarioRols(List<UsuarioRol> usuarioRols) {
 		this.usuarioRols = usuarioRols;
+	}
+
+	public String getPasswordWithoutEncrypt() {
+		return passwordWithoutEncrypt;
+	}
+
+	public void setPasswordWithoutEncrypt(String passwordWithoutEncrypt) {
+		this.passwordWithoutEncrypt = passwordWithoutEncrypt;
 	}
 
 }

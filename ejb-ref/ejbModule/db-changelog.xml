@@ -125,7 +125,7 @@
     <changeSet author="dani" id="2">
     
     	<createTable tableName="usuario">
-    		<column name="id" type="varchar(20)">
+    		<column name="username" type="varchar(20)">
     			<constraints primaryKey="true" nullable="false"/>
     		</column>
     		<column name="nombre" type="varchar"/>
@@ -152,7 +152,7 @@
     	
     	<insert tableName="rol">
     		<column name="id" value="COMMON"/>
-    		<column name="descripcion" value="Usurio comun"/>
+    		<column name="descripcion" value="Usuario comun"/>
     	</insert>
     	
     	<createTable tableName="usuario_rol">
@@ -173,7 +173,7 @@
     <changeSet author="dani" id="3">
     
     	<addForeignKeyConstraint constraintName="ur_usuario" referencedTableName="usuario" baseColumnNames="fk_usuario" baseTableName="usuario_rol"
-    	 referencedColumnNames="id"/>
+    	 referencedColumnNames="username"/>
     	 
     	 <addForeignKeyConstraint constraintName="ur_rol" referencedTableName="rol" baseColumnNames="fk_rol" baseTableName="usuario_rol"
     	 referencedColumnNames="id"/>

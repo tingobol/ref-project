@@ -5,28 +5,27 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="base.xhtml">
+	<ui:composition template="/base.xhtml">
 		<ui:define name="body">
 			<center>
 			<p:panel>
 				<f:facet name="header">
-					<h2>#{app['app.title']}</h2>
+					<h2>#{info.name}</h2>
 				</f:facet>
 					<p:panelGrid columns="2">
 						<f:facet name="header">
-							<h:outputText value="#{app['app.login.title']}"/>
+							<h:outputText value="#{info.name}"/>
 						</f:facet>
-						<h:outputLabel for="user" value="#{app['app.login.user']}" />  
-					    <p:inputText id="user" value="" label="Usuario" />  
+						<h:outputText value="#{app['app.login.user']}" />  
+					    <p:inputText value="#{currentSession.user.username}" required="true" requiredMessage="#{app['app.login.user.requerido']}"/>  
 					  
-					    <h:outputLabel for="pass" value="#{app['app.login.pass']}" />  
-					    <p:password id="pass" value="" required="true" label="Password"/>
+					    <h:outputText value="#{app['app.login.pass']}" />  
+					    <p:password value="#{currentSession.user.passwordWithoutEncrypt}" required="true" requiredMessage="#{app['app.login.pass.requerido']}" />
 					    
 					    <f:facet name="footer">
 					    	<center>
-					    	<p:commandButton value="#{app['app.login.ok']}" icon="ui-icon-check" />
+						    	<p:commandButton value="#{app['app.login.ok']}" action="#{currentSession.validate}" icon="ui-icon-check" update="msgs" />
 					    	</center>
-
 					    </f:facet>
 					</p:panelGrid>
 			</p:panel>

@@ -5,11 +5,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<context:property-placeholder location="app-config.properties"/>
-
 	<bean id="ejb-context" class="org.springframework.context.support.ClassPathXmlApplicationContext">		 
-		<constructor-arg value="${app.mode}-context.xml" type="java.lang.String" /> 		
+		<constructor-arg value="application-context.xml" type="java.lang.String" /> 		
 	</bean>
-
 
 </beans>
