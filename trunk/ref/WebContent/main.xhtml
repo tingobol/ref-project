@@ -7,125 +7,136 @@
 
 	<ui:composition template="base.xhtml">
 		<ui:define name="body">
-			<p:menubar>
-				<p:submenu label="#{app['app.menu.system']}" icon="ui-icon-gear" >
-		            <p:submenu label="#{app['app.menu.system.parameters']}" icon="ui-icon-contact">
-		                <p:menuitem value="#{app['app.menu.system.parameters.book_access']}" url="test.jsf" />
-		                <p:menuitem value="#{app['app.menu.system.parameters.others']}" url="#" icon="ui-icon-document" />
-		                <p:menuitem value="#{app['app.menu.system.parameters.templates']}" icon="ui-icon-document" url="#" />
-		            </p:submenu>
-		            <p:separator />
-		            <p:menuitem value="#{app['app.menu.system.auth_books']}" url="#" />		            
-		            <p:menuitem value="#{app['app.menu.system.users']}" url="#" />
-		            <p:separator/>
-		            <p:menuitem value="#{app['app.menu.system.quit']}" action="#{currentSession.logout}" icon="ui-icon-close" />
-		        </p:submenu>
-		
-		        <p:submenu label="#{app['app.menu.maintenance']}" icon="ui-icon-pencil">
-		            <p:menuitem value="#{app['app.menu.maintenance.province']}" url="#" icon="ui-icon-document" />
-		            <p:menuitem value="#{app['app.menu.maintenance.town']}" url="#" icon="ui-icon-document" />
-		            <p:menuitem value="#{app['app.menu.maintenance.language']}" url="#" icon="ui-icon-document" />
-		            <p:menuitem value="#{app['app.menu.maintenance.nacionality']}" url="#" icon="ui-icon-document" />
-		            <p:menuitem value="#{app['app.menu.maintenance.relationship']}" url="#" icon="ui-icon-document" />
-		            <p:menuitem value="#{app['app.menu.maintenance.profesions']}" url="#" icon="ui-icon-document" />
-		            <p:separator />
-		            <p:menuitem value="#{app['app.menu.maintenance.outskirts']}" url="#" icon="ui-icon-document" />
-		            <p:menuitem value="#{app['app.menu.maintenance.cantons']}" url="#" icon="ui-icon-document" />
-		            <p:menuitem value="#{app['app.menu.maintenance.suburb']}" url="#" icon="ui-icon-document" />
-		            <p:menuitem value="#{app['app.menu.maintenance.caserios']}" url="#" icon="ui-icon-document" />
-		            <p:separator />
-		            <p:menuitem value="#{app['app.menu.maintenance.law']}" url="#" icon="ui-icon-document" />
-		            <p:menuitem value="#{app['app.menu.maintenance.marginalization_types']}" url="#" icon="ui-icon-document" />
-		        </p:submenu>
-		
-		        <p:submenu label="#{app['app.menu.books']}" icon="ui-icon-gear">
-		            <p:submenu label="#{app['app.menu.books.opens']}">
-		            	<p:submenu label="#{app['app.menu.books.opens.history_books']}">
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.births']}" url="#" />
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.marriages']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.divorces']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.deaths']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.adoptions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.modifications']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.repositions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.marginations']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.judgments']}" url="#"/>
-		            	</p:submenu>
-		            	<p:separator />
-		            	<p:submenu label="#{app['app.menu.books.opens.yearbooks']}">
-		            	<p:menuitem value="#{app['app.menu.books.opens.yearbooks.births']}" url="#" />
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.marriages']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.divorces']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.deaths']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.adoptions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.modifications']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.repositions']}" url="#"/>		            		
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.judgments']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.certified']}" url="#"/>
-		            </p:submenu>
-		            </p:submenu>
-		            <p:separator />
-		            <p:submenu label="#{app['app.menu.books.reopens']}">
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.births']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.marriages']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.divorces']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.deaths']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.adoptions']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.modifications']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.repositions']}" url="#"/>
-		            </p:submenu>
-   		            <p:separator />
-		            
-		            <p:submenu label="#{app['app.menu.books.close']}">
-		            	<p:submenu label="#{app['app.menu.books.opens.history_books']}">
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.births']}" url="#" />
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.marriages']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.divorces']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.deaths']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.adoptions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.modifications']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.repositions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.marginations']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.judgments']}" url="#"/>
-		            	</p:submenu>
-		            	<p:separator />
-		            	<p:submenu label="#{app['app.menu.books.close.yearbooks']}">
-			            	<p:menuitem value="#{app['app.menu.books.close.yearbooks.births']}" url="#" />
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.marriages']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.divorces']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.deaths']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.adoptions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.modifications']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.repositions']}" url="#"/>		            		
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.judgments']}" url="#"/>
-		   				</p:submenu>
-		            </p:submenu>
-		            <p:separator />
-		            
-		            <p:submenu label="#{app['app.menu.books.confrontations']}">
-		            
-		            </p:submenu>
-		        </p:submenu>
-
-		
-		        <p:submenu label="Actions" icon="ui-icon-gear">
-		            <p:submenu label="Ajax" icon="ui-icon-refresh">
-		                <p:menuitem value="Save" actionListener="#{menuBean.save}" icon="ui-icon-disk" update="msgs"/>
-		                <p:menuitem value="Update" actionListener="#{menuBean.update}" icon="ui-icon-arrowrefresh-1-w" update="msgs"/>
-		            </p:submenu>
-		            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
-		                <p:menuitem value="Delete" actionListener="#{menuBean.delete}" icon="ui-icon-close" update="msgs" ajax="false"/>
-		            </p:submenu>
-		        </p:submenu>
-		
-		        <p:menuitem value="#{app['app.menu.system.quit']}" action="#{currentSession.logout}" icon="ui-icon-close" />
-			</p:menubar>
+		<p:panelGrid columns="1" rendered="#{currentSession.enable}">
+			<h:outputFormat value="#{app['app.main.welcome']}" >
+				<f:param value="#{currentSession.user.completeName}"/>
+			</h:outputFormat>
+		</p:panelGrid>
 			
-			<center>
-				<p:panelGrid columns="1">
-					<ui:insert name="formBody" />
-				</p:panelGrid>
-			</center>
+				<p:menubar rendered="#{currentSession.enable}">
+					<p:submenu label="#{app['app.menu.system']}" icon="ui-icon-gear" >
+			            <p:submenu label="#{app['app.menu.system.parameters']}" icon="ui-icon-contact">
+			                <p:menuitem value="#{app['app.menu.system.parameters.book_access']}" url="test.jsf" />
+			                <p:menuitem value="#{app['app.menu.system.parameters.others']}" url="#" icon="ui-icon-document" />
+			                <p:menuitem value="#{app['app.menu.system.parameters.templates']}" icon="ui-icon-document" url="#" />
+			            </p:submenu>
+			            <p:separator />
+			            <p:menuitem value="#{app['app.menu.system.auth_books']}" url="#" />		            
+			            <p:menuitem value="#{app['app.menu.system.users']}" url="#" />
+			            <p:separator/>
+			            <p:menuitem value="#{app['app.menu.system.quit']}" action="#{currentSession.logout}" icon="ui-icon-close" oncomplete="window.location='./'" />
+			        </p:submenu>
+			
+			        <p:submenu label="#{app['app.menu.maintenance']}" icon="ui-icon-pencil">
+			            <p:menuitem value="#{app['app.menu.maintenance.province']}" icon="ui-icon-document" action="maintenance/departament" />
+			            <p:menuitem value="#{app['app.menu.maintenance.town']}" url="#" icon="ui-icon-document" />
+			            <p:menuitem value="#{app['app.menu.maintenance.language']}" url="#" icon="ui-icon-document" />
+			            <p:menuitem value="#{app['app.menu.maintenance.nacionality']}" url="#" icon="ui-icon-document" />
+			            <p:menuitem value="#{app['app.menu.maintenance.relationship']}" url="#" icon="ui-icon-document" />
+			            <p:menuitem value="#{app['app.menu.maintenance.profesions']}" url="#" icon="ui-icon-document" />
+			            <p:separator />
+			            <p:menuitem value="#{app['app.menu.maintenance.outskirts']}" url="#" icon="ui-icon-document" />
+			            <p:menuitem value="#{app['app.menu.maintenance.cantons']}" url="#" icon="ui-icon-document" />
+			            <p:menuitem value="#{app['app.menu.maintenance.suburb']}" url="#" icon="ui-icon-document" />
+			            <p:menuitem value="#{app['app.menu.maintenance.caserios']}" url="#" icon="ui-icon-document" />
+			            <p:separator />
+			            <p:menuitem value="#{app['app.menu.maintenance.law']}" url="#" icon="ui-icon-document" />
+			            <p:menuitem value="#{app['app.menu.maintenance.marginalization_types']}" url="#" icon="ui-icon-document" />
+			        </p:submenu>
+			
+			        <p:submenu label="#{app['app.menu.books']}" icon="ui-icon-gear">
+			            <p:submenu label="#{app['app.menu.books.opens']}">
+			            	<p:submenu label="#{app['app.menu.books.opens.history_books']}">
+			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.births']}" url="#" />
+			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.marriages']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.divorces']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.deaths']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.adoptions']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.modifications']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.repositions']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.marginations']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.judgments']}" url="#"/>
+			            	</p:submenu>
+			            	<p:separator />
+			            	<p:submenu label="#{app['app.menu.books.opens.yearbooks']}">
+			            	<p:menuitem value="#{app['app.menu.books.opens.yearbooks.births']}" url="#" />
+			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.marriages']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.divorces']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.deaths']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.adoptions']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.modifications']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.repositions']}" url="#"/>		            		
+			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.judgments']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.certified']}" url="#"/>
+			            </p:submenu>
+			            </p:submenu>
+			            <p:separator />
+			            <p:submenu label="#{app['app.menu.books.reopens']}">
+			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.births']}" url="#"/>
+			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.marriages']}" url="#"/>
+			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.divorces']}" url="#"/>
+			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.deaths']}" url="#"/>
+			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.adoptions']}" url="#"/>
+			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.modifications']}" url="#"/>
+			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.repositions']}" url="#"/>
+			            </p:submenu>
+	   		            <p:separator />
+			            
+			            <p:submenu label="#{app['app.menu.books.close']}">
+			            	<p:submenu label="#{app['app.menu.books.opens.history_books']}">
+			            		<p:menuitem value="#{app['app.menu.books.close.history_books.births']}" url="#" />
+			            		<p:menuitem value="#{app['app.menu.books.close.history_books.marriages']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.history_books.divorces']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.history_books.deaths']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.history_books.adoptions']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.history_books.modifications']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.history_books.repositions']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.history_books.marginations']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.history_books.judgments']}" url="#"/>
+			            	</p:submenu>
+			            	<p:separator />
+			            	<p:submenu label="#{app['app.menu.books.close.yearbooks']}">
+				            	<p:menuitem value="#{app['app.menu.books.close.yearbooks.births']}" url="#" />
+			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.marriages']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.divorces']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.deaths']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.adoptions']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.modifications']}" url="#"/>
+			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.repositions']}" url="#"/>		            		
+			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.judgments']}" url="#"/>
+			   				</p:submenu>
+			            </p:submenu>
+			            <p:separator />
+			            
+			            <p:submenu label="#{app['app.menu.books.confrontations']}">
+			            
+			            </p:submenu>
+			        </p:submenu>
+	
+			
+			        <p:submenu label="Actions" icon="ui-icon-gear">
+			            <p:submenu label="Ajax" icon="ui-icon-refresh">
+			                <p:menuitem value="Save" actionListener="#{menuBean.save}" icon="ui-icon-disk" update="msgs"/>
+			                <p:menuitem value="Update" actionListener="#{menuBean.update}" icon="ui-icon-arrowrefresh-1-w" update="msgs"/>
+			            </p:submenu>
+			            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
+			                <p:menuitem value="Delete" actionListener="#{menuBean.delete}" icon="ui-icon-close" update="msgs" ajax="false"/>
+			            </p:submenu>
+			        </p:submenu>
+			
+			        <p:menuitem value="#{app['app.menu.system.quit']}" action="#{currentSession.logout}" icon="ui-icon-close" oncomplete="window.location='./'" />
+				</p:menubar>
+				
+				<center>
+					<p:panelGrid columns="1" rendered="#{currentSession.enable}">
+						<ui:insert name="formBody" />
+					</p:panelGrid>
+					<p:panelGrid columns="1" rendered="#{!currentSession.enable}">
+						<p:panel header="#{app['app.no_login.header']}">
+							<p:commandButton value="#{app['app.no_login.button']}" onclick="window.location='./'" />
+						</p:panel>
+					</p:panelGrid>					
+				</center>
 		</ui:define>
 	</ui:composition>
 </html>
