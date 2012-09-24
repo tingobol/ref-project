@@ -81,5 +81,11 @@ public class Usuario implements Serializable {
 	public void setPasswordWithoutEncrypt(String passwordWithoutEncrypt) {
 		this.passwordWithoutEncrypt = passwordWithoutEncrypt;
 	}
+	
+	@Transient
+	public String getCompleteName() {
+		return nombre+" "+apellido;
+	}
+	
 
 }

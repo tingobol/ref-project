@@ -5,15 +5,14 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<title>#{info.name}</title>
-	</h:head>
-	<h:body>
-		<h:form>
-			<p:growl id="msgs" autoUpdate="true"/>
-			<ui:insert name="body"/>
-			
-			
-		</h:form>
-	</h:body>
+	<ui:composition template="/main.xhtml">
+	
+		<ui:define name="formBody">
+			<p:dataTable value="#{departamentoMaintenance.all}" var="d">
+				<p:column headerText="Descripcion">
+					<h:outputText value="#{d.descripcion}" />
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
 </html>

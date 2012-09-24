@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="usuario_rol")
+@Table(name="usuario_rol",uniqueConstraints=@UniqueConstraint(columnNames={"fk_usuario","fk_rol"}))
 public class UsuarioRol implements Serializable {
 	private static final long serialVersionUID = 1L;
 

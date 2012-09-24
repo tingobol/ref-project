@@ -8,4 +8,5 @@ import com.dahg.project.ref.model.Departamento;
 @Local
 public interface DepartamentoService extends CatalogService<Departamento> {
 
+	
 }

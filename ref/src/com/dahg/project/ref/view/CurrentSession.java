@@ -62,12 +62,17 @@ public class CurrentSession extends AbstractManagedBean {
 	
 	
 	public boolean isEnable() {
-		return !user.getUsername().isEmpty();
+		return !(user.getUsername()==null) && !user.getUsername().isEmpty();
 	}
 	
 	public String logout() {
-		user = new Usuario();		
-		return "login";
+		user.setUsername(null);
+		user.setPassword(null);
+		user.setPasswordWithoutEncrypt(null);
+		user.setNombre(null);
+		user.setApellido(null);
+		user.setUsuarioRols(null);
+		return null;
 	}
 	
 	public Usuario getUser() {

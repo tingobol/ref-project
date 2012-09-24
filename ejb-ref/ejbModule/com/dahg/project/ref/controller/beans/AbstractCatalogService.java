@@ -5,20 +5,38 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 
+import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.services.CatalogService;
+import com.dahg.project.ref.model.Catalogo;
 
-public abstract class AbstractCatalogService<T> extends AbstractBean<T> implements CatalogService<T> {
+public abstract class AbstractCatalogService<T extends Catalogo> extends AbstractBean<T> implements CatalogService<T> {
 
 	@Override
 	public List<T> getAll() {
 		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-		CriteriaQuery<Object> query = cb.createQuery();
-		Root<Object> from = (Root<Object>) query.from(getClazz());
+		CriteriaQuery<T> query = cb.createQuery(getClazz());
+		Root<T> from = query.from(getClazz());
 		
-		CriteriaQuery select = query.select(from);
-		TypedQuery<Object> tQuery = getEntityManager().createQuery(select);
+		CriteriaQuery<T> select = query.select(from).orderBy(cb.desc(from.get("id")));
+		TypedQuery<T> tQuery = getEntityManager().createQuery(select);
 		
-		return (List<T>) tQuery.getResultList();
+		return  tQuery.getResultList();
 	}
+
+	@Override
+	public void addNewCatalog(String description) throws ControllerException {
+		try {
+			T newObj = getClazz().newInstance();
+			newObj.setDescripcion(description);
+			this.merge(newObj);			
+		} catch (InstantiationException e) {
+			throw new ControllerException(e);
+		} catch (IllegalAccessException e) {			
+			throw new ControllerException(e);
+		}
+		
+	}
+	
+	
 
 }
