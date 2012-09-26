@@ -10,6 +10,8 @@ import com.dahg.project.ref.controller.util.Decrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Interceptors(SpringBeanAutowiringInterceptor.class)
 public abstract class AbstractBean<T> implements Service<T> {
@@ -34,18 +36,21 @@ public abstract class AbstractBean<T> implements Service<T> {
 	}
 
 	@Override
+	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
 	public void persist(T obj) {
 		getEntityManager().persist(obj);
 	}
 
 	@Override
+	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
 	public void merge(T obj) {
 		getEntityManager().merge(obj);
 	}
 
 	@Override
+	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
 	public void remove(T obj) {
-		getEntityManager().remove(getEntityManager().merge(obj));		
+		getEntityManager().remove(getEntityManager().contains(obj)?obj:getEntityManager().merge(obj));		
 	}
 	
 	public Decrypt getDecrypt() {
