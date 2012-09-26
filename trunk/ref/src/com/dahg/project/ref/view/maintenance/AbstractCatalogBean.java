@@ -15,6 +15,7 @@ public abstract class AbstractCatalogBean<T extends ICatalogo> extends AbstractM
 		
 	protected abstract CatalogService<T> getService();
 	private List<T> all;
+	private T selected;
 	
 	@PostConstruct
 	public void init() {
@@ -36,6 +37,12 @@ public abstract class AbstractCatalogBean<T extends ICatalogo> extends AbstractM
 		getService().merge(current);
 	}
 	
+	public String delete() {
+		getService().remove(selected);
+		all.clear();
+		all.addAll(getService().getAll());
+		return null;
+	}
 
 	public List<T> getAll() {
 		return all;
@@ -43,6 +50,14 @@ public abstract class AbstractCatalogBean<T extends ICatalogo> extends AbstractM
 
 	public void setAll(List<T> all) {
 		this.all = all;
+	}
+
+	public T getSelected() {
+		return selected;
+	}
+
+	public void setSelected(T selected) {
+		this.selected = selected;
 	}
 	
 	

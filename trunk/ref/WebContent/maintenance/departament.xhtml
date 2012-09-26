@@ -14,22 +14,28 @@
 						<f:param value="#{app['app.menu.maintenance.province']}" />
 					</h:outputFormat>
 				</f:facet>
-				<p:commandButton value="Agregar" actionListener="#{departamentoMaintenance.add}" update="tabla"/>
+				<p:panelGrid columns="2">
+					<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{departamentoMaintenance.add}" update="tabla"/>
+					<p:commandButton value="Eliminar" action="#{departamentoMaintenance.delete}" update="tabla"/>
+				</p:panelGrid>
+				
 	
-				<p:dataTable id="tabla" value="#{departamentoMaintenance.all}" var="c" editable="true">
+				<p:dataTable id="tabla" value="#{departamentoMaintenance.all}" var="c" editable="true" paginator="true" rows="#{app['app.catalog.rows']}"
+				selection="#{departamentoMaintenance.selected}" selectionMode="single" rowKey="#{c.id}"
+				>
 					<p:ajax event="rowEdit" listener="#{departamentoMaintenance.edit}"/>
-					<p:column headerText="Descripcion" sortBy="#{c.descripcion}">
+					<p:column>
+						<p:rowEditor />
+					</p:column>
+					<p:column headerText="#{app['app.catalog.field.description']}" sortBy="#{c.descripcion}">
 						<p:cellEditor>
 							<f:facet name="output">
 								<h:outputText value="#{c.descripcion}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{c.descripcion}" />
+								<p:inputText value="#{c.descripcion}" required="true" label="Descripcion" />
 							</f:facet>
 						</p:cellEditor>						
-					</p:column>
-					<p:column>
-						<p:rowEditor />
 					</p:column>
 				</p:dataTable>
 			</p:panel>
