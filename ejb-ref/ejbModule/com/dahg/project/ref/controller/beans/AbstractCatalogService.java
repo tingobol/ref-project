@@ -3,14 +3,28 @@ package com.dahg.project.ref.controller.beans;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.services.CatalogService;
-import com.dahg.project.ref.model.Catalogo;
+import com.dahg.project.ref.model.ICatalogo;
 
-public abstract class AbstractCatalogService<T extends Catalogo> extends AbstractBean<T> implements CatalogService<T> {
+public abstract class AbstractCatalogService<T extends ICatalogo> extends AbstractBean<T> implements CatalogService<T> {
 
+	public void addNewCatalog(String descripcion) throws ControllerException{
+		try {
+			T newObj=getClazz().newInstance();
+			newObj.setDescripcion(descripcion);
+			super.persist(newObj);
+		} catch (InstantiationException e) {
+			throw new ControllerException(e);
+		} catch (IllegalAccessException e) {
+			throw new ControllerException(e);
+		}
+	}
+	
 	@Override
 	public List<T> getAll() {
 		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
@@ -22,21 +36,5 @@ public abstract class AbstractCatalogService<T extends Catalogo> extends Abstrac
 		
 		return  tQuery.getResultList();
 	}
-
-	@Override
-	public void addNewCatalog(String description) throws ControllerException {
-		try {
-			T newObj = getClazz().newInstance();
-			newObj.setDescripcion(description);
-			this.merge(newObj);			
-		} catch (InstantiationException e) {
-			throw new ControllerException(e);
-		} catch (IllegalAccessException e) {			
-			throw new ControllerException(e);
-		}
-		
-	}
 	
-	
-
 }
