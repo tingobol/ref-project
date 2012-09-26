@@ -3,15 +3,15 @@ package com.dahg.project.ref.view.maintenance;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.event.ActionEvent;
+
+import org.primefaces.event.RowEditEvent;
 
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.services.CatalogService;
-import com.dahg.project.ref.model.Catalogo;
+import com.dahg.project.ref.model.ICatalogo;
 import com.dahg.project.ref.view.AbstractManagedBean;
-import com.sun.org.apache.xml.internal.resolver.Catalog;
 
-public abstract class AbstractCatalogBean<T extends Catalogo> extends AbstractManagedBean {
+public abstract class AbstractCatalogBean<T extends ICatalogo> extends AbstractManagedBean {
 		
 	protected abstract CatalogService<T> getService();
 	private List<T> all;
@@ -21,13 +21,21 @@ public abstract class AbstractCatalogBean<T extends Catalogo> extends AbstractMa
 		setAll(getService().getAll());
 	}
 	
-	public void add(ActionEvent evt) {
+	public void add() {
 		try {
 			getService().addNewCatalog("-----");
+			all.clear();
+			all.addAll(getService().getAll());
 		} catch (ControllerException e) {
 			addError(e);
 		}
 	}
+	
+	public void edit(RowEditEvent evt) {
+		T current = (T) evt.getObject();
+		getService().merge(current);
+	}
+	
 
 	public List<T> getAll() {
 		return all;
