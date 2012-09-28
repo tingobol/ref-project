@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-public class Municipio implements Serializable {
+public class Municipio implements ICatalogo {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -48,6 +48,11 @@ public class Municipio implements Serializable {
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		return id;
 	}
 
 }

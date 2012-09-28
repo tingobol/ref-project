@@ -48,21 +48,15 @@ public abstract class AbstractBean<T extends IEntity> implements Service<T> {
 	public void merge(T obj) {
 		getEntityManager().merge(obj);
 	}
-
-	@Override
-	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
-	public void remove(T obj) {
-		getEntityManager().remove(getEntityManager().contains(obj)?obj:getEntityManager().merge(obj));		
-	}
-	
-	public Decrypt getDecrypt() {
-		return decrypt;
-	}
 	
 	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
 	protected void remove(String sql,T obj) {
 		Query q=getEntityManager().createQuery(sql).setParameter("id", obj.getPrimaryKey());
 		q.executeUpdate();
+	}
+	
+	public Decrypt getDecrypt() {
+		return decrypt;
 	}
 	
 	
