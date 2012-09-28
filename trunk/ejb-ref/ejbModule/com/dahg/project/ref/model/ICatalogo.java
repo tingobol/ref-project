@@ -1,8 +1,6 @@
 package com.dahg.project.ref.model;
 
-import java.io.Serializable;
-
-public interface ICatalogo extends Serializable {
+public interface ICatalogo extends IEntity {
 	
 	void setDescripcion(String descripcion);
 	
