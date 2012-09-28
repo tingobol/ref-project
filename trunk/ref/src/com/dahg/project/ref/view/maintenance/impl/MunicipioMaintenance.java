@@ -5,19 +5,19 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.dahg.project.ref.controller.services.CatalogService;
-import com.dahg.project.ref.controller.services.local.DepartamentoService;
-import com.dahg.project.ref.model.Departamento;
+import com.dahg.project.ref.controller.services.local.MunicipioService;
+import com.dahg.project.ref.model.Municipio;
 import com.dahg.project.ref.view.maintenance.AbstractCatalogBean;
 
 @ManagedBean
 @ViewScoped
-public class DepartamentoMaintenance extends AbstractCatalogBean<Departamento> {
+public class MunicipioMaintenance extends AbstractCatalogBean<Municipio> {
 
 	@EJB
-	private DepartamentoService service;
+	private MunicipioService service;
 	
 	@Override
-	public CatalogService<Departamento> getService() {
+	public CatalogService<Municipio> getService() {
 		return service;
 	}
 
