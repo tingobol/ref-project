@@ -50,6 +50,11 @@ public class Departamento implements ICatalogo {
 		this.municipios = municipios;
 	}
 
+	@Override
+	public Object getPrimaryKey() {
+		return id;
+	}
+
 	
 	
 }

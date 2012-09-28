@@ -36,5 +36,13 @@ public abstract class AbstractCatalogService<T extends ICatalogo> extends Abstra
 		
 		return  tQuery.getResultList();
 	}
+
+	@Override
+	public void remove(T obj) {
+		String sql="delete from "+getClazz().getName()+" c where c.id=:id";
+		this.remove(sql,obj);
+	}
+	
+	
 	
 }

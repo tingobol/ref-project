@@ -38,6 +38,13 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 		return usuario;
 	}
 
+	@Override
+	public void remove(Usuario obj) {
+		String sql="delete from Usuario u.username=:id";
+		this.remove(sql, obj);
+	}
+
+	
 	
 	
 }
