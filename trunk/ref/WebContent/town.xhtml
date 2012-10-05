@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/main.xhtml">
+	
+		<ui:define name="formBody">
+			<p:panel>
+				<f:facet name="header">
+					<h:outputFormat value="#{app['app.catalog.title']}">
+						<f:param value="#{app['app.menu.maintenance.town']}" />
+					</h:outputFormat>
+				</f:facet>
+				<p:panelGrid columns="2">
+					<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="dialogWindow.show()"/>
+					
+					<p:commandButton value="#{app['app.controls.common.delete']}" action="#{municipioMaintenance.delete}" update="tabla"/>
+				</p:panelGrid>
+				
+				<p:dataTable id="tabla" value="#{municipioMaintenance.all}" var="c" editable="true" paginator="true" rows="#{app['app.catalog.rows']}"
+				selection="#{municipioMaintenance.selected}" selectionMode="single" rowKey="#{c.id}">
+					<p:ajax event="rowEdit" listener="#{municipioMaintenance.edit}"/>
+					<p:column>
+						<p:rowEditor />
+					</p:column>
+					<p:column headerText="#{app['app.catalog.field.description']}" sortBy="#{c.descripcion}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{c.descripcion}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{c.descripcion}" label="Descripcion" />
+							</f:facet>
+						</p:cellEditor>						
+					</p:column>
+					<p:column headerText="#{app['app.menu.maintenance.province']}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{c.departamento.descripcion}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu value="#{c.departamento}">
+										<f:selectItems value="#{departamentoMaintenance.all}" var="d" itemLabel="#{d.descripcion}" itemValue="#{d}"/>
+										<f:converter binding="#{departamentoConverter}" />
+									</p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+				</p:dataTable>
+				
+			</p:panel>
+			<p:dialog widgetVar="dialogWindow">
+				<p:panelGrid columns="2">
+					<p:selectOneMenu value="#{municipioMaintenance.selectedDepartament}" converter="#{departamentoConverter}">
+						<f:selectItems value="#{departamentoMaintenance.all}" var="d" itemLabel="#{d.descripcion}" itemValue="#{d}"/>
+						<f:converter binding="#{departamentoConverter}" />
+					</p:selectOneMenu>
+					<p:commandButton value="Agregar" action="#{municipioMaintenance.addNew}" oncomplete="dialogWindow.hide()" update="tabla" />
+				</p:panelGrid>
+			</p:dialog>
+		</ui:define>
+	</ui:composition>
+</html>
