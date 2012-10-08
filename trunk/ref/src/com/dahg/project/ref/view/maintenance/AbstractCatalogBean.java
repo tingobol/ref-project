@@ -36,9 +36,15 @@ public abstract class AbstractCatalogBean<T extends ICatalogo> extends AbstractM
 	}
 	
 	public String delete() {
+		if (selected==null) {
+			addWarn("Debe seleccionar un registro");
+			return null;
+		}
+		
 		getService().remove(selected);
 		all.clear();
 		all.addAll(getService().getAll());
+		selected = null;
 		return null;
 	}
 

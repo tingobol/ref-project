@@ -10,6 +10,16 @@
 		
 		<p:commandButton value="Prueba1" rendered="#{currentSession.isAuthorized('COMMON')}"/>
 		<p:commandButton value="Prueba2" rendered="#{currentSession.isAuthorized('COMMONS')}"/>
+		
+		<p:commandButton value="Abrir" type="button" onclick="prueba.show()" />
+		<h:outputText id="txt" value="#{testBean.texto}"/>
+		<p:dialog widgetVar="prueba" appendToBody="false" header="Prueba" modal="true">
+			
+				<p:commandButton value="Normal" action="#{testBean.actionNormal}" oncomplete="prueba.hide()" update="txt" />
+				<p:commandButton value="Listener" actionListener="#{testBean.actionListener}" oncomplete="prueba.hide()" update="txt" />
+			
+		</p:dialog>
+		
 		</ui:define>
 	</ui:composition>
 </html>
