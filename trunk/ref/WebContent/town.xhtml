@@ -49,16 +49,16 @@
 				</p:dataTable>
 				
 			</p:panel>
-			<p:dialog widgetVar="dialogWindow" appendToBody="false" modal="true" header="Nuevo Elemento">
+			<p:dialog widgetVar="dialogWindow" appendToBody="false" modal="true" header="#{app['app.commons.new_element']}">
 				<p:panelGrid columns="2">
-					<h:outputText value="Descripcion"/>
-					<h:outputText value="Departamento"/>
-					<p:inputText value="#{municipioMaintenance.newMunicipioDescripcion}" />
+					<h:outputText value="#{app['app.catalog.field.description']}"/>
+					<h:outputText value="#{app['app.menu.maintenance.province']}"/>
+					<p:inputText value="#{municipioMaintenance.descripcion}" />
 					<p:autoComplete value="#{municipioMaintenance.selectedDepartament}" dropdown="true" completeMethod="#{municipioMaintenance.complete}"
 					var="item" itemLabel="#{item.descripcion}" itemValue="#{item}"/>
 					
 					<f:facet name="footer">
-						<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{municipioMaintenance.addNew}" oncomplete="dialogWindow.hide()" update="tabla" />
+						<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{municipioMaintenance.add}" oncomplete="dialogWindow.hide()" update="tabla" />
 					</f:facet>
 					
 				</p:panelGrid>

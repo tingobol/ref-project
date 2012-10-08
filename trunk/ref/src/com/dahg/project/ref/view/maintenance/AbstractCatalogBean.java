@@ -14,6 +14,7 @@ public abstract class AbstractCatalogBean<T extends ICatalogo> extends AbstractM
 	
 	private List<T> all;
 	private T selected;
+	private String descripcion;
 	
 	@PostConstruct
 	public void init() {
@@ -22,7 +23,8 @@ public abstract class AbstractCatalogBean<T extends ICatalogo> extends AbstractM
 	
 	public void add() {
 		try {
-			getService().addNewCatalog("-----");
+			getService().addNewCatalog(descripcion);
+			descripcion="";
 			all.clear();
 			all.addAll(getService().getAll());
 		} catch (ControllerException e) {
@@ -62,6 +64,14 @@ public abstract class AbstractCatalogBean<T extends ICatalogo> extends AbstractM
 
 	public void setSelected(T selected) {
 		this.selected = selected;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 	
