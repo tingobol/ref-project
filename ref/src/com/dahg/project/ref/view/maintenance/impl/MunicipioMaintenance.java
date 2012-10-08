@@ -23,19 +23,18 @@ public class MunicipioMaintenance extends AbstractCatalogBean<Municipio> {
 	@EJB
 	private DepartamentoService departamentoService;
 	private Departamento selectedDepartament;
-	private String newMunicipioDescripcion;
 	
 	@Override
 	public CatalogService<Municipio> getService() {
 		return service;
 	}	
-
 	
-	public void addNew(ActionEvent evt) {
-		Municipio newMunicipio=new Municipio();
-		newMunicipio.setDescripcion(newMunicipioDescripcion);
+	@Override
+	public void add() {Municipio newMunicipio=new Municipio();
+		newMunicipio.setDescripcion(getDescripcion());
 		newMunicipio.setDepartamento(selectedDepartament);
 		getService().persist(newMunicipio);
+		setDescripcion("");
 		getAll().clear();
 		getAll().addAll(getService().getAll());
 	}
@@ -51,18 +50,6 @@ public class MunicipioMaintenance extends AbstractCatalogBean<Municipio> {
 	public void setSelectedDepartament(Departamento selectedDepartament) {
 		this.selectedDepartament = selectedDepartament;
 	}
-
-	public String getNewMunicipioDescripcion() {
-		return newMunicipioDescripcion;
-	}
-
-
-	public void setNewMunicipioDescripcion(String newMunicipioDescripcion) {
-		this.newMunicipioDescripcion = newMunicipioDescripcion;
-	}
-	
-	
-	
 	
 
 }
