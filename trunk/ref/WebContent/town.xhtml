@@ -42,7 +42,8 @@
 								<h:outputText value="#{c.departamento.descripcion}" />
 							</f:facet>
 							<f:facet name="input">
-								<h:outputText value="#{c.departamento.descripcion}" />
+								<p:autoComplete value="#{c.departamento}" dropdown="true" completeMethod="#{municipioMaintenance.complete}"
+									var="item" itemLabel="#{item.descripcion}" itemValue="#{item}"/>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
