@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-public class Nacionalidad implements Serializable {
+public class Nacionalidad implements ICatalogo {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -35,6 +35,11 @@ public class Nacionalidad implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		return id;
 	}
 
 }

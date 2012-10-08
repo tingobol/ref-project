@@ -1,6 +1,5 @@
 package com.dahg.project.ref.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
 
 
@@ -9,7 +8,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-public class Idioma implements Serializable {
+public class Idioma implements ICatalogo {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -35,6 +34,11 @@ public class Idioma implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		return id;
 	}
 
 }
