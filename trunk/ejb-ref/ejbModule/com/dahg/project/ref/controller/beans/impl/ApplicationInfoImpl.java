@@ -10,14 +10,21 @@ import com.dahg.project.ref.controller.services.local.ApplicationInfo;
 
 @Stateless
 @Interceptors(SpringBeanAutowiringInterceptor.class)
-public class AplicationInfoImpl implements ApplicationInfo {
+public class ApplicationInfoImpl implements ApplicationInfo {
 
 	@Value("${app.name}")
 	private String applicationName;
+	@Value("${app.city.name}")
+	private String cityName;
 	
 	@Override
-	public String getAplicationName() {
+	public String getApplicationName() {
 		return applicationName;
+	}
+
+	@Override
+	public String getCityName() {
+		return cityName;
 	}
 
 }
