@@ -10,7 +10,7 @@ import java.util.List;
  * 
  */
 @Entity
-public class Usuario implements IEntity {
+public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -85,11 +85,6 @@ public class Usuario implements IEntity {
 	@Transient
 	public String getCompleteName() {
 		return nombre+" "+apellido;
-	}
-
-	@Override
-	public Object getPrimaryKey() {
-		return username;
 	}
 	
 

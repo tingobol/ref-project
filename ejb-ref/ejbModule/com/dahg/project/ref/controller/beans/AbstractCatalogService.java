@@ -9,9 +9,9 @@ import javax.persistence.criteria.Root;
 
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.services.CatalogService;
-import com.dahg.project.ref.model.ICatalogo;
+import com.dahg.project.ref.model.CommonCatalog;
 
-public abstract class AbstractCatalogService<T extends ICatalogo> extends AbstractBean<T> implements CatalogService<T> {
+public abstract class AbstractCatalogService<T extends CommonCatalog> extends AbstractBean<T> implements CatalogService<T> {
 
 	public void addNewCatalog(String descripcion) throws ControllerException{
 		try {
@@ -40,7 +40,7 @@ public abstract class AbstractCatalogService<T extends ICatalogo> extends Abstra
 	@Override
 	public void remove(T obj) {
 		String sql="delete from "+getClazz().getName()+" c where c.id=:id";
-		this.remove(sql,obj);
+		this.remove(sql,obj.getId());
 	}
 	
 	

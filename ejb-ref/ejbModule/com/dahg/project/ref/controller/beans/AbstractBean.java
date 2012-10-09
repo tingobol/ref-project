@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import com.dahg.project.ref.controller.persist.SpringPersistence;
 import com.dahg.project.ref.controller.services.Service;
 import com.dahg.project.ref.controller.util.Decrypt;
-import com.dahg.project.ref.model.IEntity;
+import com.dahg.project.ref.model.CommonEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Interceptors(SpringBeanAutowiringInterceptor.class)
-public abstract class AbstractBean<T extends IEntity> implements Service<T> {
+public abstract class AbstractBean<T> implements Service<T> {
 
 	@Autowired
 	@Qualifier("persistence")
@@ -50,8 +50,8 @@ public abstract class AbstractBean<T extends IEntity> implements Service<T> {
 	}
 	
 	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
-	protected void remove(String sql,T obj) {
-		Query q=getEntityManager().createQuery(sql).setParameter("id", obj.getPrimaryKey());
+	protected void remove(String sql,Object primaryKey) {
+		Query q=getEntityManager().createQuery(sql).setParameter("id", primaryKey);
 		q.executeUpdate();
 	}
 	
