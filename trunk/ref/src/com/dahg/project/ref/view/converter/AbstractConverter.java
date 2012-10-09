@@ -5,13 +5,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
 import com.dahg.project.ref.controller.services.CatalogService;
-import com.dahg.project.ref.model.Departamento;
-import com.dahg.project.ref.model.ICatalogo;
+import com.dahg.project.ref.model.CommonCatalog;
 import com.dahg.project.ref.view.maintenance.AbstractCatalogBean;
 import com.dahg.project.ref.view.maintenance.ICatalogBean;
-import com.dahg.project.ref.view.maintenance.impl.DepartamentoMaintenance;
 
-public abstract class AbstractConverter<T extends ICatalogo> implements Converter, ICatalogBean<T> {
+public abstract class AbstractConverter<T extends CommonCatalog> implements Converter, ICatalogBean<T> {
 
 	protected abstract String getBeanName();
 	
@@ -26,7 +24,7 @@ public abstract class AbstractConverter<T extends ICatalogo> implements Converte
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		T item = (T) value;
-		String id = item.getPrimaryKey().toString();
+		String id = item.getId().toString();
 		return id;
 	}
 	
