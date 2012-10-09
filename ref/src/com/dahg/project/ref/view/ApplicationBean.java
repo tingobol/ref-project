@@ -14,7 +14,11 @@ public class ApplicationBean {
 	private ApplicationInfo info;
 	
 	public String getName() {
-		return info.getAplicationName();
+		return info.getApplicationName();
+	}
+	
+	public String getCityName() {
+		return info.getCityName();
 	}
 	
 }
