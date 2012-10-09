@@ -41,9 +41,11 @@
 							<f:facet name="output">
 								<h:outputText value="#{c.departamento.descripcion}" />
 							</f:facet>
-							<f:facet name="input">
-								<p:autoComplete value="#{c.departamento}" dropdown="true" completeMethod="#{municipioMaintenance.complete}"
-									var="item" itemLabel="#{item.descripcion}" itemValue="#{item}"/>
+							<f:facet name="input">								
+								<p:selectOneMenu value="#{c.departamento}">
+									<f:selectItems value="#{departamentoMaintenance.all}" var="item" itemLabel="#{item.descripcion}" itemValue="#{item}"/>
+								</p:selectOneMenu>
+					
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -55,8 +57,10 @@
 					<h:outputText value="#{app['app.catalog.field.description']}"/>
 					<h:outputText value="#{app['app.menu.maintenance.province']}"/>
 					<p:inputText value="#{municipioMaintenance.descripcion}" />
-					<p:autoComplete value="#{municipioMaintenance.selectedDepartament}" dropdown="true" completeMethod="#{municipioMaintenance.complete}"
-					var="item" itemLabel="#{item.descripcion}" itemValue="#{item}"/>
+					
+					<p:selectOneMenu value="#{municipioMaintenance.selectedDepartament}">
+						<f:selectItems value="#{departamentoMaintenance.all}" var="item" itemLabel="#{item.descripcion}" itemValue="#{item}"/>
+					</p:selectOneMenu>
 					
 					<f:facet name="footer">
 						<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{municipioMaintenance.add}" oncomplete="dialogWindow.hide()" update="tabla" />
