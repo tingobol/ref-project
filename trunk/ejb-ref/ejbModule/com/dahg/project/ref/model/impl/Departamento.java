@@ -30,18 +30,6 @@ public class Departamento extends AbtractCatalog implements ICatalog {
 	public void setId(Integer id) {
 		this.id=id;
 	}
-
-	@Override
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	@Override
-	public void setDescripcion(String descripcion) {
-		this.descripcion=descripcion;
-	}
-
-		
 		
 
 	//bi-directional many-to-one association to Municipio

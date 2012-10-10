@@ -4,6 +4,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import org.primefaces.context.RequestContext;
+
 import com.dahg.project.ref.view.AbstractManagedBean;
 
 @ManagedBean
@@ -17,15 +19,22 @@ public class TestBean extends AbstractManagedBean {
 	}
 	
 	public String actionNormal() {
-		texto="ESTOY EN ACTION NORMAL";
+		RequestContext.getCurrentInstance().execute("prueba.hide()");
 		return null;
 	}	
 	
-	public void actionListener(ActionEvent evt) {
-		texto="ESTOY EN ACTION LISTENER";
+	public String ejecutar() {
+		System.out.println("Ejecutar");
+		return null;
 	}
 	
 	public String getTexto() {
 		return texto;
 	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+	
+	
 }

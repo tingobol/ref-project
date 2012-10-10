@@ -31,18 +31,7 @@ public class Municipio extends AbtractCatalog implements ICatalog {
 	@Override
 	public void setId(Integer id) {
 		this.id=id;
-	}
-
-	@Override
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	@Override
-	public void setDescripcion(String descripcion) {
-		this.descripcion=descripcion;
-	}
-	
+	}	
 	
 	
 	@ManyToOne

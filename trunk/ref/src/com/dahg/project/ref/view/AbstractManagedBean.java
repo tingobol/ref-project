@@ -7,6 +7,8 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
+
 public abstract class AbstractManagedBean {
 	
 	@ManagedProperty("#{app}")
@@ -48,5 +50,8 @@ public abstract class AbstractManagedBean {
 		this.bundle = bundle;
 	}
 	
+	protected RequestContext getRequestContext() {
+		return RequestContext.getCurrentInstance();
+	}
 	
 }

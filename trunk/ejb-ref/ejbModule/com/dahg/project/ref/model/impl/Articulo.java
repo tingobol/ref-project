@@ -13,6 +13,11 @@ import com.dahg.project.ref.model.ICatalog;
 @Entity
 public class Articulo extends AbtractCatalog implements ICatalog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	@Id
 	public Integer getId() {
@@ -22,16 +27,6 @@ public class Articulo extends AbtractCatalog implements ICatalog {
 	@Override
 	public void setId(Integer id) {
 		this.id=id;
-	}
-
-	@Override
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	@Override
-	public void setDescripcion(String descripcion) {
-		this.descripcion=descripcion;
 	}
 
 }
