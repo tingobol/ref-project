@@ -128,9 +128,9 @@
 				</p:menubar>
 				
 				<center>
-					<p:panelGrid columns="1" rendered="#{currentSession.enable}">
+					<h:panelGrid columns="1" rendered="#{currentSession.enable}">
 						<ui:insert name="formBody" />
-					</p:panelGrid>
+					</h:panelGrid>
 					<p:panelGrid columns="1" rendered="#{!currentSession.enable}">
 						<p:panel header="#{app['app.no_login.header']}">
 							<p:commandButton value="#{app['app.no_login.button']}" onclick="window.location='./'" />

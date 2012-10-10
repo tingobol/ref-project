@@ -3,51 +3,14 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:dahg="http://java.sun.com/jsf/composite/dahg">
 
 	<ui:composition template="/main.xhtml">
 	
 		<ui:define name="formBody">
-			<p:panel>
-				<f:facet name="header">
-					<h:outputFormat value="#{app['app.catalog.title']}">
-						<f:param value="#{app['app.menu.maintenance.profesions']}" />
-					</h:outputFormat>
-				</f:facet>
-				<p:panelGrid columns="2">
-					<p:commandButton value="#{app['app.catalog.button.add']}" onclick="edit.show()"/>
-					<p:commandButton value="#{app['app.controls.common.delete']}" action="#{profesionMaintenance.delete}" update="tabla"/>
-				</p:panelGrid>
-				
-	
-				<p:dataTable id="tabla" value="#{profesionMaintenance.all}" var="c" editable="true" paginator="true" rows="#{app['app.catalog.rows']}"
-				selection="#{profesionMaintenance.selected}" selectionMode="single" rowKey="#{c.id}">
-					<p:ajax event="rowEdit" listener="#{profesionMaintenance.edit}"/>
-					<p:column>
-						<p:rowEditor />
-					</p:column>
-					<p:column headerText="#{app['app.catalog.field.description']}" sortBy="#{c.descripcion}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{c.descripcion}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{c.descripcion}" label="Descripcion" />
-							</f:facet>
-						</p:cellEditor>						
-					</p:column>
-				</p:dataTable>
-			</p:panel>
-			
-			<p:dialog widgetVar="edit" modal="true" header="#{app['app.commons.new_element']}">
-				<p:panelGrid columns="2">
-					<h:outputText value="#{app['app.catalog.field.description']}"/>
-					<p:inputText id="txtDescripcion" value="#{profesionMaintenance.descripcion}" />
-					<f:facet name="footer">
-						<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{profesionMaintenance.add}" update="tabla txtDescripcion" oncomplete="edit.hide()" />
-					</f:facet>
-				</p:panelGrid>
-			</p:dialog>
+			<dahg:maintenance 	catalogBean="#{profesionMaintenance}"
+								maintenanceTypeText="#{app['app.menu.maintenance.profesions']}"/>
 		</ui:define>
 	</ui:composition>
 </html>

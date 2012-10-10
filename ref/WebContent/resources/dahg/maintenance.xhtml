@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"    
+    xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+    <!-- INTERFACE -->
+    <composite:interface>
+    	<composite:attribute name="catalogBean" required="true" />
+    	<composite:attribute name="maintenanceTypeText" required="true"/>
+    </composite:interface>
+          
+    <!-- IMPLEMENTATION -->
+    <composite:implementation>
+    	
+		<p:panel>
+				<f:facet name="header">
+					<h:outputFormat value="#{app['app.catalog.title']}">
+						<f:param value="#{cc.attrs.maintenanceTypeText}" />
+					</h:outputFormat>
+				</f:facet>
+				<p:growl id="catmsg"/>
+				<p:panelGrid columns="2">
+					<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="edit.show()"/>
+					
+					<p:outputPanel autoUpdate="true">					
+						<p:commandButton 
+						disabled="#{ empty cc.attrs.catalogBean.selected}"
+						value="#{app['app.controls.common.delete']}" immediate="true" action="#{cc.attrs.catalogBean.delete}" update="catmsg,tabla"/>
+					</p:outputPanel>
+				</p:panelGrid>
+				
+	
+				<p:dataTable id="tabla" value="#{cc.attrs.catalogBean.all}" var="c" editable="true" paginator="true" rows="#{app['app.catalog.rows']}"
+				selection="#{cc.attrs.catalogBean.selected}" selectionMode="single" rowKey="#{c.id}">
+					<p:ajax event="rowEdit" listener="#{cc.attrs.catalogBean.edit}"/>
+					<p:ajax event="rowSelect" listener="#{cc.attrs.catalogBean.select}"/>
+					<p:column>
+						<p:rowEditor />
+					</p:column>
+					<p:column headerText="#{app['app.catalog.field.description']}" sortBy="#{c.descripcion}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{c.descripcion}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{c.descripcion}" label="Descripcion" />
+							</f:facet>
+						</p:cellEditor>						
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+			
+			<p:dialog widgetVar="edit" modal="true" header="#{app['app.commons.new_element']}">
+				<p:ajax event="close" update="tabla"/>				
+				
+				<p:outputPanel autoUpdate="true">
+					<p:panelGrid columns="2">
+						<h:outputText value="#{app['app.catalog.field.description']}"/>
+						<p:inputText value="#{cc.attrs.catalogBean.descripcion}" required="true" label="#{app['app.catalog.field.description']}" />
+						<f:facet name="footer">
+							<p:growl id="editmsg" sticky="true" />						
+							<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{cc.attrs.catalogBean.add}"/>
+						</f:facet>
+					</p:panelGrid>
+				</p:outputPanel>
+				
+			</p:dialog>
+    </composite:implementation>    
+
+</html>

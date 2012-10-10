@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
 
 import com.dahg.project.ref.controller.exception.ControllerException;
-import com.dahg.project.ref.model.AbtractCatalog;
 import com.dahg.project.ref.model.ICatalog;
-import com.dahg.project.ref.model.ICatalogo;
 import com.dahg.project.ref.view.AbstractManagedBean;
 
 public abstract class AbstractCatalogBean<T extends ICatalog> extends AbstractManagedBean implements ICatalogBean<T> {		
@@ -26,17 +26,26 @@ public abstract class AbstractCatalogBean<T extends ICatalog> extends AbstractMa
 	public void add() {
 		try {
 			getService().addNewCatalog(descripcion);
-			descripcion="";
+			descripcion=null;
 			all.clear();
 			all.addAll(getService().getAll());
+			RequestContext rc = getRequestContext();
+			rc.execute("edit.hide()");
+			
 		} catch (ControllerException e) {
 			addError(e);
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void edit(RowEditEvent evt) {
 		T current = (T) evt.getObject();
 		getService().merge(current);
+	}
+	
+	public void select(SelectEvent evt) {
+		T current = (T) evt.getObject();
+		setSelected(current);
 	}
 	
 	public String delete() {
