@@ -9,9 +9,9 @@ import javax.persistence.criteria.Root;
 
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.services.CatalogService;
-import com.dahg.project.ref.model.CommonCatalog;
+import com.dahg.project.ref.model.ICatalog;
 
-public abstract class AbstractCatalogService<T extends CommonCatalog> extends AbstractBean<T> implements CatalogService<T> {
+public abstract class AbstractCatalogService<T extends ICatalog> extends AbstractBean<T> implements CatalogService<T> {
 
 	public void addNewCatalog(String descripcion) throws ControllerException{
 		try {

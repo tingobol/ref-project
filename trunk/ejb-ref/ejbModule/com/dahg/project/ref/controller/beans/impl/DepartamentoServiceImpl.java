@@ -7,7 +7,7 @@ import javax.persistence.Query;
 
 import com.dahg.project.ref.controller.beans.AbstractCatalogService;
 import com.dahg.project.ref.controller.services.local.DepartamentoService;
-import com.dahg.project.ref.model.Departamento;
+import com.dahg.project.ref.model.impl.Departamento;
 
 @Stateless
 public class DepartamentoServiceImpl extends AbstractCatalogService<Departamento> implements DepartamentoService {

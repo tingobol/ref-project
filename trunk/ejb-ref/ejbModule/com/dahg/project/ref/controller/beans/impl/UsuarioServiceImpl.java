@@ -8,7 +8,7 @@ import com.dahg.project.ref.controller.beans.AbstractBean;
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.exception.ValidationException;
 import com.dahg.project.ref.controller.services.local.UsuarioService;
-import com.dahg.project.ref.model.Usuario;
+import com.dahg.project.ref.model.impl.Usuario;
 
 @Stateless
 public class UsuarioServiceImpl extends AbstractBean<Usuario> implements UsuarioService {

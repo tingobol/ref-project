@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import com.dahg.project.ref.controller.persist.SpringPersistence;
 import com.dahg.project.ref.controller.services.Service;
 import com.dahg.project.ref.controller.util.Decrypt;
-import com.dahg.project.ref.model.CommonEntity;
+import com.dahg.project.ref.model.AbstractEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

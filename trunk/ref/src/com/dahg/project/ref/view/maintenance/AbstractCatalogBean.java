@@ -7,11 +7,12 @@ import javax.annotation.PostConstruct;
 import org.primefaces.event.RowEditEvent;
 
 import com.dahg.project.ref.controller.exception.ControllerException;
-import com.dahg.project.ref.model.CommonCatalog;
+import com.dahg.project.ref.model.AbtractCatalog;
+import com.dahg.project.ref.model.ICatalog;
 import com.dahg.project.ref.model.ICatalogo;
 import com.dahg.project.ref.view.AbstractManagedBean;
 
-public abstract class AbstractCatalogBean<T extends CommonCatalog> extends AbstractManagedBean implements ICatalogBean<T> {		
+public abstract class AbstractCatalogBean<T extends ICatalog> extends AbstractManagedBean implements ICatalogBean<T> {		
 	
 	private List<T> all;
 	private T selected;

@@ -3,7 +3,7 @@ package com.dahg.project.ref.view.converter.impl;
 import javax.faces.convert.FacesConverter;
 
 
-import com.dahg.project.ref.model.Departamento;
+import com.dahg.project.ref.model.impl.Departamento;
 import com.dahg.project.ref.view.converter.AbstractConverter;
 
 
@@ -11,7 +11,7 @@ import com.dahg.project.ref.view.converter.AbstractConverter;
 public class DepartamentoConverter extends AbstractConverter<Departamento>  {
 	
 	@Override
-	protected String getBeanName() {
+	protected String getBeanWithServiceCatalog() {
 		return "departamentoMaintenance";
 	}	
 

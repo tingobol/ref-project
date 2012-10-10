@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 
 import com.dahg.project.ref.controller.beans.AbstractCatalogService;
 import com.dahg.project.ref.controller.services.local.CantonService;
-import com.dahg.project.ref.model.Canton;
+import com.dahg.project.ref.model.impl.Canton;
 
 @Stateless
 public class CantonServiceImpl extends AbstractCatalogService<Canton> implements CantonService {

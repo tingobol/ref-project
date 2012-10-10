@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 
 import com.dahg.project.ref.controller.beans.AbstractCatalogService;
 import com.dahg.project.ref.controller.services.local.NacionalidadService;
-import com.dahg.project.ref.model.Nacionalidad;
+import com.dahg.project.ref.model.impl.Nacionalidad;
 
 @Stateless
 public class NacionalidadServiceImpl extends AbstractCatalogService<Nacionalidad> implements NacionalidadService {
