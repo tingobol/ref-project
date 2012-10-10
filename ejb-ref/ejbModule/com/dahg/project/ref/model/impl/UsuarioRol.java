@@ -1,4 +1,4 @@
-package com.dahg.project.ref.model;
+package com.dahg.project.ref.model.impl;
 
 import java.io.Serializable;
 import javax.persistence.*;

@@ -11,18 +11,18 @@
 			<p:panel>
 				<f:facet name="header">
 					<h:outputFormat value="#{app['app.catalog.title']}">
-						<f:param value="#{app['app.menu.maintenance.caserios']}" />
+						<f:param value="#{app['app.menu.maintenance.outskirts']}" />
 					</h:outputFormat>
 				</f:facet>
 				<p:panelGrid columns="2">
 					<p:commandButton value="#{app['app.catalog.button.add']}" onclick="edit.show()"/>
-					<p:commandButton value="#{app['app.controls.common.delete']}" action="#{caserioMaintenance.delete}" update="tabla"/>
+					<p:commandButton value="#{app['app.controls.common.delete']}" action="#{barrioMaintenance.delete}" update="tabla"/>
 				</p:panelGrid>
 				
 	
-				<p:dataTable id="tabla" value="#{caserioMaintenance.all}" var="c" editable="true" paginator="true" rows="#{app['app.catalog.rows']}"
-				selection="#{caserioMaintenance.selected}" selectionMode="single" rowKey="#{c.id}">
-					<p:ajax event="rowEdit" listener="#{caserioMaintenance.edit}"/>
+				<p:dataTable id="tabla" value="#{barrioMaintenance.all}" var="c" editable="true" paginator="true" rows="#{app['app.catalog.rows']}"
+				selection="#{barrioMaintenance.selected}" selectionMode="single" rowKey="#{c.id}">
+					<p:ajax event="rowEdit" listener="#{barrioMaintenance.edit}"/>
 					<p:column>
 						<p:rowEditor />
 					</p:column>
@@ -42,9 +42,9 @@
 			<p:dialog widgetVar="edit" modal="true" header="#{app['app.commons.new_element']}">
 				<p:panelGrid columns="2">
 					<h:outputText value="#{app['app.catalog.field.description']}"/>
-					<p:inputText id="txtDescripcion" value="#{caserioMaintenance.descripcion}" />
+					<p:inputText id="txtDescripcion" value="#{barrioMaintenance.descripcion}" />
 					<f:facet name="footer">
-						<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{caserioMaintenance.add}" update="tabla txtDescripcion" oncomplete="edit.hide()" />
+						<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{barrioMaintenance.add}" update="tabla txtDescripcion" oncomplete="edit.hide()" />
 					</f:facet>
 				</p:panelGrid>
 			</p:dialog>

@@ -1,7 +1,11 @@
-package com.dahg.project.ref.model;
+package com.dahg.project.ref.model.impl;
+
+import javax.persistence.*;
+
+import com.dahg.project.ref.model.AbtractCatalog;
+import com.dahg.project.ref.model.ICatalog;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
 
@@ -11,36 +15,31 @@ import java.util.List;
  */
 @Entity
 public class Rol implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
 	private String id;
-
 	private String descripcion;
-
-	//bi-directional many-to-one association to UsuarioRol
-	@OneToMany(mappedBy="rol")
 	private List<UsuarioRol> usuarioRols;
-
-	public Rol() {
-	}
-
+	
+	
+	@Id
 	public String getId() {
-		return this.id;
+		return id;
 	}
-
+	
 	public void setId(String id) {
-		this.id = id;
+		this.id=id;
 	}
-
+	
 	public String getDescripcion() {
-		return this.descripcion;
+		return descripcion;
 	}
-
+	
 	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+		this.descripcion=descripcion;
 	}
+	
 
+	@OneToMany(mappedBy="rol")
 	public List<UsuarioRol> getUsuarioRols() {
 		return this.usuarioRols;
 	}

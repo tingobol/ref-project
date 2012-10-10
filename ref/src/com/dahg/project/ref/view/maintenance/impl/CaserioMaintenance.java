@@ -6,7 +6,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.dahg.project.ref.controller.services.CatalogService;
 import com.dahg.project.ref.controller.services.local.CaserioService;
-import com.dahg.project.ref.model.Caserio;
+import com.dahg.project.ref.model.impl.Caserio;
 import com.dahg.project.ref.view.maintenance.AbstractCatalogBean;
 
 @ManagedBean

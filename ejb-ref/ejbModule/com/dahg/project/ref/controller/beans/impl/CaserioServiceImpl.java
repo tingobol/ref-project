@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 
 import com.dahg.project.ref.controller.beans.AbstractCatalogService;
 import com.dahg.project.ref.controller.services.local.CaserioService;
-import com.dahg.project.ref.model.Caserio;
+import com.dahg.project.ref.model.impl.Caserio;
 
 @Stateless
 public class CaserioServiceImpl extends AbstractCatalogService<Caserio> implements CaserioService {

@@ -7,27 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
-public abstract class CommonEntity implements Serializable {
+//@MappedSuperclass
+public abstract class AbstractEntity implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
 	
-	public CommonEntity() {}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
+	protected Integer id;
+	
+	public AbstractEntity() {}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -44,7 +35,7 @@ public abstract class CommonEntity implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CommonEntity other = (CommonEntity) obj;
+		AbstractEntity other = (AbstractEntity) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

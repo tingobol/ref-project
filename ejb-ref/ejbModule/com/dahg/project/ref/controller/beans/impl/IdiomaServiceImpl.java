@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 
 import com.dahg.project.ref.controller.beans.AbstractCatalogService;
 import com.dahg.project.ref.controller.services.local.IdiomaService;
-import com.dahg.project.ref.model.Idioma;
+import com.dahg.project.ref.model.impl.Idioma;
 
 @Stateless
 public class IdiomaServiceImpl extends AbstractCatalogService<Idioma> implements IdiomaService {

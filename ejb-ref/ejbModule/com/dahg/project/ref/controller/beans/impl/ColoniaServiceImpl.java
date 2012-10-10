@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 
 import com.dahg.project.ref.controller.beans.AbstractCatalogService;
 import com.dahg.project.ref.controller.services.local.ColoniaService;
-import com.dahg.project.ref.model.Colonia;
+import com.dahg.project.ref.model.impl.Colonia;
 
 @Stateless
 public class ColoniaServiceImpl extends AbstractCatalogService<Colonia> implements ColoniaService {

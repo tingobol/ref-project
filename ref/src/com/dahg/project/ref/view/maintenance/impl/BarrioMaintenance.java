@@ -6,7 +6,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.dahg.project.ref.controller.services.CatalogService;
 import com.dahg.project.ref.controller.services.local.BarrioService;
-import com.dahg.project.ref.model.Barrio;
+import com.dahg.project.ref.model.impl.Barrio;
 import com.dahg.project.ref.view.maintenance.AbstractCatalogBean;
 
 @ManagedBean

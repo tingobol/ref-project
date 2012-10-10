@@ -5,17 +5,16 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
 import com.dahg.project.ref.controller.services.CatalogService;
-import com.dahg.project.ref.model.CommonCatalog;
+import com.dahg.project.ref.model.ICatalog;
 import com.dahg.project.ref.view.maintenance.AbstractCatalogBean;
 import com.dahg.project.ref.view.maintenance.ICatalogBean;
 
-public abstract class AbstractConverter<T extends CommonCatalog> implements Converter, ICatalogBean<T> {
+public abstract class AbstractConverter<T extends ICatalog> implements Converter, ICatalogBean<T> {
 
-	protected abstract String getBeanName();
+	protected abstract String getBeanWithServiceCatalog();
 	
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component, String value) {	
-		
+	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Integer id = Integer.valueOf(value);
 		return getService().getById(id);
 	}
@@ -30,8 +29,9 @@ public abstract class AbstractConverter<T extends CommonCatalog> implements Conv
 	
 	@SuppressWarnings("unchecked")
 	public CatalogService<T> getService() {
+		String elExpression="#{"+getBeanWithServiceCatalog()+"}";
 		FacesContext ctx= FacesContext.getCurrentInstance();
-		AbstractCatalogBean<T> bean = (AbstractCatalogBean<T>) ctx.getApplication().evaluateExpressionGet(ctx, "#{"+getBeanName()+"}", Object.class);
+		AbstractCatalogBean<T> bean = (AbstractCatalogBean<T>) ctx.getApplication().evaluateExpressionGet(ctx, elExpression, Object.class);
 		return bean.getService();
 	}
 	

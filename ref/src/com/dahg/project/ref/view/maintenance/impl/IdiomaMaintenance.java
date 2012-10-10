@@ -6,7 +6,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.dahg.project.ref.controller.services.CatalogService;
 import com.dahg.project.ref.controller.services.local.IdiomaService;
-import com.dahg.project.ref.model.Idioma;
+import com.dahg.project.ref.model.impl.Idioma;
 import com.dahg.project.ref.view.maintenance.AbstractCatalogBean;
 
 @ManagedBean

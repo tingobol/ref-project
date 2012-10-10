@@ -6,7 +6,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.dahg.project.ref.controller.services.CatalogService;
 import com.dahg.project.ref.controller.services.local.ProfesionService;
-import com.dahg.project.ref.model.Profesion;
+import com.dahg.project.ref.model.impl.Profesion;
 import com.dahg.project.ref.view.maintenance.AbstractCatalogBean;
 
 @ManagedBean

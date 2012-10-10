@@ -103,8 +103,8 @@
     	</createTable>
     	
     	<createTable tableName="articulo">
-    		<column name="id" autoIncrement="true" type="int">
-    			<constraints primaryKey="true"/>
+    		<column name="id" type="int">
+    			<constraints primaryKey="true" nullable="true"/>
     		</column>
     		<column name="texto" type="text">
     			<constraints nullable="false"/>
@@ -179,22 +179,6 @@
     	 referencedColumnNames="id"/>
     </changeSet>
     
-    <changeSet author="dani" id="4">
-    	<dropColumn tableName="articulo" columnName="id"/>
-    	<dropColumn tableName="articulo" columnName="texto"/>
-    	
-    	<addColumn tableName="articulo">
-    		<column name="numero" type="int">
-    			<constraints primaryKey="true" nullable="false"/>
-    		</column>
-    	</addColumn>
-    	
-    	<addColumn tableName="articulo">
-    		<column name="descripcion" type="varchar">
-    			<constraints nullable="false"/>
-    		</column>
-    	</addColumn>
-    	
-    </changeSet>
+    
     
 </databaseChangeLog>

@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 
 import com.dahg.project.ref.controller.beans.AbstractCatalogService;
 import com.dahg.project.ref.controller.services.local.ParentescoService;
-import com.dahg.project.ref.model.Parentesco;
+import com.dahg.project.ref.model.impl.Parentesco;
 
 @Stateless
 public class ParentescoServiceImpl extends AbstractCatalogService<Parentesco> implements ParentescoService {

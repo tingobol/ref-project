@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 
 import com.dahg.project.ref.controller.beans.AbstractCatalogService;
 import com.dahg.project.ref.controller.services.local.BarrioService;
-import com.dahg.project.ref.model.Barrio;
+import com.dahg.project.ref.model.impl.Barrio;
 
 @Stateless
 public class BarrioServiceImpl extends AbstractCatalogService<Barrio> implements BarrioService {

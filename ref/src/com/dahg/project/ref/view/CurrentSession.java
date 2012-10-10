@@ -8,8 +8,8 @@ import javax.faces.bean.SessionScoped;
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.exception.ValidationException;
 import com.dahg.project.ref.controller.services.local.UsuarioService;
-import com.dahg.project.ref.model.Usuario;
-import com.dahg.project.ref.model.UsuarioRol;
+import com.dahg.project.ref.model.impl.Usuario;
+import com.dahg.project.ref.model.impl.UsuarioRol;
 
 @ManagedBean
 @SessionScoped
