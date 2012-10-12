@@ -1,7 +1,11 @@
 package com.dahg.project.ref.model.impl;
 
-import java.io.Serializable;
+
 import javax.persistence.*;
+
+import com.dahg.project.ref.model.AbtractCatalog;
+
+
 
 
 /**
@@ -10,32 +14,19 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="tipo_marginacion")
-public class TipoMarginacion implements Serializable {
+public class TipoMarginacion extends AbtractCatalog {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-
-	private String texto;
-
-	public TipoMarginacion() {
-	}
-
 	public Integer getId() {
-		return this.id;
+		return id;
 	}
 
+	@Override
 	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTexto() {
-		return this.texto;
-	}
-
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
+		this.id=id;
+	}	
 
 }

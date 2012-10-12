@@ -1,8 +1,6 @@
 package com.dahg.project.ref.model;
 
-import java.io.Serializable;
-
-public abstract class AbstractEntity implements Serializable {
+public abstract class AbstractEntity implements IEntity {
 
 	/**
 	 * 

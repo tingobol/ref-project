@@ -11,7 +11,7 @@ import com.dahg.project.ref.model.ICatalog;
  * 
  */
 @Entity
-public class Articulo extends AbtractCatalog implements ICatalog {
+public class Articulo extends AbtractCatalog {
 
 	/**
 	 * 

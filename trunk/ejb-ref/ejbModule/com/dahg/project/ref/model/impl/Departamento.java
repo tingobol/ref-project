@@ -3,7 +3,6 @@ package com.dahg.project.ref.model.impl;
 import javax.persistence.*;
 
 import com.dahg.project.ref.model.AbtractCatalog;
-import com.dahg.project.ref.model.ICatalog;
 import java.util.List;
 
 
@@ -12,7 +11,7 @@ import java.util.List;
  * 
  */
 @Entity
-public class Departamento extends AbtractCatalog implements ICatalog {
+public class Departamento extends AbtractCatalog {
 	
 	/**
 	 * 
