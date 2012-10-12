@@ -4,6 +4,7 @@ import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.persist.SpringPersistence;
 import com.dahg.project.ref.controller.services.Service;
 import com.dahg.project.ref.controller.util.Decrypt;
@@ -39,8 +40,13 @@ public abstract class AbstractBean<T> implements Service<T> {
 
 	@Override
 	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
-	public void persist(T obj) {
-		getEntityManager().persist(obj);
+	public void persist(T obj) throws ControllerException {
+		try {
+			getEntityManager().persist(obj);
+		}
+		catch (Exception e) {
+			throw new ControllerException(e);
+		}
 	}
 
 	@Override

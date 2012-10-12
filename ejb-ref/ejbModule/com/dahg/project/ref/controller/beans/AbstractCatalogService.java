@@ -42,6 +42,20 @@ public abstract class AbstractCatalogService<T extends ICatalog> extends Abstrac
 		String sql="delete from "+getClazz().getName()+" c where c.id=:id";
 		this.remove(sql,obj.getId());
 	}
+
+	@Override
+	protected Class<T> getClazz() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void persist(T obj) throws ControllerException {
+		T validate=getById(obj.getId());
+		if (validate==null)
+			super.persist(obj);
+		else throw new ControllerException("Ya existe registro");
+	}
 	
 	
 	

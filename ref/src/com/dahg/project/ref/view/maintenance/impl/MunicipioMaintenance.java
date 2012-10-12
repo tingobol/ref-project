@@ -9,6 +9,7 @@ import javax.faces.event.ActionEvent;
 
 import org.primefaces.context.RequestContext;
 
+import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.services.CatalogService;
 import com.dahg.project.ref.controller.services.local.DepartamentoService;
 import com.dahg.project.ref.controller.services.local.MunicipioService;
@@ -33,15 +34,20 @@ public class MunicipioMaintenance extends AbstractCatalogBean<Municipio> {
 	
 	@Override
 	public void add() {
-		Municipio newMunicipio=new Municipio();
-		newMunicipio.setDescripcion(getDescripcion());
-		newMunicipio.setDepartamento(selectedDepartament);
-		getService().persist(newMunicipio);
-		setDescripcion("");
-		getAll().clear();
-		getAll().addAll(getService().getAll());
-		RequestContext rc=getRequestContext();
-		rc.execute("edit.hide()");
+		try {
+			Municipio newMunicipio=new Municipio();
+			newMunicipio.setDescripcion(getDescripcion());
+			newMunicipio.setDepartamento(selectedDepartament);
+			getService().persist(newMunicipio);
+			setDescripcion("");
+			getAll().clear();
+			getAll().addAll(getService().getAll());
+			RequestContext rc=getRequestContext();
+			rc.execute("edit.hide()");
+		}
+		catch (ControllerException e) {
+			addError(e);
+		}
 	}
 
 	public List<Departamento> complete(String desc) {

@@ -28,5 +28,6 @@ public class Articulo extends AbtractCatalog implements ICatalog {
 	public void setId(Integer id) {
 		this.id=id;
 	}
+	
 
 }
