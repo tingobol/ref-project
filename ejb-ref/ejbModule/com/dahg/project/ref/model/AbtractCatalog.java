@@ -3,7 +3,7 @@ package com.dahg.project.ref.model;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class AbtractCatalog extends AbstractEntity {
+public abstract class AbtractCatalog extends AbstractEntity implements ICatalog {
 	/**
 	 * 
 	 */

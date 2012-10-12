@@ -187,8 +187,17 @@
     		</column>
     	</addColumn>
     </changeSet>
+
     <changeSet author="dani" id="5">
     	<dropNotNullConstraint tableName="articulo" columnName="descripcion"/>
+    </changeSet>
+    
+    <changeSet author="dani" id="6">
+    	<dropColumn tableName="tipo_marginacion" columnName="texto"/>
+    	<addColumn tableName="tipo_marginacion">
+    		<column name="descripcion" type="varchar"/>
+    	</addColumn>
+    	
     </changeSet>
     
 </databaseChangeLog>
