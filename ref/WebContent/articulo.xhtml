@@ -17,7 +17,7 @@
 					</h:outputFormat>
 				</f:facet>
 				
-				<p:commandButton value="#{app['app.catalog.button.add']}" onclick="edit.show()"/>
+				<p:commandButton value="#{app['app.catalog.button.add']}" onclick="edit.show()" icon="ui-icon-plusthick"/>
 				
 	
 				<p:dataGrid id="tabla" value="#{articuloMaintenance.all}" var="a" paginator="true" rows="1" columns="1" >
@@ -27,17 +27,22 @@
 							
 							<f:facet name="footer">
 								<p:growl id="msgrow"/>
-								<h:panelGrid columns="2" width="100%">
-									<p:commandButton value="#{app['app.controls.common.ok']}" action="#{articuloMaintenance.editLaw}" process="@form" update="msgrow">
-										<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}"/>
-									</p:commandButton>
-									<p:commandButton value="#{app['app.controls.common.delete']}"/>
-								</h:panelGrid>
+								<center>
+									<h:panelGrid columns="2">
+										<p:commandButton value="#{app['app.controls.common.ok']}" action="#{articuloMaintenance.editLaw}" process="@form" update="msgrow" icon="ui-icon-disk">
+											<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}"/>
+										</p:commandButton>
+										<p:commandButton value="#{app['app.controls.common.delete']}" icon="ui-icon-disk" process="@form" action="#{articuloMaintenance.delete}" 
+										update="@all">
+											<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}"/>
+										</p:commandButton>
+									</h:panelGrid>
+								</center>
 							</f:facet>
-							<p:panelGrid columns="2">								
-								<h:outputText value="#{app['app.catalog.field.description']}"/>
-								<p:inputTextarea autoResize="false" cols="50" rows="10" value="#{a.descripcion}" required="true" label="#{app['app.catalog.field.description']}"/>
-							</p:panelGrid>
+														
+								<p:message for="desc"/>
+								<p:inputTextarea id="desc" autoResize="false" cols="50" rows="10" value="#{a.descripcion}" required="true" label="#{app['app.catalog.field.description']}"/>
+							
 						</p:panel>
 						</h:form>
 					</p:column>
@@ -50,12 +55,14 @@
 				<p:growl id="m"/>
 				<p:panelGrid id="panelEdit" columns="2">
 					
-					<h:outputText value="#{app['app.menu.maintenance.law']}"/>
+					<h:outputText value="Numero de articulo"/>
 					<p:inputText value="#{articuloMaintenance.id}" required="true" label="#{app['app.menu.maintenance.law']}">
 						<f:convertNumber integerOnly="true"/>
 					</p:inputText>
 					<f:facet name="footer">
-						<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{articuloMaintenance.add}" update="panelEdit m" process="@form" />
+						<center>
+							<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{articuloMaintenance.add}" update="panelEdit m" process="@form" icon="ui-icon-disk"/>
+						</center>
 					</f:facet>
 				</p:panelGrid>
 				</h:form>
