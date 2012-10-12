@@ -43,6 +43,7 @@ public abstract class AbstractCatalogBean<T extends ICatalog> extends AbstractMa
 		getService().merge(current);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void select(SelectEvent evt) {
 		T current = (T) evt.getObject();
 		setSelected(current);

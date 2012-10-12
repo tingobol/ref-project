@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -8,45 +9,56 @@
 	<ui:composition template="/main.xhtml">
 	
 		<ui:define name="formBody">
+			<p:growl id="msg"/>
 			<p:panel>
 				<f:facet name="header">
 					<h:outputFormat value="#{app['app.catalog.title']}">
-						<f:param value="#{app['app.menu.maintenance.outskirts']}" />
+						<f:param value="#{app['app.menu.maintenance.law']}" />
 					</h:outputFormat>
 				</f:facet>
-				<p:panelGrid columns="2">
-					<p:commandButton value="#{app['app.catalog.button.add']}" onclick="edit.show()"/>
-					<p:commandButton value="#{app['app.controls.common.delete']}" action="#{barrioMaintenance.delete}" update="tabla"/>
-				</p:panelGrid>
+				
+				<p:commandButton value="#{app['app.catalog.button.add']}" onclick="edit.show()"/>
 				
 	
-				<p:dataTable id="tabla" value="#{barrioMaintenance.all}" var="c" editable="true" paginator="true" rows="#{app['app.catalog.rows']}"
-				selection="#{barrioMaintenance.selected}" selectionMode="single" rowKey="#{c.id}">
-					<p:ajax event="rowEdit" listener="#{barrioMaintenance.edit}"/>
+				<p:dataGrid id="tabla" value="#{articuloMaintenance.all}" var="a" paginator="true" rows="1" columns="1" >
 					<p:column>
-						<p:rowEditor />
-					</p:column>
-					<p:column headerText="#{app['app.catalog.field.description']}" sortBy="#{c.descripcion}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{c.descripcion}" />
+					<h:form>
+						<p:panel header="Articulo #{a.id}">
+							
+							<f:facet name="footer">
+								<p:growl id="msgrow"/>
+								<h:panelGrid columns="2" width="100%">
+									<p:commandButton value="#{app['app.controls.common.ok']}" action="#{articuloMaintenance.editLaw}" process="@form" update="msgrow">
+										<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}"/>
+									</p:commandButton>
+									<p:commandButton value="#{app['app.controls.common.delete']}"/>
+								</h:panelGrid>
 							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{c.descripcion}" label="Descripcion" />
-							</f:facet>
-						</p:cellEditor>						
+							<p:panelGrid columns="2">								
+								<h:outputText value="#{app['app.catalog.field.description']}"/>
+								<p:inputTextarea autoResize="false" cols="50" rows="10" value="#{a.descripcion}" required="true" label="#{app['app.catalog.field.description']}"/>
+							</p:panelGrid>
+						</p:panel>
+						</h:form>
 					</p:column>
-				</p:dataTable>
+				</p:dataGrid>
 			</p:panel>
 			
 			<p:dialog widgetVar="edit" modal="true" header="#{app['app.commons.new_element']}">
-				<p:panelGrid columns="2">
-					<h:outputText value="#{app['app.catalog.field.description']}"/>
-					<p:inputText id="txtDescripcion" value="#{barrioMaintenance.descripcion}" />
+				<p:ajax event="close" update="tabla"/>
+				<h:form>
+				<p:growl id="m"/>
+				<p:panelGrid id="panelEdit" columns="2">
+					
+					<h:outputText value="#{app['app.menu.maintenance.law']}"/>
+					<p:inputText value="#{articuloMaintenance.id}" required="true" label="#{app['app.menu.maintenance.law']}">
+						<f:convertNumber integerOnly="true"/>
+					</p:inputText>
 					<f:facet name="footer">
-						<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{barrioMaintenance.add}" update="tabla txtDescripcion" oncomplete="edit.hide()" />
+						<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{articuloMaintenance.add}" update="panelEdit m" process="@form" />
 					</f:facet>
 				</p:panelGrid>
+				</h:form>
 			</p:dialog>
 		</ui:define>
 	</ui:composition>
