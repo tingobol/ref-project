@@ -44,12 +44,6 @@ public abstract class AbstractCatalogService<T extends ICatalog> extends Abstrac
 	}
 
 	@Override
-	protected Class<T> getClazz() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void persist(T obj) throws ControllerException {
 		T validate=getById(obj.getId());
 		if (validate==null)
