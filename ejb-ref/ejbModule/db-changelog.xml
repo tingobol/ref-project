@@ -196,8 +196,23 @@
     	<dropColumn tableName="tipo_marginacion" columnName="texto"/>
     	<addColumn tableName="tipo_marginacion">
     		<column name="descripcion" type="varchar"/>
-    	</addColumn>
-    	
+    	</addColumn>    	
+    </changeSet>
+    
+    <changeSet author="dani" id="7">
+    
+    	<createTable tableName="parametro">
+    		<column name="nemonico" type="varchar(5)">
+    			<constraints primaryKey="true" nullable="false"/>
+    		</column>
+    		<column name="descripcion" type="varchar"/>
+    		<column name="tipo" type="varchar(5)">
+    			<constraints nullable="false"/>
+    		</column>
+    		<column name="texto" type="varchar"/>
+    		<column name="numero" type="double"/>
+    		<column name="logico" type="boolean"/>
+    	</createTable>
     </changeSet>
     
 </databaseChangeLog>

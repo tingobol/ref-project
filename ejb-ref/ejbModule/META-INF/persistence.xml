@@ -17,6 +17,10 @@
 		<class>com.dahg.project.ref.model.impl.TipoMarginacion</class>
 		<class>com.dahg.project.ref.model.impl.Usuario</class>
 		<class>com.dahg.project.ref.model.impl.UsuarioRol</class>
+		<class>com.dahg.project.ref.model.parameters.Logic</class>
+		<class>com.dahg.project.ref.model.parameters.Texto</class>
+		<class>com.dahg.project.ref.model.parameters.Numero</class>
+		<class>com.dahg.project.ref.model.parameters.Parametro</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
