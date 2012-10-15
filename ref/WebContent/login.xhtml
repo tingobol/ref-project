@@ -7,6 +7,7 @@
 
 	<ui:composition template="/base.xhtml">
 		<ui:define name="body">
+			<p:focus for="usertxt" />
 			<center>
 			<p:panel>
 				<f:facet name="header">
@@ -17,7 +18,7 @@
 							<h:outputText value="#{info.name}"/>
 						</f:facet>
 						<h:outputText value="#{app['app.login.user']}" />  
-					    <p:inputText value="#{currentSession.user.username}" required="true" requiredMessage="#{app['app.login.user.requerido']}"/>  
+					    <p:inputText id="usertxt" value="#{currentSession.user.username}" required="true" requiredMessage="#{app['app.login.user.requerido']}"/>  
 					  
 					    <h:outputText value="#{app['app.login.pass']}" />  
 					    <p:password value="#{currentSession.user.passwordWithoutEncrypt}" required="true" requiredMessage="#{app['app.login.pass.requerido']}" />

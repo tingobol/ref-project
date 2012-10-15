@@ -8,6 +8,9 @@
 	<ui:composition template="/main.xhtml">
 		<ui:define name="formBody">
 		
+		<h:outputText value="#{testBean.parametro.descripcion}" />
+		<h:outputText value="#{testBean.parametro.texto}" />
+		
 		<p:commandButton value="Prueba1" rendered="#{currentSession.isAuthorized('COMMON')}"/>
 		<p:commandButton value="Prueba2" rendered="#{currentSession.isAuthorized('COMMONS')}"/>
 		
