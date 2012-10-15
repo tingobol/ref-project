@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:dahg="http://java.sun.com/jsf/composite/dahg">
+
+	<ui:composition template="/main.xhtml">
+	
+		<ui:define name="formBody">
+				
+			<p:panel header="#{app['app.menu.system.parameters.others']}">
+				<f:facet name="header">
+					<p:commandButton value="#{app['app.controls.common.ok']}"/>
+				</f:facet>
+				
+				
+				<h:panelGrid columns="2" columnClasses="columnTop,columnTop" >
+					
+					<p:fieldset legend="Firmas boletos, certificaciones y autenticas" toggleable="true" collapsed="false" >
+						<p:panelGrid>
+							<p:row>
+								<p:column><h:outputText value="Jefe del REF"/></p:column>									
+								<p:column><p:inputText /></p:column>
+								<p:column><h:outputText value="Rubricas"/></p:column>									
+								<p:column><p:inputText /></p:column>
+							</p:row>
+							<p:row>
+								<p:column colspan="4"><h:outputText value="Nombre del cargo "/>
+								<p:inputText style="width:60%" /></p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column><h:outputText value="subJefe del REF"/></p:column>									
+								<p:column><p:inputText /></p:column>
+								<p:column><h:outputText value="Rubricas"/></p:column>									
+								<p:column><p:inputText /></p:column>
+							</p:row>
+							<p:row>
+								<p:column colspan="4"><h:outputText value="Nombre del cargo "/>
+								<p:inputText style="width:60%" /></p:column>
+							</p:row>
+							
+							
+						</p:panelGrid>
+					</p:fieldset>
+						
+					
+					
+					
+					
+					
+					<p:fieldset legend="Parametros firma" toggleable="true" collapsed="true" >
+						<p:panelGrid columns="2">							
+							<h:outputText value="Jefe del REF"/>
+							<p:selectBooleanCheckbox />
+						</p:panelGrid>
+					</p:fieldset>
+				</h:panelGrid>
+				
+				
+				<!-- Panel superior izquierda -->
+				<p:fieldset legend="Generales" toggleable="true" collapsed="true" >
+					<p:panelGrid columns="2">
+							<h:outputText value="Certificacion bla bla bal"/>
+							<p:inputText />
+					</p:panelGrid>
+				</p:fieldset>
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+</html>

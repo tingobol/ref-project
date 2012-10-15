@@ -16,8 +16,8 @@
 				<p:menubar rendered="#{currentSession.enable}">
 					<p:submenu label="#{app['app.menu.system']}" icon="ui-icon-gear" >
 			            <p:submenu label="#{app['app.menu.system.parameters']}" icon="ui-icon-contact">
-			                <p:menuitem value="#{app['app.menu.system.parameters.book_access']}" url="test.jsf" />
-			                <p:menuitem value="#{app['app.menu.system.parameters.others']}" url="#" icon="ui-icon-document" />
+			                <p:menuitem value="#{app['app.menu.system.parameters.book_access']}"  />
+			                <p:menuitem value="#{app['app.menu.system.parameters.others']}" immediate="true" action="parametros_generales" icon="ui-icon-document" />
 			                <p:menuitem value="#{app['app.menu.system.parameters.templates']}" icon="ui-icon-document" url="#" />
 			            </p:submenu>
 			            <p:separator />
