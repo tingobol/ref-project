@@ -39,8 +39,7 @@ public class CurrentSession extends AbstractManagedBean {
 		}
 	}	
 	
-	public boolean isAuthorized(String roles) {
-		boolean result=false;
+	public boolean isAuthorized(String roles) {		
 		
 		if(roles==null || roles.isEmpty()) return false;
 		
@@ -50,19 +49,17 @@ public class CurrentSession extends AbstractManagedBean {
 				if(hasUserRol(rol)) return true;			
 		}
 		
-		return result;
+		return false;
 	}
 	
 	private boolean hasUserRol(String rol) {		
 		for(UsuarioRol userRol:user.getUsuarioRols()) 
 			if(userRol.getRol().getId().equals(rol) || userRol.getRol().getId().equals("ADMIN")) return true;
 		return false;		
-	}
-	
-	
+	}	
 	
 	public boolean isEnable() {
-		return !(user.getUsername()==null) && !user.getUsername().isEmpty();
+		return user.getUsername()!=null && !user.getUsername().isEmpty();
 	}
 	
 	public String logout() {

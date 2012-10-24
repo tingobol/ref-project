@@ -169,6 +169,16 @@
     	
     	<addUniqueConstraint tableName="usuario_rol" columnNames="fk_usuario,fk_rol"/>
     	
+    	<insert tableName="usuario">
+    		<column name="username" value="admin"/>
+    		<column name="password" value="21232f297a57a5a743894a0e4a801fc3"/>
+    		<column name="nombre" value="Root"/>
+    	</insert>
+    	<insert tableName="usuario_rol">
+    		<column name="fk_usuario" value="admin"/>
+    		<column name="fk_rol" value="ADMIN"/>
+    	</insert>
+    	
     </changeSet>
     <changeSet author="dani" id="3">
     
@@ -202,7 +212,7 @@
     <changeSet author="dani" id="7">
     
     	<createTable tableName="parametro">
-    		<column name="nemonico" type="varchar(5)">
+    		<column name="nemonico" type="varchar(15)">
     			<constraints primaryKey="true" nullable="false"/>
     		</column>
     		<column name="descripcion" type="varchar"/>
@@ -214,5 +224,77 @@
     		<column name="logico" type="boolean"/>
     	</createTable>
     </changeSet>
+    <changeSet author="dani" id="">
     
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="JEFEREF" />
+    		<column name="descripcion" value="Jefe del REF" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="CARGOJEFEREF" />
+    		<column name="descripcion" value="Nombre del cargo" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="RUBRICAJEFEREF" />
+    		<column name="descripcion" value="Rubricas" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="SUBJREF" />
+    		<column name="descripcion" value="Sub Jefe del REF" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="CARGOSUBJREF" />
+    		<column name="descripcion" value="Nombre del cargo" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="RUBRICASUBJREF" />
+    		<column name="descripcion" value="Rubricas" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="FA" />
+    		<column name="descripcion" value="Firma autentica" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="CARGOFA" />
+    		<column name="descripcion" value="Nombre del cargo" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="RUBRICAFA" />
+    		<column name="descripcion" value="Rubricas" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="NOMBRECONFRONTA" />
+    		<column name="descripcion" value="Nombre confronta" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="CARGONCONFRONTA" />
+    		<column name="descripcion" value="Nombre del cargo" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="-" />
+    	</insert>
+    	
+    </changeSet>
 </databaseChangeLog>

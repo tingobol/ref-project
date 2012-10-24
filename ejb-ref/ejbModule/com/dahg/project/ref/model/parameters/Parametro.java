@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="tipo")
-public abstract class Parametro<T> implements Serializable {
+public abstract class Parametro implements Serializable {
 
 	/**
 	 * 
