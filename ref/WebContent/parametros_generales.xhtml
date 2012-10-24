@@ -18,55 +18,107 @@
 				
 				<h:panelGrid columns="2" columnClasses="columnTop,columnTop" >
 					
-					<p:fieldset legend="Firmas boletos, certificaciones y autenticas" toggleable="true" collapsed="false" >
+					<h:panelGrid columnClasses="columnTop">
+						<p:fieldset legend="Firmas boletos, certificaciones y autenticas" toggleable="true" collapsed="false" >
+							<p:panelGrid>
+								<p:row>
+									<p:column><h:outputText value="#{parametro.jefeREF.descripcion}"/></p:column>									
+									<p:column><p:inputText value="#{parametro.jefeREF.valor}" /></p:column>
+									<p:column><h:outputText value="#{parametro.rubricaJefeREF.descripcion}"/></p:column>									
+									<p:column><p:inputText value="#{parametro.rubricaJefeREF.valor}" /></p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="4"><h:outputText value="#{parametro.cargoJefeREF.descripcion}"/>
+									<p:inputText style="width:60%" value="#{parametro.cargoJefeREF.valor}" /></p:column>
+								</p:row>
+								
+								<p:row>
+									<p:column><h:outputText value="subJefe del REF"/></p:column>									
+									<p:column><p:inputText /></p:column>
+									<p:column><h:outputText value="Rubricas"/></p:column>									
+									<p:column><p:inputText /></p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="4"><h:outputText value="Nombre del cargo "/>
+									<p:inputText style="width:60%" /></p:column>
+								</p:row>
+								
+								
+							</p:panelGrid>
+						</p:fieldset>
+						
+						
+						<p:fieldset legend="Firma para autencia en sustitucion de alcalde" toggleable="true" collapsed="false" >
+							<p:panelGrid>
+								<p:row>
+									<p:column><h:outputText value="Nombre firma autenticas"/></p:column>									
+									<p:column><p:inputText /></p:column>
+									<p:column><h:outputText value="Rubricas"/></p:column>									
+									<p:column><p:inputText /></p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="4"><h:outputText value="Nombre del cargo "/>
+									<p:inputText style="width:60%" /></p:column>
+								</p:row>
+							</p:panelGrid>
+						</p:fieldset>
+						
+						<p:fieldset legend="Firma certificaciones controntado por" toggleable="true" collapsed="false" >
+							<p:panelGrid style="width:100%">
+								<p:row>
+									<p:column><h:outputText value="Nombre confronta"/></p:column>
+									<p:column><p:inputText style="width:100%" /></p:column>
+								</p:row>
+								<p:row>
+									<p:column><h:outputText value="Nombre del cargo "/></p:column>
+									<p:column><p:inputText style="width:100%" /></p:column>
+								</p:row>
+							</p:panelGrid>
+						</p:fieldset>
+						
+					</h:panelGrid>	
+					
+					
+					
+					<p:fieldset legend="Parametros firma" toggleable="true" collapsed="false" >
 						<p:panelGrid>
 							<p:row>
-								<p:column><h:outputText value="Jefe del REF"/></p:column>									
-								<p:column><p:inputText /></p:column>
-								<p:column><h:outputText value="Rubricas"/></p:column>									
-								<p:column><p:inputText /></p:column>
+								<p:column><h:outputText value="Firma del jefe"/></p:column>
+								<p:column><p:selectBooleanCheckbox /></p:column>
 							</p:row>
 							<p:row>
-								<p:column colspan="4"><h:outputText value="Nombre del cargo "/>
-								<p:inputText style="width:60%" /></p:column>
-							</p:row>
-							
-							<p:row>
-								<p:column><h:outputText value="subJefe del REF"/></p:column>									
-								<p:column><p:inputText /></p:column>
-								<p:column><h:outputText value="Rubricas"/></p:column>									
-								<p:column><p:inputText /></p:column>
+								<p:column><h:outputText value="Firma del alcalde"/></p:column>
+								<p:column><p:selectBooleanCheckbox /></p:column>
 							</p:row>
 							<p:row>
-								<p:column colspan="4"><h:outputText value="Nombre del cargo "/>
-								<p:inputText style="width:60%" /></p:column>
+								<p:column><h:outputText value="Firma confrontador"/></p:column>
+								<p:column><p:selectBooleanCheckbox /></p:column>
 							</p:row>
-							
-							
-						</p:panelGrid>
-					</p:fieldset>
-						
-					
-					
-					
-					
-					
-					<p:fieldset legend="Parametros firma" toggleable="true" collapsed="true" >
-						<p:panelGrid columns="2">							
-							<h:outputText value="Jefe del REF"/>
-							<p:selectBooleanCheckbox />
 						</p:panelGrid>
 					</p:fieldset>
 				</h:panelGrid>
 				
 				
-				<!-- Panel superior izquierda -->
-				<p:fieldset legend="Generales" toggleable="true" collapsed="true" >
-					<p:panelGrid columns="2">
-							<h:outputText value="Certificacion bla bla bal"/>
-							<p:inputText />
-					</p:panelGrid>
-				</p:fieldset>
+				<h:panelGrid styleClass="columnTop">
+					<p:fieldset legend="Generales" toggleable="true" collapsed="false" >
+						<p:panelGrid>
+							<p:row>
+								<p:column><h:outputText value="Alteracion certificacion partida"/></p:column>
+								<p:column colspan="3"><p:inputText style="width:100%" /></p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column><h:outputText value="Municipio"/></p:column>
+								<p:column><p:inputText /></p:column>
+								
+								<p:column><h:outputText value="Significado"/></p:column>
+								<p:column><p:inputText /></p:column>
+							</p:row>
+								
+								
+						</p:panelGrid>
+					</p:fieldset>
+				</h:panelGrid>
 			</p:panel>
 		</ui:define>
 	</ui:composition>

@@ -8,6 +8,7 @@ import javax.faces.event.ActionEvent;
 
 import org.primefaces.context.RequestContext;
 
+import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.services.local.TextoService;
 import com.dahg.project.ref.model.parameters.Texto;
 import com.dahg.project.ref.view.AbstractManagedBean;
@@ -24,7 +25,11 @@ public class TestBean extends AbstractManagedBean {
 	
 	@PostConstruct
 	public void init() {
-		parametro = pService.getParametro("TEST");
+		try {
+			parametro = pService.getParametro("TEST");
+		} catch (ControllerException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public boolean test(String arg) {		
