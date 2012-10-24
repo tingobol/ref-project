@@ -1,22 +1,29 @@
 package com.dahg.project.ref.model.parameters;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("NUMBER")
-public class Numero extends Parametro<Double> {
+public class Numero extends Parametro implements IParametro<Double> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Double numero;
-	public Double getNumero() {
-		return numero;
+
+	@Column(name="numero")
+	private Double valor;
+	
+	@Override	
+	public Double getValor() {
+		return valor;
 	}
-	public void setNumero(Double numero) {
-		this.numero = numero;
+
+	@Override
+	public void setValor(Double valor) {
+		this.valor = valor;
 	}
 
 }

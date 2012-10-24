@@ -1,22 +1,29 @@
 package com.dahg.project.ref.model.parameters;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("LOGIC")
-public class Logic extends Parametro<Boolean> {
+public class Logic extends Parametro implements IParametro<Boolean> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Boolean logico;
-	public Boolean getLogico() {
-		return logico;
+	
+	@Column(name="logico")
+	private Boolean valor;
+	
+	@Override	
+	public Boolean getValor() {
+		return valor;
 	}
-	public void setLogico(Boolean logic) {
-		this.logico = logic;
+
+	@Override
+	public void setValor(Boolean valor) {
+		this.valor = valor;
 	}
 	
 	
