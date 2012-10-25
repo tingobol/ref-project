@@ -230,70 +230,77 @@
     		<column name="nemonico" value="JEFEREF" />
     		<column name="descripcion" value="Jefe del REF" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
     	</insert>
     	<insert tableName="parametro">
     		<column name="nemonico" value="CARGOJEFEREF" />
     		<column name="descripcion" value="Nombre del cargo" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
     	</insert>
     	<insert tableName="parametro">
     		<column name="nemonico" value="RUBRICAJEFEREF" />
     		<column name="descripcion" value="Rubricas" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
     	</insert>
     	
     	<insert tableName="parametro">
     		<column name="nemonico" value="SUBJREF" />
     		<column name="descripcion" value="Sub Jefe del REF" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
     	</insert>
     	<insert tableName="parametro">
     		<column name="nemonico" value="CARGOSUBJREF" />
     		<column name="descripcion" value="Nombre del cargo" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
     	</insert>
     	<insert tableName="parametro">
     		<column name="nemonico" value="RUBRICASUBJREF" />
     		<column name="descripcion" value="Rubricas" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
     	</insert>
     	
     	<insert tableName="parametro">
     		<column name="nemonico" value="FA" />
     		<column name="descripcion" value="Firma autentica" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
     	</insert>
     	<insert tableName="parametro">
     		<column name="nemonico" value="CARGOFA" />
     		<column name="descripcion" value="Nombre del cargo" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
     	</insert>
     	<insert tableName="parametro">
     		<column name="nemonico" value="RUBRICAFA" />
     		<column name="descripcion" value="Rubricas" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
     	</insert>
     	
     	<insert tableName="parametro">
     		<column name="nemonico" value="NOMBRECONFRONTA" />
     		<column name="descripcion" value="Nombre confronta" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
     	</insert>
     	<insert tableName="parametro">
     		<column name="nemonico" value="CARGONCONFRONTA" />
     		<column name="descripcion" value="Nombre del cargo" />
     		<column name="tipo" value="TEXTO" />
-    		<column name="texto" value="-" />
+    		<column name="texto" value="" />
+    	</insert>
+    	
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="FIRMAJEFEREF" />
+    		<column name="descripcion" value="Firma jefe REF" />
+    		<column name="tipo" value="LOGIC" />
+    		<column name="logico" valueBoolean="false" />
     	</insert>
     	
     </changeSet>
