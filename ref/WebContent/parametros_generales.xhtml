@@ -9,10 +9,10 @@
 	<ui:composition template="/main.xhtml">
 	
 		<ui:define name="formBody">
-				
+			<p:growl id="msgparam" />
 			<p:panel header="#{app['app.menu.system.parameters.others']}">
 				<f:facet name="header">
-					<p:commandButton value="#{app['app.controls.common.ok']}"/>
+					<p:commandButton value="#{app['app.controls.common.ok']}" action="#{parametro.guardar}" update="msgparam"/>
 				</f:facet>
 				
 				
@@ -83,8 +83,8 @@
 					<p:fieldset legend="Parametros firma" toggleable="true" collapsed="false" >
 						<p:panelGrid>
 							<p:row>
-								<p:column><h:outputText value="Firma del jefe"/></p:column>
-								<p:column><p:selectBooleanCheckbox /></p:column>
+								<p:column><h:outputText value="#{parametro.firmaJefeREF.descripcion}"/></p:column>
+								<p:column><p:selectBooleanCheckbox value="#{parametro.firmaJefeREF.valor}" /></p:column>
 							</p:row>
 							<p:row>
 								<p:column><h:outputText value="Firma del alcalde"/></p:column>
