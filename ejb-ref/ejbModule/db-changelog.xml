@@ -172,7 +172,8 @@
     	<insert tableName="usuario">
     		<column name="username" value="admin"/>
     		<column name="password" value="21232f297a57a5a743894a0e4a801fc3"/>
-    		<column name="nombre" value="Root"/>
+    		<column name="nombre" value="Daniel"/>
+    		<column name="apellido" value="Herrera"/>
     	</insert>
     	<insert tableName="usuario_rol">
     		<column name="fk_usuario" value="admin"/>
