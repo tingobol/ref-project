@@ -14,18 +14,10 @@
 		<p:commandButton value="Prueba1" rendered="#{currentSession.isAuthorized('COMMON')}"/>
 		<p:commandButton value="Prueba2" rendered="#{currentSession.isAuthorized('COMMONS')}"/>
 		
-		<p:commandButton value="Abrir" type="button" onclick="prueba.show()" />
+				
+		<p:commandButton value="Ejecutar" actionListener="#{testBean.ejecutar}" process="@this" ajax="false" />
 		
-		<p:commandButton value="Ejecutar" action="#{testBean.ejecutar}" />
-		
-		<h:outputText id="txt" value="#{testBean.texto}"/>
-		<p:dialog widgetVar="prueba" appendToBody="false" header="Prueba" modal="true">
-			
-				<p:growl id="alerta"/>
-				<p:inputText id="txtinput" value="#{testBean.texto}" required="true" label="Texto"/>
-				<p:commandButton value="Normal" action="#{testBean.actionNormal}" update="txt,alerta,txtinput" />
-			
-		</p:dialog>
+		<h:commandButton action="login" value="Login" />
 		
 		</ui:define>
 	</ui:composition>
