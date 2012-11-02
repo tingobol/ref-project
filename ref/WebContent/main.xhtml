@@ -5,138 +5,33 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="base.xhtml">
+	<ui:composition template="/base.xhtml">
 		<ui:define name="body">
-		<p:panelGrid columns="1" rendered="#{currentSession.enable}">
-			<h:outputFormat value="#{app['app.main.welcome']}" >
-				<f:param value="#{currentSession.user.completeName}"/>
-			</h:outputFormat>
-		</p:panelGrid>
+			<p:panelGrid rendered="#{currentSession.enable}">
+				<h:outputFormat value="#{app['app.main.welcome']}" >
+					<f:param value="#{currentSession.user.completeName}"/>
+				</h:outputFormat>
+			</p:panelGrid>
 			
-				<p:menubar rendered="#{currentSession.enable}">
-					<p:submenu label="#{app['app.menu.system']}" icon="ui-icon-gear" >
-			            <p:submenu label="#{app['app.menu.system.parameters']}" icon="ui-icon-contact">
-			                <p:menuitem value="#{app['app.menu.system.parameters.book_access']}"  />
-			                <p:menuitem value="#{app['app.menu.system.parameters.others']}" immediate="true" action="parametros_generales" icon="ui-icon-document" />
-			                <p:menuitem value="#{app['app.menu.system.parameters.templates']}" icon="ui-icon-document" url="#" />
-			            </p:submenu>
-			            <p:separator />
-			            <p:menuitem value="#{app['app.menu.system.auth_books']}" url="#" />		            
-			            <p:menuitem value="#{app['app.menu.system.users']}" url="#" />
-			            <p:separator/>
-			            <p:menuitem value="#{app['app.menu.system.quit']}" action="#{currentSession.logout}" icon="ui-icon-close" oncomplete="window.location='./'" />
-			        </p:submenu>
+			<ui:include src="/menu_principal.xhtml" />
 			
-			        <p:submenu label="#{app['app.menu.maintenance']}" icon="ui-icon-pencil">
-			            <p:menuitem value="#{app['app.menu.maintenance.province']}" immediate="true" icon="ui-icon-document" action="departament" />
-			            <p:menuitem value="#{app['app.menu.maintenance.town']}" immediate="true" icon="ui-icon-document" action="town"/>
-			            <p:menuitem value="#{app['app.menu.maintenance.language']}" immediate="true" icon="ui-icon-document" action="idioma"/>
-			            <p:menuitem value="#{app['app.menu.maintenance.nacionality']}" immediate="true" icon="ui-icon-document" action="nacionalidad"/>
-			            <p:menuitem value="#{app['app.menu.maintenance.relationship']}" immediate="true" icon="ui-icon-document" action="parentesco"/>
-			            <p:menuitem value="#{app['app.menu.maintenance.profesions']}" immediate="true" icon="ui-icon-document" action="profesion" />
-			            <p:separator />
-			            <p:menuitem value="#{app['app.menu.maintenance.outskirts']}" immediate="true" icon="ui-icon-document" action="barrio" />
-			            <p:menuitem value="#{app['app.menu.maintenance.cantons']}" immediate="true" icon="ui-icon-document" action="canton" />
-			            <p:menuitem value="#{app['app.menu.maintenance.suburb']}" immediate="true" icon="ui-icon-document" action="colonia" />
-			            <p:menuitem value="#{app['app.menu.maintenance.caserios']}" immediate="true" icon="ui-icon-document" action="caserio" />
-			            <p:separator />
-			            <p:menuitem value="#{app['app.menu.maintenance.law']}" immediate="true" icon="ui-icon-document" action="articulo" />
-			            <p:menuitem value="#{app['app.menu.maintenance.marginalization_types']}" immediate="true" icon="ui-icon-document" action="tipo_marginacion" />
-			        </p:submenu>
+			<center>
+				<h:panelGrid rendered="#{currentSession.enable}">
+					<ui:insert name="formBody" />
+				</h:panelGrid>
+			</center>			
 			
-			        <p:submenu label="#{app['app.menu.books']}" icon="ui-icon-gear">
-			            <p:submenu label="#{app['app.menu.books.opens']}">
-			            	<p:submenu label="#{app['app.menu.books.opens.history_books']}">
-			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.births']}" url="#" />
-			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.marriages']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.divorces']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.deaths']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.adoptions']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.modifications']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.repositions']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.marginations']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.history_books.judgments']}" url="#"/>
-			            	</p:submenu>
-			            	<p:separator />
-			            	<p:submenu label="#{app['app.menu.books.opens.yearbooks']}">
-			            	<p:menuitem value="#{app['app.menu.books.opens.yearbooks.births']}" url="#" />
-			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.marriages']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.divorces']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.deaths']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.adoptions']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.modifications']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.repositions']}" url="#"/>		            		
-			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.judgments']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.certified']}" url="#"/>
-			            </p:submenu>
-			            </p:submenu>
-			            <p:separator />
-			            <p:submenu label="#{app['app.menu.books.reopens']}">
-			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.births']}" url="#"/>
-			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.marriages']}" url="#"/>
-			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.divorces']}" url="#"/>
-			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.deaths']}" url="#"/>
-			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.adoptions']}" url="#"/>
-			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.modifications']}" url="#"/>
-			            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.repositions']}" url="#"/>
-			            </p:submenu>
-	   		            <p:separator />
-			            
-			            <p:submenu label="#{app['app.menu.books.close']}">
-			            	<p:submenu label="#{app['app.menu.books.opens.history_books']}">
-			            		<p:menuitem value="#{app['app.menu.books.close.history_books.births']}" url="#" />
-			            		<p:menuitem value="#{app['app.menu.books.close.history_books.marriages']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.history_books.divorces']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.history_books.deaths']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.history_books.adoptions']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.history_books.modifications']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.history_books.repositions']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.history_books.marginations']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.history_books.judgments']}" url="#"/>
-			            	</p:submenu>
-			            	<p:separator />
-			            	<p:submenu label="#{app['app.menu.books.close.yearbooks']}">
-				            	<p:menuitem value="#{app['app.menu.books.close.yearbooks.births']}" url="#" />
-			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.marriages']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.divorces']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.deaths']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.adoptions']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.modifications']}" url="#"/>
-			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.repositions']}" url="#"/>		            		
-			            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.judgments']}" url="#"/>
-			   				</p:submenu>
-			            </p:submenu>
-			            <p:separator />
-			            
-			            <p:submenu label="#{app['app.menu.books.confrontations']}">
-			            
-			            </p:submenu>
-			        </p:submenu>
-	
-			
-			        <p:submenu label="Actions" icon="ui-icon-gear">
-			            <p:submenu label="Ajax" icon="ui-icon-refresh">
-			                <p:menuitem value="Save" actionListener="#{menuBean.save}" icon="ui-icon-disk" update="msgs"/>
-			                <p:menuitem value="Update" actionListener="#{menuBean.update}" icon="ui-icon-arrowrefresh-1-w" update="msgs"/>
-			            </p:submenu>
-			            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
-			                <p:menuitem value="Delete" actionListener="#{menuBean.delete}" icon="ui-icon-close" update="msgs" ajax="false"/>
-			            </p:submenu>
-			        </p:submenu>
-			
-			        <p:menuitem value="#{app['app.menu.system.quit']}" action="#{currentSession.logout}" icon="ui-icon-close" oncomplete="window.location='./'" />
-				</p:menubar>
-				
-				<center>
-					<h:panelGrid columns="1" rendered="#{currentSession.enable}">
-						<ui:insert name="formBody" />
-					</h:panelGrid>
-					<p:panelGrid columns="1" rendered="#{!currentSession.enable}">
+			<p:panelGrid rendered="#{!currentSession.enable}">
+				<p:row>
+					<p:column>
 						<p:panel header="#{app['app.no_login.header']}">
 							<p:commandButton value="#{app['app.no_login.button']}" onclick="window.location='./'" />
-						</p:panel>
-					</p:panelGrid>					
-				</center>
+						</p:panel>		
+					</p:column>
+				</p:row>
+				
+			</p:panelGrid>					
+			
 		</ui:define>
 	</ui:composition>
 </html>
