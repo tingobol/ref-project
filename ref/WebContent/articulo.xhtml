@@ -17,39 +17,42 @@
 					</h:outputFormat>
 				</f:facet>
 				
-				<p:commandButton value="#{app['app.catalog.button.add']}" onclick="edit.show()" icon="ui-icon-plusthick"/>
+				<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="add.show()" icon="ui-icon-plusthick"/>
 				
-	
-				<p:dataGrid id="tabla" value="#{articuloMaintenance.all}" var="a" paginator="true" rows="1" columns="1" >
+				
+				<p:dataTable id="tabla" value="#{articuloMaintenance.all}" var="a" paginator="true" rows="1">
 					<p:column>
-					<h:form>
-						<p:panel header="Articulo #{a.id}">
-							
-							<f:facet name="footer">
-								<p:growl id="msgrow"/>
-								<center>
-									<h:panelGrid columns="2">
-										<p:commandButton value="#{app['app.controls.common.ok']}" action="#{articuloMaintenance.editLaw}" process="@form" update="msgrow" icon="ui-icon-disk">
-											<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}"/>
-										</p:commandButton>
-										<p:commandButton value="#{app['app.controls.common.delete']}" icon="ui-icon-disk" process="@form" action="#{articuloMaintenance.delete}" 
-										update="@all">
-											<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}"/>
-										</p:commandButton>
-									</h:panelGrid>
-								</center>
+						<p:panelGrid>
+							<f:facet name="header">
+								<p:row>
+									<p:column><h:outputText value="Articulo #{a.id}"/></p:column>										
+								</p:row>
 							</f:facet>
-														
-								<p:message for="desc"/>
-								<p:inputTextarea id="desc" autoResize="false" cols="50" rows="10" value="#{a.descripcion}" required="true" label="#{app['app.catalog.field.description']}"/>
+							<f:facet name="footer">
+								<p:row>
+									<p:column>
+										<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" />
+										<p:commandButton value="#{app['app.controls.common.delete']}" icon="ui-icon-trash" />
+									</p:column>
+								</p:row>
+							</f:facet>			
 							
-						</p:panel>
-						</h:form>
+							<p:row>
+								<p:column>
+									<p:inputTextarea value="#{a.descripcion}" autoResize="false" rows="10" cols="50"/>
+								</p:column>		
+							</p:row>
+						</p:panelGrid>
+											
+						
 					</p:column>
-				</p:dataGrid>
+				</p:dataTable>
 			</p:panel>
 			
-			<p:dialog widgetVar="edit" modal="true" header="#{app['app.commons.new_element']}">
+			
+			
+			
+			<p:dialog widgetVar="add" modal="true" header="#{app['app.commons.edit']}">
 				<p:ajax event="close" update="tabla"/>
 				<h:form>
 				<p:growl id="m"/>
