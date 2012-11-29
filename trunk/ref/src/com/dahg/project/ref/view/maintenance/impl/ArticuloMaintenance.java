@@ -36,7 +36,7 @@ public class ArticuloMaintenance extends AbstractCatalogBean<Articulo> {
 			getAll().addAll(getService().getAll());
 			setId(null);
 			RequestContext rc = getRequestContext();
-			rc.execute("edit.hide()");
+			rc.execute("add.hide()");
 		} catch (ControllerException e) {
 			addError(e);
 		}
@@ -44,8 +44,12 @@ public class ArticuloMaintenance extends AbstractCatalogBean<Articulo> {
 	}
 	
 	public String editLaw() {
-		getService().merge(getSelected());
-		addInfo("Articulo modificado");
+		if(getSelected().getDescripcion()==null || getSelected().getDescripcion().isEmpty())
+			addError("Debe ingresar una descripcion");
+		else {
+			getService().merge(getSelected());
+			addInfo("Articulo modificado");
+		}
 		return null;
 	}
 

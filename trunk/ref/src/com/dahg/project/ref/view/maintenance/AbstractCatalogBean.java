@@ -55,8 +55,9 @@ public abstract class AbstractCatalogBean<T extends ICatalog> extends AbstractMa
 			return null;
 		}
 		
-		getService().remove(selected);
 		all.clear();
+		getService().remove(selected);
+		
 		all.addAll(getService().getAll());
 		selected = null;
 		return null;
