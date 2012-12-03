@@ -27,10 +27,12 @@ public class ArticuloMaintenance extends AbstractCatalogBean<Articulo> {
 	}
 
 	@Override
-	public void add() {
-		Articulo articulo = new Articulo();
-		articulo.setId(getId());
+	public void add() {	
+		
 		try {
+			if (getId()==null) throw new ControllerException("Ingrese un numero de articulo");
+			Articulo articulo = new Articulo();
+			articulo.setId(getId());
 			getService().persist(articulo);
 			getAll().clear();
 			getAll().addAll(getService().getAll());

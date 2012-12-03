@@ -1,5 +1,7 @@
 package com.dahg.project.ref.controller.beans.impl;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -42,6 +44,13 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 	public void remove(Usuario obj) {
 		String sql="delete from Usuario u.username=:id";
 		this.remove(sql, obj.getUsername());
+	}
+
+	@Override
+	public List<Usuario> getAll() {
+		String query = "select u From Usuario u order by u.username";
+		Query q = getEntityManager().createQuery(query);
+		return q.getResultList();
 	}
 
 	
