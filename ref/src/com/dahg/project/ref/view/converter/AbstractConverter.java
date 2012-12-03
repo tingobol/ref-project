@@ -6,7 +6,6 @@ import javax.faces.convert.Converter;
 
 import com.dahg.project.ref.controller.services.CatalogService;
 import com.dahg.project.ref.model.ICatalog;
-import com.dahg.project.ref.view.maintenance.AbstractCatalogBean;
 import com.dahg.project.ref.view.maintenance.ICatalogBean;
 
 public abstract class AbstractConverter<T extends ICatalog> implements Converter, ICatalogBean<T> {
@@ -31,7 +30,7 @@ public abstract class AbstractConverter<T extends ICatalog> implements Converter
 	public CatalogService<T> getService() {
 		String elExpression="#{"+getBeanWithServiceCatalog()+"}";
 		FacesContext ctx= FacesContext.getCurrentInstance();
-		AbstractCatalogBean<T> bean = (AbstractCatalogBean<T>) ctx.getApplication().evaluateExpressionGet(ctx, elExpression, Object.class);
+		ICatalogBean<T> bean = (ICatalogBean<T>) ctx.getApplication().evaluateExpressionGet(ctx, elExpression, Object.class);
 		return bean.getService();
 	}
 	
