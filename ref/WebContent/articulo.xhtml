@@ -9,7 +9,7 @@
 	<ui:composition template="/main.xhtml">
 	
 		<ui:define name="formBody">
-			<p:growl id="msg"/>
+			<p:growl id="msg" autoUpdate="true"/>
 			<p:panel>
 				<f:facet name="header">
 					<h:outputFormat value="#{app['app.catalog.title']}">
@@ -31,8 +31,12 @@
 							<f:facet name="footer">
 								<p:row>
 									<p:column>
-										<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" />
-										<p:commandButton value="#{app['app.controls.common.delete']}" icon="ui-icon-trash" />
+										<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" action="#{articuloMaintenance.editLaw}">
+											<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}" />
+										</p:commandButton>
+										<p:commandButton value="#{app['app.controls.common.delete']}" icon="ui-icon-trash" update="tabla" action="#{articuloMaintenance.delete}">
+											<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}" />
+										</p:commandButton>
 									</p:column>
 								</p:row>
 							</f:facet>			
@@ -54,21 +58,21 @@
 			
 			<p:dialog widgetVar="add" modal="true" header="#{app['app.commons.edit']}">
 				<p:ajax event="close" update="tabla"/>
-				<h:form>
-				<p:growl id="m"/>
+				
+				
 				<p:panelGrid id="panelEdit" columns="2">
 					
 					<h:outputText value="Numero de articulo"/>
-					<p:inputText value="#{articuloMaintenance.id}" required="true" label="#{app['app.menu.maintenance.law']}">
+					<p:inputText value="#{articuloMaintenance.id}" label="#{app['app.menu.maintenance.law']}">
 						<f:convertNumber integerOnly="true"/>
 					</p:inputText>
 					<f:facet name="footer">
 						<center>
-							<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{articuloMaintenance.add}" update="panelEdit m" process="@form" icon="ui-icon-disk"/>
+							<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{articuloMaintenance.add}" update="panelEdit tabla" icon="ui-icon-disk"/>
 						</center>
 					</f:facet>
 				</p:panelGrid>
-				</h:form>
+				
 			</p:dialog>
 		</ui:define>
 	</ui:composition>

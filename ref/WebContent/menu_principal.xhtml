@@ -7,13 +7,13 @@
      <p:menubar rendered="#{currentSession.enable}">
 				<p:submenu label="#{app['app.menu.system']}" icon="ui-icon-gear" >
 		            <p:submenu label="#{app['app.menu.system.parameters']}" icon="ui-icon-contact">
-		                <p:menuitem value="#{app['app.menu.system.parameters.book_access']}" />
+		                <p:menuitem value="#{app['app.menu.system.parameters.book_access']}" immediate="true"/>
 		                <p:menuitem value="#{app['app.menu.system.parameters.others']}" immediate="true" outcome="parametros_generales" icon="ui-icon-document" />
 		                <p:menuitem value="#{app['app.menu.system.parameters.templates']}" icon="ui-icon-document" url="#" />
 		            </p:submenu>
 		            <p:separator />
 		            <p:menuitem value="#{app['app.menu.system.auth_books']}" immediate="true" outcome="test" />		            
-		            <p:menuitem value="#{app['app.menu.system.users']}" url="#" />
+		            <p:menuitem value="#{app['app.menu.system.users']}" immediate="true" outcome="users" />
 		            <p:separator/>
 		            <p:menuitem value="#{app['app.menu.system.quit']}" immediate="true" action="#{currentSession.logout}" icon="ui-icon-close" oncomplete="window.location='./'" />
 		        </p:submenu>

@@ -3,6 +3,7 @@ package com.dahg.project.ref.controller.beans.impl;
 import javax.ejb.Stateless;
 
 import com.dahg.project.ref.controller.beans.AbstractCatalogService;
+import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.services.local.ArticuloService;
 import com.dahg.project.ref.model.impl.Articulo;
 
@@ -13,5 +14,14 @@ public class ArticuloServiceImpl extends AbstractCatalogService<Articulo> implem
 	protected Class<Articulo> getClazz() {
 		return Articulo.class;
 	}
+
+	@Override
+	public void persist(Articulo obj) throws ControllerException {
+		Articulo a = getById(obj.getId());
+		if (a!=null) throw new ControllerException("Articulo ya existe");
+		super.persist(obj);
+	}
+	
+	
 
 }
