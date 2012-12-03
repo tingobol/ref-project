@@ -225,7 +225,7 @@
     		<column name="logico" type="boolean"/>
     	</createTable>
     </changeSet>
-    <changeSet author="dani" id="">
+    <changeSet author="dani" id="8">
     
     	<insert tableName="parametro">
     		<column name="nemonico" value="JEFEREF" />
