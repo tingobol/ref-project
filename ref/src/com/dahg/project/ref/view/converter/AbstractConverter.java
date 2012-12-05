@@ -28,7 +28,7 @@ public abstract class AbstractConverter<T extends ICatalog> implements Converter
 	
 	@SuppressWarnings("unchecked")
 	public CatalogService<T> getService() {
-		String elExpression="#{"+getBeanWithServiceCatalog()+"}";
+		String elExpression=String.format("#%s%s%s","{",getBeanWithServiceCatalog(),"}");		
 		FacesContext ctx= FacesContext.getCurrentInstance();
 		ICatalogBean<T> bean = (ICatalogBean<T>) ctx.getApplication().evaluateExpressionGet(ctx, elExpression, Object.class);
 		return bean.getService();

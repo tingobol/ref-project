@@ -8,18 +8,52 @@
 	<ui:composition template="/main.xhtml">
 	
 		<ui:define name="formBody">
-				<p:dataTable value="#{userMaintenance.all}" var="u">
+			<p:growl autoUpdate="true" />
+			<p:panel header="#{app['app.menu.system.users']}">
+				<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="edit.show()" icon="ui-icon-plusthick"/>
+				
+				<p:dataTable id="tabla" value="#{userMaintenance.all}" var="u" editable="true">
+					<p:ajax event="rowEdit" listener="#{userMaintenance.editUser}" update="tabla"/>
+					<p:column>
+						<p:rowEditor/>
+					</p:column>
 					<p:column headerText="ID">
 						<h:outputText value="#{u.username}" />
 					</p:column>
 					<p:column headerText="Apellidos">
-						<h:outputText value="#{u.apellido}" />
+						<p:cellEditor>
+							<f:facet name="output"><h:outputText value="#{u.apellido}" /></f:facet>
+							<f:facet name="input"><p:inputText value="#{u.apellido}" /></f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="Nombres">
-						<h:outputText value="#{u.nombre}" />
+						<p:cellEditor>
+							<f:facet name="output"><h:outputText value="#{u.nombre}" /></f:facet>
+							<f:facet name="input"><p:inputText value="#{u.nombre}" /></f:facet>
+						</p:cellEditor>
 					</p:column>
 				</p:dataTable>	
-		
+				
+				<p:dialog widgetVar="edit" header="#{app['app.catalog.button.add']}" modal="true">
+					<p:ajax event="close" update="tabla" />
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+								<h:outputText value="ID"/>
+							</p:column>
+							<p:column>
+								<p:inputText value="#{userMaintenance.id}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column colspan="2">
+								<p:commandButton value="#{app['app.controls.common.ok']}" action="#{userMaintenance.add}" icon="ui-icon-disk" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:dialog>
+				
+			</p:panel>
 		</ui:define>
 	</ui:composition>
 </html>
