@@ -10,10 +10,13 @@
 		<ui:define name="formBody">
 			<p:growl autoUpdate="true" />
 			<p:panel header="#{app['app.menu.system.users']}">
-				<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="edit.show()" icon="ui-icon-plusthick"/>
 				
-				<p:dataTable id="tabla" value="#{userMaintenance.all}" var="u" editable="true">
+				<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="edit.show()" icon="ui-icon-plusthick"/>
+				<p:commandButton value="Editar permiso" onclick="permisos.show()"/>
+				
+				<p:dataTable id="tabla" value="#{userMaintenance.all}" var="u" editable="true" selection="#{userMaintenance.selected}" selectionMode="single" rowKey="#{u.username}">
 					<p:ajax event="rowEdit" listener="#{userMaintenance.editUser}" update="tabla"/>
+					<p:ajax event="rowSelect" listener="#{userMaintenance.populateRoles}"/>
 					<p:column>
 						<p:rowEditor/>
 					</p:column>
@@ -50,6 +53,24 @@
 								<p:commandButton value="#{app['app.controls.common.ok']}" action="#{userMaintenance.add}" icon="ui-icon-disk" />
 							</p:column>
 						</p:row>
+					</p:panelGrid>
+				</p:dialog>
+				
+				<p:dialog widgetVar="permisos">
+					<p:ajax event="close" update="tabla" />
+					<p:panelGrid>
+						<p:row>
+							<p:column><p:commandButton value="Guardar" action="#{userMaintenance.savePermisos}"/></p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputPanel autoUpdate="true" >
+									<p:pickList id="picklista" value="#{userMaintenance.picklistModel}" var="rol" itemValue="#{rol}" itemLabel="#{rol}"/>
+								</p:outputPanel>
+							</p:column>
+						</p:row>
+						
+						
 					</p:panelGrid>
 				</p:dialog>
 				
