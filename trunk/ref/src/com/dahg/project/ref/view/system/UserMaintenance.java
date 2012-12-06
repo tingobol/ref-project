@@ -132,10 +132,17 @@ public class UserMaintenance extends AbstractManagedBean {
 		return null;
 	}
 
+	public String removeUsuario() {
+		service.remove(selected);
+		all.clear();
+		all.addAll(service.getAll());
+		return null;
+	}
 	
 	public List<Usuario> getAll() {
 		return all;
 	}
+	
 	public void setAll(List<Usuario> all) {
 		this.all = all;
 	}

@@ -26,7 +26,7 @@
 					
 					<p:outputPanel autoUpdate="true">					
 						<p:commandButton icon="ui-icon-trash"
-						disabled="#{ empty cc.attrs.catalogBean.selected}"
+						disabled="#{ empty cc.attrs.catalogBean.selected}" onclick="if(!confirm('#{app['app.controls.common.confirmation']}')) return false;"
 						value="#{app['app.controls.common.delete']}" immediate="true" action="#{cc.attrs.catalogBean.delete}" update="catmsg,tabla"/>
 					</p:outputPanel>
 				</p:panelGrid>
