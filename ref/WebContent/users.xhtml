@@ -12,7 +12,9 @@
 			<p:panel header="#{app['app.menu.system.users']}">
 				
 				<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="edit.show()" icon="ui-icon-plusthick"/>
-				<p:commandButton value="Editar permiso" onclick="permisos.show()"/>
+				<p:outputPanel autoUpdate="true">
+					<p:commandButton disabled="#{empty userMaintenance.selected}" value="Editar permiso" onclick="permisos.show()"/>
+				</p:outputPanel>
 				
 				<p:dataTable id="tabla" value="#{userMaintenance.all}" var="u" editable="true" selection="#{userMaintenance.selected}" selectionMode="single" rowKey="#{u.username}">
 					<p:ajax event="rowEdit" listener="#{userMaintenance.editUser}" update="tabla"/>
@@ -56,7 +58,7 @@
 					</p:panelGrid>
 				</p:dialog>
 				
-				<p:dialog widgetVar="permisos">
+				<p:dialog widgetVar="permisos" modal="true">
 					<p:ajax event="close" update="tabla" />
 					<p:panelGrid>
 						<p:row>
@@ -64,8 +66,10 @@
 						</p:row>
 						<p:row>
 							<p:column>
-								<p:outputPanel autoUpdate="true" >
-									<p:pickList id="picklista" value="#{userMaintenance.picklistModel}" var="rol" itemValue="#{rol}" itemLabel="#{rol}"/>
+								<p:outputPanel autoUpdate="true">
+									<p:pickList id="picklista" value="#{userMaintenance.picklistModel}" 
+									converter="rolConverter"
+									var="rol" itemValue="#{rol}" itemLabel="#{rol.descripcion}"/>
 								</p:outputPanel>
 							</p:column>
 						</p:row>

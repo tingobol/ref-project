@@ -39,7 +39,7 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 		catch (Exception e) {
 			throw new ControllerException(e);
 		}
-		
+		if (usuario.getUsuarioRols()==null || usuario.getUsuarioRols().isEmpty()) throw new ValidationException("Usuario deshabilitado");
 		return usuario;
 	}
 

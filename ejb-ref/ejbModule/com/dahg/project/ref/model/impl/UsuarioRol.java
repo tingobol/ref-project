@@ -29,6 +29,11 @@ public class UsuarioRol implements Serializable {
 
 	public UsuarioRol() {
 	}
+	
+	public UsuarioRol(Usuario usuario, Rol rol) {
+		this.usuario=usuario;
+		this.rol=rol;
+	}
 
 	public Integer getId() {
 		return this.id;
