@@ -68,28 +68,40 @@ public class UserMaintenance extends AbstractManagedBean {
 	}
 	
 	public String populateRoles(SelectEvent evt) {
+		roles.clear();
+		roles.addAll(rolService.getAll());
 		Usuario u=(Usuario) evt.getObject();
+		selected = u;
 		List<Rol> target = new ArrayList<Rol>();
-		for(UsuarioRol ur:u.getUsuarioRols())
-			target.add(ur.getRol());
+		for(UsuarioRol ur:u.getUsuarioRols()) {
+			Rol r = ur.getRol();
+			if (roles.remove(r)) target.add(r);
+		}
+			
 		picklistModel = new DualListModel<Rol>(roles, target);
 		return null;
 	}
 	
 	public String savePermisos() {
-		selected.getUsuarioRols().clear();
-		service.merge(selected);
-		List<UsuarioRol> permisos= new ArrayList<UsuarioRol>();
-		for(Rol r:picklistModel.getTarget()) {
-			UsuarioRol ur=new UsuarioRol();
-			ur.setRol(r);
-			ur.setUsuario(getSelected());
-			permisos.add(ur);
+		List<Rol> target=picklistModel.getTarget();
+		for(UsuarioRol us:selected.getUsuarioRols()) {
+			if(!target.contains(us.getRol()))
+				rolService.removeUsuarioRol(us);
 		}
-		selected.getUsuarioRols().addAll(permisos);
-		service.merge(getSelected());
+		for(Rol r:target) {
+			UsuarioRol us=new UsuarioRol(selected,r);
+			try {
+				rolService.addPermission(us);
+			} catch (ControllerException e) {
+				addError(e);
+			}
+		}
+		all.clear();
+		all.addAll(service.getAll());
+		
 		RequestContext rc = getRequestContext();
 		rc.execute("permisos.hide()");
+		addInfo(String.format("%s actualizado", selected.getUsername()));
 		return null;
 	}
 

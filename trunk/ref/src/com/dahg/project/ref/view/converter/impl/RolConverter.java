@@ -9,7 +9,7 @@ import com.dahg.project.ref.controller.services.local.RolService;
 import com.dahg.project.ref.model.impl.Rol;
 import com.dahg.project.ref.view.system.UserMaintenance;
 
-@FacesConverter(forClass=Rol.class)
+@FacesConverter("rolConverter")
 public class RolConverter implements Converter {
 
 	private RolService getService() {
@@ -19,7 +19,6 @@ public class RolConverter implements Converter {
 		UserMaintenance bean = (UserMaintenance) ctx.getApplication().evaluateExpressionGet(ctx, elExpression, Object.class);
 		return bean.getRolService();
 	}
-	
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
