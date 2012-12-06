@@ -24,6 +24,12 @@
 					value="#{app['app.menu.system.users.gui.change_password']}" onclick="pass.show()"/>
 				</p:outputPanel>
 				
+				<p:outputPanel autoUpdate="true">
+					<p:commandButton disabled="#{empty userMaintenance.selected}" 
+					icon="ui-icon-trash" action="#{userMaintenance.removeUsuario}"
+					value="#{app['app.controls.common.delete']}" update="tabla" onclick="if(!confirm('#{app['app.controls.common.confirmation']}')) return false;"/>
+				</p:outputPanel>
+				
 				<p:dataTable id="tabla" value="#{userMaintenance.all}" var="u" editable="true" selection="#{userMaintenance.selected}" selectionMode="single" rowKey="#{u.username}">
 					<p:ajax event="rowEdit" listener="#{userMaintenance.editUser}" update="tabla"/>
 					<p:ajax event="rowSelect" listener="#{userMaintenance.populateRoles}"/>
@@ -47,7 +53,7 @@
 					</p:column>
 				</p:dataTable>	
 				
-				<p:dialog widgetVar="edit" header="#{app['app.catalog.button.add']}" modal="true">
+				<p:dialog widgetVar="edit" header="#{app['app.catalog.button.add']}" modal="true" >
 					<p:ajax event="close" update="tabla" />
 					<p:panelGrid>
 						<p:row>
@@ -60,7 +66,9 @@
 						</p:row>
 						<p:row>
 							<p:column colspan="2">
-								<p:commandButton value="#{app['app.controls.common.ok']}" action="#{userMaintenance.add}" icon="ui-icon-disk" />
+								<center>
+									<p:commandButton value="#{app['app.controls.common.ok']}" action="#{userMaintenance.add}" icon="ui-icon-disk" />
+								</center>
 							</p:column>
 						</p:row>
 					</p:panelGrid>
@@ -68,9 +76,18 @@
 				
 				<p:dialog widgetVar="permisos" modal="true">
 					<p:ajax event="close" update="tabla" />
+					<f:facet name="header">
+						<p:outputPanel autoUpdate="true">
+							<h:outputText value="#{userMaintenance.selected.completeName}"/>
+						</p:outputPanel>
+					</f:facet>
 					<p:panelGrid>
 						<p:row>
-							<p:column><p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" action="#{userMaintenance.savePermisos}"/></p:column>
+							<p:column>
+								<center>
+									<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" action="#{userMaintenance.savePermisos}"/>
+								</center>
+							</p:column>
 						</p:row>
 						<p:row>
 							<p:column>
@@ -86,10 +103,19 @@
 				
 				<p:dialog widgetVar="pass" modal="true">
 					<p:ajax event="close" update="tabla" />
+					<f:facet name="header">
+						<p:outputPanel autoUpdate="true">
+							<h:outputText value="#{userMaintenance.selected.completeName}"/>
+						</p:outputPanel>
+					</f:facet>
 					<p:panelGrid>
 						<p:row>							
 							<p:column colspan="2">
-								<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" action="#{userMaintenance.changePassword}"/>
+								<center>
+									<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" 
+									onclick="if(!confirm('#{app['app.controls.common.confirmation']}')) return false;"
+									action="#{userMaintenance.changePassword}"/>
+								</center>
 							</p:column>
 						</p:row>
 						<p:row>

@@ -2,6 +2,7 @@ package com.dahg.project.ref.controller.beans.impl;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -12,12 +13,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dahg.project.ref.controller.beans.AbstractBean;
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.exception.ValidationException;
+import com.dahg.project.ref.controller.services.local.RolService;
 import com.dahg.project.ref.controller.services.local.UsuarioService;
 import com.dahg.project.ref.model.impl.Usuario;
+import com.dahg.project.ref.model.impl.UsuarioRol;
 
 @Stateless
 public class UsuarioServiceImpl extends AbstractBean<Usuario> implements UsuarioService {
 
+	@EJB
+	private RolService rolService;
+	
 	@Override
 	protected Class<Usuario> getClazz() {
 		return Usuario.class;
@@ -48,7 +54,9 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 
 	@Override
 	public void remove(Usuario obj) {
-		String sql="delete from Usuario u.username=:id";
+		for(UsuarioRol ur:obj.getUsuarioRols())
+			rolService.removeUsuarioRol(ur);
+		String sql="delete from Usuario u where u.username=:id";
 		this.remove(sql, obj.getUsername());
 	}
 
