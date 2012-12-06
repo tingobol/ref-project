@@ -13,7 +13,15 @@
 				
 				<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="edit.show()" icon="ui-icon-plusthick"/>
 				<p:outputPanel autoUpdate="true">
-					<p:commandButton disabled="#{empty userMaintenance.selected}" value="Editar permiso" onclick="permisos.show()"/>
+					<p:commandButton disabled="#{empty userMaintenance.selected}" 
+					icon="ui-icon-pencil"
+					value="#{app['app.menu.system.users.gui.edit_rol']}" onclick="permisos.show()"/>
+				</p:outputPanel>
+				
+				<p:outputPanel autoUpdate="true">
+					<p:commandButton disabled="#{empty userMaintenance.selected}" 
+					icon="ui-icon-pencil"
+					value="#{app['app.menu.system.users.gui.change_password']}" onclick="pass.show()"/>
 				</p:outputPanel>
 				
 				<p:dataTable id="tabla" value="#{userMaintenance.all}" var="u" editable="true" selection="#{userMaintenance.selected}" selectionMode="single" rowKey="#{u.username}">
@@ -22,16 +30,16 @@
 					<p:column>
 						<p:rowEditor/>
 					</p:column>
-					<p:column headerText="ID">
+					<p:column headerText="#{app['app.table.usuario.id']}">
 						<h:outputText value="#{u.username}" />
 					</p:column>
-					<p:column headerText="Apellidos">
+					<p:column headerText="#{app['app.table.usuario.apellidos']}">
 						<p:cellEditor>
 							<f:facet name="output"><h:outputText value="#{u.apellido}" /></f:facet>
 							<f:facet name="input"><p:inputText value="#{u.apellido}" /></f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="Nombres">
+					<p:column headerText="#{app['app.table.usuario.nombres']}">
 						<p:cellEditor>
 							<f:facet name="output"><h:outputText value="#{u.nombre}" /></f:facet>
 							<f:facet name="input"><p:inputText value="#{u.nombre}" /></f:facet>
@@ -44,7 +52,7 @@
 					<p:panelGrid>
 						<p:row>
 							<p:column>
-								<h:outputText value="ID"/>
+								<h:outputText value="#{app['app.table.usuario.id']}"/>
 							</p:column>
 							<p:column>
 								<p:inputText value="#{userMaintenance.id}" />
@@ -62,7 +70,7 @@
 					<p:ajax event="close" update="tabla" />
 					<p:panelGrid>
 						<p:row>
-							<p:column><p:commandButton value="Guardar" action="#{userMaintenance.savePermisos}"/></p:column>
+							<p:column><p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" action="#{userMaintenance.savePermisos}"/></p:column>
 						</p:row>
 						<p:row>
 							<p:column>
@@ -73,10 +81,44 @@
 								</p:outputPanel>
 							</p:column>
 						</p:row>
-						
-						
 					</p:panelGrid>
 				</p:dialog>
+				
+				<p:dialog widgetVar="pass" modal="true">
+					<p:ajax event="close" update="tabla" />
+					<p:panelGrid>
+						<p:row>							
+							<p:column colspan="2">
+								<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" action="#{userMaintenance.changePassword}"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="#{app['app.menu.system.users.gui.current_password']}"/>
+							</p:column>							
+							<p:column>
+								<h:inputSecret value="#{userMaintenance.currentPassword}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="#{app['app.menu.system.users.gui.new_password']}"/>
+							</p:column>
+							<p:column>
+								<h:inputSecret value="#{userMaintenance.passUno}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="#{app['app.menu.system.users.gui.re_new_password']}"/>
+							</p:column>
+							<p:column>
+								<h:inputSecret value="#{userMaintenance.passDos}" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</p:dialog>
+				
 				
 			</p:panel>
 		</ui:define>

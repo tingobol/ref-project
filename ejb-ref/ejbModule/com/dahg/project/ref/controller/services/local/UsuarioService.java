@@ -14,5 +14,5 @@ public interface UsuarioService extends Service<Usuario>{
 
 	List<Usuario> getAll();
 	Usuario validate(String user, String pass) throws ValidationException,ControllerException;
-	
+	void changePassword(Usuario usuario, String oldPassword,String newPassword) throws ValidationException;
 }

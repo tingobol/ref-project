@@ -25,6 +25,9 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 
 	@Override
 	public Usuario validate(String user, String pass) throws ValidationException,ControllerException {
+		boolean existe = getById(user)!=null;
+		if(!existe) throw new ValidationException("Usuario no existe");
+		
 		Usuario usuario=null;
 		String jpql="Select u From Usuario u where u.username=:id and u.password=:pass";
 		Query query = getEntityManager().createQuery(jpql);
@@ -69,6 +72,21 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 			throw new ControllerException(e);
 		}
 		
+	}
+
+	@Override
+	public void changePassword(Usuario usuario, String oldPassword, String newPassword) throws ValidationException {		
+		try {
+			validate(usuario.getUsername(), oldPassword);
+			try {
+				usuario.setPassword(getDecrypt().hash(newPassword));
+			} catch (Exception e) {
+				throw new ValidationException(e);
+			}
+			this.merge(usuario);			
+		} catch (ControllerException e) {
+			throw new ValidationException(e);
+		}
 	}
 
 	

@@ -15,6 +15,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 
 import com.dahg.project.ref.controller.exception.ControllerException;
+import com.dahg.project.ref.controller.exception.ValidationException;
 import com.dahg.project.ref.controller.services.local.RolService;
 import com.dahg.project.ref.controller.services.local.UsuarioService;
 import com.dahg.project.ref.model.impl.Rol;
@@ -35,6 +36,10 @@ public class UserMaintenance extends AbstractManagedBean {
 	private String id;
 	private DualListModel<Rol> picklistModel;
 	private Usuario selected;
+	
+	private String currentPassword;
+	private String passUno;
+	private String passDos;
 	
 	@PostConstruct
 	public void init() {
@@ -104,6 +109,28 @@ public class UserMaintenance extends AbstractManagedBean {
 		addInfo(String.format("%s actualizado", selected.getUsername()));
 		return null;
 	}
+	
+	public String changePassword() {
+		if (currentPassword==null || currentPassword.isEmpty())
+			addError("Debe introducir la contraseña actual");
+		else if (passUno==null || passDos ==null || passUno.isEmpty() || passDos.isEmpty())
+			addError("Debe introducir la contraseña nueva");
+		else if(!passUno.equals(passDos))
+			addError("Las contraseñas no coinciden");
+		else {
+			try {
+				service.changePassword(selected, currentPassword, passUno);
+			} catch (ValidationException e) {
+				addError(e);
+			}
+			all.clear();
+			all.addAll(service.getAll());
+			addInfo(String.format("%s actualizado", selected.getUsername()));
+			RequestContext rc = getRequestContext();
+			rc.execute("pass.hide()");
+		}
+		return null;
+	}
 
 	
 	public List<Usuario> getAll() {
@@ -140,5 +167,31 @@ public class UserMaintenance extends AbstractManagedBean {
 	public RolService getRolService() {
 		return rolService;
 	}
+
+	public String getCurrentPassword() {
+		return currentPassword;
+	}
+
+	public void setCurrentPassword(String currentPassword) {
+		this.currentPassword = currentPassword;
+	}
+
+	public String getPassUno() {
+		return passUno;
+	}
+
+	public void setPassUno(String passUno) {
+		this.passUno = passUno;
+	}
+
+	public String getPassDos() {
+		return passDos;
+	}
+
+	public void setPassDos(String passDos) {
+		this.passDos = passDos;
+	}
+	
+	
 	
 }
