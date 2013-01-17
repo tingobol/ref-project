@@ -29,7 +29,7 @@ public class CurrentSession extends AbstractManagedBean {
 		try {
 			user = service.validate(user.getUsername(), user.getPasswordWithoutEncrypt());
 			user.setPasswordWithoutEncrypt(null);
-			return "main";
+			return "inicio";
 		} catch (ValidationException e) {
 			addWarn(e.getMessage());
 			return null;
