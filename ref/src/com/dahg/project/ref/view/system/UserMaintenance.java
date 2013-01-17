@@ -111,15 +111,13 @@ public class UserMaintenance extends AbstractManagedBean {
 	}
 	
 	public String changePassword() {
-		if (currentPassword==null || currentPassword.isEmpty())
-			addError("Debe introducir la contraseña actual");
-		else if (passUno==null || passDos ==null || passUno.isEmpty() || passDos.isEmpty())
+		if (passUno==null || passDos ==null || passUno.isEmpty() || passDos.isEmpty())
 			addError("Debe introducir la contraseña nueva");
 		else if(!passUno.equals(passDos))
 			addError("Las contraseñas no coinciden");
 		else {
 			try {
-				service.changePassword(selected, currentPassword, passUno);
+				service.changePassword(selected, passUno);
 			} catch (ValidationException e) {
 				addError(e);
 			}
@@ -129,6 +127,21 @@ public class UserMaintenance extends AbstractManagedBean {
 			RequestContext rc = getRequestContext();
 			rc.execute("pass.hide()");
 		}
+		return null;
+	}
+	
+	public String changePasswordByUser() {		
+		try {
+			if (!passUno.equals(passDos))
+				throw new ValidationException("Las contraseñas no coinciden");
+			service.changePassword(selected, currentPassword, passUno);
+			addInfo(String.format("%s contraseña actualizada", selected.getUsername()));
+			passUno="";
+			passDos="";
+			currentPassword="";
+		} catch (ValidationException e) {
+			addError(e);
+		}		
 		return null;
 	}
 
@@ -175,14 +188,6 @@ public class UserMaintenance extends AbstractManagedBean {
 		return rolService;
 	}
 
-	public String getCurrentPassword() {
-		return currentPassword;
-	}
-
-	public void setCurrentPassword(String currentPassword) {
-		this.currentPassword = currentPassword;
-	}
-
 	public String getPassUno() {
 		return passUno;
 	}
@@ -197,6 +202,14 @@ public class UserMaintenance extends AbstractManagedBean {
 
 	public void setPassDos(String passDos) {
 		this.passDos = passDos;
+	}
+
+	public String getCurrentPassword() {
+		return currentPassword;
+	}
+
+	public void setCurrentPassword(String currentPassword) {
+		this.currentPassword = currentPassword;
 	}
 	
 	
