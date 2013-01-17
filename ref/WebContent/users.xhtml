@@ -94,7 +94,14 @@
 								<p:outputPanel autoUpdate="true">
 									<p:pickList id="picklista" value="#{userMaintenance.picklistModel}" 
 									converter="rolConverter"
-									var="rol" itemValue="#{rol}" itemLabel="#{rol.descripcion}"/>
+									var="rol" itemValue="#{rol}" itemLabel="#{rol.descripcion}">
+										<f:facet name="sourceCaption">
+											<h:outputText value="Disponible"/>
+										</f:facet>
+										<f:facet name="targetCaption">
+											<h:outputText value="Asignados"/>
+										</f:facet>
+									</p:pickList>
 								</p:outputPanel>
 							</p:column>
 						</p:row>
