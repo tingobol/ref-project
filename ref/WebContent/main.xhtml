@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 	<ui:composition template="/base.xhtml">
+
 		<ui:define name="body">
 			<p:panelGrid rendered="#{currentSession.enable}">
 				<h:outputFormat value="#{app['app.main.welcome']}" >
@@ -16,21 +17,26 @@
 			<ui:include src="/menu_principal.xhtml" />
 			
 			<center>
-				<h:panelGrid rendered="#{currentSession.enable}">
+				<h:panelGrid rendered="#{currentSession.enable and tienePermiso}">
 					<ui:insert name="formBody" />
 				</h:panelGrid>
 			</center>			
-			
-			<p:panelGrid rendered="#{!currentSession.enable}">
-				<p:row>
-					<p:column>
-						<p:panel header="#{app['app.no_login.header']}">
-							<p:commandButton value="#{app['app.no_login.button']}" onclick="window.location='./'" />
-						</p:panel>		
-					</p:column>
-				</p:row>
-				
-			</p:panelGrid>					
+			<center>
+				<p:panelGrid rendered="#{!currentSession.enable or !tienePermiso}">				
+					<p:row>
+						<p:column>
+							<p:panel header="#{app['app.no_login.header']}" rendered="#{!currentSession.enable}">
+								<p:commandButton value="#{app['app.no_login.button']}" onclick="window.location='./'" />
+							</p:panel>
+							<p:panel header="#{app['app.no_permission.header']}" rendered="#{!tienePermiso and currentSession.enable}">
+								<center>
+									<p:commandButton value="#{app['app.no_login.button']}" action="#{currentSession.logout}" oncomplete="window.location='./'"/>
+								</center>
+							</p:panel>
+						</p:column>
+					</p:row>				
+				</p:panelGrid>
+			</center>
 			
 		</ui:define>
 	</ui:composition>
