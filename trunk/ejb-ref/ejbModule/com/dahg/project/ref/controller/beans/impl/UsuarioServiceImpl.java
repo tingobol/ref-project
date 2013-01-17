@@ -97,6 +97,16 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 		}
 	}
 
+	@Override
+	public void changePassword(Usuario usuario, String newPassword) throws ValidationException {					
+		try {
+			usuario.setPassword(getDecrypt().hash(newPassword));
+		} catch (Exception e) {
+			throw new ValidationException(e);
+		}
+		this.merge(usuario);	
+	}
+
 	
 	
 	
