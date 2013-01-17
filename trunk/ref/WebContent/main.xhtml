@@ -8,11 +8,11 @@
 	<ui:composition template="/base.xhtml">
 
 		<ui:define name="body">
-			<p:panelGrid rendered="#{currentSession.enable}">
-				<h:outputFormat value="#{app['app.main.welcome']}" >
-					<f:param value="#{currentSession.user.completeName}"/>
-				</h:outputFormat>
-			</p:panelGrid>
+
+			<h:outputFormat value="#{app['app.main.welcome']}" rendered="#{currentSession.enable}">
+				<f:param value="#{currentSession.user.completeName}"/>
+			</h:outputFormat>
+
 			
 			<ui:include src="/menu_principal.xhtml" />
 			
