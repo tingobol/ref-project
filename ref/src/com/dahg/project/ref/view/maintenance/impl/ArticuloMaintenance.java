@@ -45,12 +45,18 @@ public class ArticuloMaintenance extends AbstractCatalogBean<Articulo> {
 		
 	}
 	
+	@Override
+	public String delete() {
+		super.delete();
+		return "articulo";
+	}
+
 	public String editLaw() {
 		if(getSelected().getDescripcion()==null || getSelected().getDescripcion().isEmpty())
 			addError("Debe ingresar una descripcion");
 		else {
 			getService().merge(getSelected());
-			addInfo("Articulo modificado");
+			addInfo(String.format("Articulo %s modificado",getSelected().getId()));
 		}
 		return null;
 	}

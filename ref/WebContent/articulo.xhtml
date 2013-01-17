@@ -34,7 +34,8 @@
 										<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" action="#{articuloMaintenance.editLaw}">
 											<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}" />
 										</p:commandButton>
-										<p:commandButton value="#{app['app.controls.common.delete']}" icon="ui-icon-trash" update="tabla" action="#{articuloMaintenance.delete}">
+										<p:commandButton value="#{app['app.controls.common.delete']}" icon="ui-icon-trash" update="tabla" action="#{articuloMaintenance.delete}"
+										onclick="if(!confirm('#{app['app.controls.common.confirmation']}')) return false;">
 											<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}" />
 										</p:commandButton>
 									</p:column>
