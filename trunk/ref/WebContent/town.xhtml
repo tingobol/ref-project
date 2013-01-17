@@ -21,7 +21,9 @@
 					<p:outputPanel autoUpdate="true">
 						<p:commandButton 
 						disabled="#{ empty municipioMaintenance.selected}"
-						value="#{app['app.controls.common.delete']}" immediate="true" action="#{municipioMaintenance.delete}" update="editmsg,tabla"/>
+						value="#{app['app.controls.common.delete']}" immediate="true" action="#{municipioMaintenance.delete}" 
+						onclick="if(!confirm('#{app['app.controls.common.confirmation']}')) return false;"
+						update="editmsg,tabla"/>
 					</p:outputPanel>
 					
 				</p:panelGrid>
