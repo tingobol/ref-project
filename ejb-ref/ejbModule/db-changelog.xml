@@ -305,4 +305,81 @@
     	</insert>
     	
     </changeSet>
+    <changeSet author="dani" id="9">
+    	<createTable tableName="autorizacion_vista">
+    		<column name="seccion" type="varchar">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="roles" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    </changeSet>
+    <changeSet author="dani" id="10">
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/inicio.xhtml"/>
+    		<column name="roles" value="COMMON"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/articulo.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/barrio.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/canton.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/caserio.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/change_password.xhtml"/>
+    		<column name="roles" value="COMMON"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/colonia.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/departament.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/idioma.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/nacionalidad.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/parametros_generales.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/parentesco.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/profesion.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/tipo_marginacion.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/town.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/users.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    </changeSet>
+    
 </databaseChangeLog>

@@ -4,6 +4,10 @@
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:ui="http://java.sun.com/jsf/facelets"
      xmlns:p="http://primefaces.org/ui">
+     
+     <h:outputFormat value="#{app['app.main.welcome']}" rendered="#{currentSession.enable}">
+		<f:param value="#{currentSession.user.completeName}"/>
+	</h:outputFormat>
      <p:menubar rendered="#{currentSession.enable}">
 				<p:submenu label="#{app['app.menu.system']}" icon="ui-icon-gear" >
 		            <p:submenu label="#{app['app.menu.system.parameters']}" icon="ui-icon-contact">

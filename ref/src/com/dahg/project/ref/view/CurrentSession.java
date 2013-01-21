@@ -9,15 +9,13 @@ import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.exception.ValidationException;
 import com.dahg.project.ref.controller.services.local.UsuarioService;
 import com.dahg.project.ref.model.impl.Usuario;
-import com.dahg.project.ref.model.impl.UsuarioRol;
 
 @ManagedBean
 @SessionScoped
 public class CurrentSession extends AbstractManagedBean {
 
 	@EJB
-	private UsuarioService service;
-	
+	private UsuarioService service;	
 	private Usuario user;
 	
 	@PostConstruct
@@ -37,29 +35,6 @@ public class CurrentSession extends AbstractManagedBean {
 			addError(e);
 			return null;
 		}
-	}	
-	
-	public boolean isAuthorized(String roles) {		
-		
-		if(roles==null || roles.isEmpty()) return false;
-		
-		if(roles.length()>0 && isEnable() && !user.getUsuarioRols().isEmpty()) {
-			String[] arrayRoles=roles.split(",");
-			for(String rol:arrayRoles)
-				if(hasUserRol(rol)) return true;			
-		}
-		
-		return false;
-	}
-	
-	private boolean hasUserRol(String rol) {		
-		for(UsuarioRol userRol:user.getUsuarioRols()) 
-			if(userRol.getRol().getId().equals(rol) || userRol.getRol().getId().equals("ADMIN")) return true;
-		return false;		
-	}	
-	
-	public boolean isEnable() {
-		return user.getUsername()!=null && !user.getUsername().isEmpty();
 	}
 	
 	public String logout() {
@@ -76,5 +51,8 @@ public class CurrentSession extends AbstractManagedBean {
 		return user;
 	}
 	
+	public boolean isEnable() {
+		return user.getUsername()!=null && !user.getUsername().isEmpty();
+	}
 	
 }

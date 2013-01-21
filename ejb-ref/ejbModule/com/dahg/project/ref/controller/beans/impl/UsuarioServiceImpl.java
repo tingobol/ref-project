@@ -13,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dahg.project.ref.controller.beans.AbstractBean;
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.exception.ValidationException;
+import com.dahg.project.ref.controller.services.Service;
 import com.dahg.project.ref.controller.services.local.RolService;
 import com.dahg.project.ref.controller.services.local.UsuarioService;
+import com.dahg.project.ref.model.impl.AutorizacionVista;
 import com.dahg.project.ref.model.impl.Usuario;
 import com.dahg.project.ref.model.impl.UsuarioRol;
 
@@ -23,6 +25,9 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 
 	@EJB
 	private RolService rolService;
+	@EJB
+	private AutorizacionServiceImpl autorizacionService;
+	
 	
 	@Override
 	protected Class<Usuario> getClazz() {
@@ -105,6 +110,23 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 			throw new ValidationException(e);
 		}
 		this.merge(usuario);	
+	}
+
+	@Override
+	public void isAuthorized(String section,Usuario usuario) throws ValidationException {
+		if(usuario.getUsername()==null || usuario.getUsername().isEmpty()) throw new ValidationException("Debe ingresar al sistema");
+		AutorizacionVista auth = autorizacionService.getById(section);
+		if (auth==null) throw new ValidationException(String.format("No se ha asignado permisos a la seccion %s",section));
+		String[] roles = auth.getRoles().split(",");
+		if (roles==null || roles.length==0) throw new ValidationException(String.format("La %s no tiene asignado ningun rol", section));
+		for(String rol:roles)
+			if (!hasUserRol(rol, usuario)) throw new ValidationException(String.format("El usuario %s no tiene permiso para ver %s", usuario.getUsername(),section));
+	}
+	
+	private boolean hasUserRol(String rol,Usuario user) {
+		for(UsuarioRol userRol:user.getUsuarioRols()) 
+			if(userRol.getRol().getId().equals(rol) || userRol.getRol().getId().equals("ADMIN")) return true;
+		return false;		
 	}
 
 	

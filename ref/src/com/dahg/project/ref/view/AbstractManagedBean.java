@@ -9,6 +9,8 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import com.dahg.project.ref.controller.exception.ValidationException;
+
 public abstract class AbstractManagedBean {
 	
 	@ManagedProperty("#{app}")
@@ -39,7 +41,8 @@ public abstract class AbstractManagedBean {
 	}
 	
 	public void addError(Throwable e) {
-		addMessage(e.getMessage(), FacesMessage.SEVERITY_ERROR);
+		String msg=(e instanceof ValidationException)?e.getCause().getMessage():e.getMessage();			
+		addMessage(msg, FacesMessage.SEVERITY_ERROR);
 	}
 	
 	public void addWarn(String msg) {
