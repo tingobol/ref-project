@@ -116,9 +116,9 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 	public void isAuthorized(String section,Usuario usuario) throws ValidationException {
 		if(usuario.getUsername()==null || usuario.getUsername().isEmpty()) throw new ValidationException("Debe ingresar al sistema");
 		AutorizacionVista auth = autorizacionService.getById(section);
-		if (auth==null) throw new ValidationException(String.format("No se ha asignado permisos a la seccion %s",section));
+		if (auth==null) throw new ValidationException(String.format("Seccion %s Deshabilitada",section));
 		String[] roles = auth.getRoles().split(",");
-		if (roles==null || roles.length==0) throw new ValidationException(String.format("La %s no tiene asignado ningun rol", section));
+		if (roles==null || roles.length==0) throw new ValidationException(String.format("Seccion %s Deshabilitada", section));
 		for(String rol:roles)
 			if (!hasUserRol(rol, usuario)) throw new ValidationException(String.format("El usuario %s no tiene permiso para ver %s", usuario.getUsername(),section));
 	}
