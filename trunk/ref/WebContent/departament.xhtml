@@ -6,8 +6,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:dahg="http://java.sun.com/jsf/composite/dahg">
 
+	<f:metadata>
+		<f:event listener="#{authorizationBean.isAuthorized}" type="preRenderView" />
+	</f:metadata>
 	<ui:composition template="/main.xhtml">
-		<ui:param name="tienePermiso" value="#{currentSession.isAuthorized('ADMIN')}"/>
 		<ui:define name="formBody">
 			<dahg:maintenance 	catalogBean="#{departamentoMaintenance}"
 								maintenanceTypeText="#{app['app.menu.maintenance.province']}"/>

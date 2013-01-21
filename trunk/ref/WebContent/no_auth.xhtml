@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/base.xhtml">
+		<ui:define name="body">
+			<center>
+				<p:panelGrid>
+					<f:facet name="header">
+						<p:row>
+							<p:column><h:outputText value="#{app['app.no_permission.header']}"/></p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column>
+							<p:messages/>
+						</p:column>
+					</p:row>
+					<f:facet name="footer">
+						<p:row>
+							<p:column>
+								<center>
+									<p:commandButton 
+									rendered="#{currentSession.enable}"
+									value="#{app['app.no_login.button']}" immediate="true" 
+									action="inicio"
+									icon="ui-icon-close" />
+									
+									<p:commandButton 
+									rendered="#{!currentSession.enable}"
+									value="#{app['app.no_login.button']}" immediate="true" 
+									action="login"
+									icon="ui-icon-close" />
+								</center>
+							</p:column>
+						</p:row>
+					</f:facet>
+				</p:panelGrid>
+			</center>
+			
+		</ui:define>
+	</ui:composition>
+</html>
