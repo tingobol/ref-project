@@ -25,7 +25,9 @@
 					    
 					    <f:facet name="footer">
 					    	<center>
-						    	<p:commandButton value="#{app['app.login.ok']}" action="#{currentSession.validate}" icon="ui-icon-check" />
+						    	<p:commandButton value="#{app['app.login.ok']}" action="#{currentSession.validate}" 
+						    	ajax="false"
+						    	icon="ui-icon-check" />
 					    	</center>
 					    </f:facet>
 					</p:panelGrid>
