@@ -1,6 +1,6 @@
 package com.dahg.project.ref.controller.util;
 
-public interface Decrypt {
+public interface Encrypt {
 
 	String hash(String stringToHash) throws Exception;
 	

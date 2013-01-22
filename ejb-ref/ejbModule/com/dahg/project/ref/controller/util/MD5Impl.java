@@ -2,7 +2,7 @@ package com.dahg.project.ref.controller.util;
 
 import java.security.MessageDigest;
 
-public class MD5Impl implements Decrypt {
+public class MD5Impl implements Encrypt {
 
 	private static final String DECRYPT_TYPE="MD5";
 	private static final char[] HEXADECIMAL = { '0', '1', '2', '3',

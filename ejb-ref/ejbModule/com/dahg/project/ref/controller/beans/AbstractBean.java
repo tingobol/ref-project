@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.persist.SpringPersistence;
 import com.dahg.project.ref.controller.services.Service;
-import com.dahg.project.ref.controller.util.Decrypt;
+import com.dahg.project.ref.controller.util.Encrypt;
 import com.dahg.project.ref.model.AbstractEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +24,8 @@ public abstract class AbstractBean<T> implements Service<T> {
 	private SpringPersistence persistence;
 	
 	@Autowired
-	@Qualifier("decrypt")
-	private Decrypt decrypt;
+	@Qualifier("encrypt")
+	private Encrypt decrypt;
 	
 	protected EntityManager getEntityManager() {
 		return persistence.getEntityManager();
@@ -61,7 +61,7 @@ public abstract class AbstractBean<T> implements Service<T> {
 		q.executeUpdate();
 	}
 	
-	public Decrypt getDecrypt() {
+	public Encrypt getDecrypt() {
 		return decrypt;
 	}
 	
