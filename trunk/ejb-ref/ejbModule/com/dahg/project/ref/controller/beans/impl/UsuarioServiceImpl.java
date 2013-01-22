@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dahg.project.ref.controller.beans.AbstractBean;
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.exception.ValidationException;
-import com.dahg.project.ref.controller.services.Service;
 import com.dahg.project.ref.controller.services.local.RolService;
 import com.dahg.project.ref.controller.services.local.UsuarioService;
 import com.dahg.project.ref.model.impl.AutorizacionVista;

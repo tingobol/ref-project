@@ -3,7 +3,6 @@ package com.dahg.project.ref.model.impl;
 import javax.persistence.*;
 
 import com.dahg.project.ref.model.AbtractCatalog;
-import com.dahg.project.ref.model.ICatalog;
 
 
 /**

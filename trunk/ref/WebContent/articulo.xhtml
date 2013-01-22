@@ -14,12 +14,12 @@
 			<p:growl id="msg" autoUpdate="true"/>
 			<p:panel>
 				<f:facet name="header">
-					<h:outputFormat value="#{app['app.catalog.title']}">
-						<f:param value="#{app['app.menu.maintenance.law']}" />
+					<h:outputFormat value="#{info.key('app.catalog.title')}">
+						<f:param value="#{info.key('app.menu.maintenance.law')}" />
 					</h:outputFormat>
 				</f:facet>
 				
-				<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="add.show()" icon="ui-icon-plusthick"/>
+				<p:commandButton value="#{info.key('app.catalog.button.add')}" type="button" onclick="add.show()" icon="ui-icon-plusthick"/>
 				
 				
 				<p:dataTable id="tabla" value="#{articuloMaintenance.all}" var="a" paginator="true" rows="1">
@@ -33,11 +33,11 @@
 							<f:facet name="footer">
 								<p:row>
 									<p:column>
-										<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" action="#{articuloMaintenance.editLaw}">
+										<p:commandButton value="#{info.key('app.controls.common.ok')}" icon="ui-icon-disk" action="#{articuloMaintenance.editLaw}">
 											<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}" />
 										</p:commandButton>
-										<p:commandButton value="#{app['app.controls.common.delete']}" icon="ui-icon-trash" update="tabla" action="#{articuloMaintenance.delete}"
-										onclick="if(!confirm('#{app['app.controls.common.confirmation']}')) return false;">
+										<p:commandButton value="#{info.key('app.controls.common.delete')}" icon="ui-icon-trash" update="tabla" action="#{articuloMaintenance.delete}"
+										onclick="if(!confirm('#{info.key('app.controls.common.confirmation')}')) return false;">
 											<f:setPropertyActionListener target="#{articuloMaintenance.selected}" value="#{a}" />
 										</p:commandButton>
 									</p:column>
@@ -59,19 +59,19 @@
 			
 			
 			
-			<p:dialog widgetVar="add" modal="true" header="#{app['app.commons.edit']}">
+			<p:dialog widgetVar="add" modal="true" header="#{info.key('app.commons.edit')}">
 				<p:ajax event="close" update="tabla"/>
 				
 				
 				<p:panelGrid id="panelEdit" columns="2">
 					
 					<h:outputText value="Numero de articulo"/>
-					<p:inputText value="#{articuloMaintenance.id}" label="#{app['app.menu.maintenance.law']}">
+					<p:inputText value="#{articuloMaintenance.id}" label="#{info.key('app.menu.maintenance.law')}">
 						<f:convertNumber integerOnly="true"/>
 					</p:inputText>
 					<f:facet name="footer">
 						<center>
-							<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{articuloMaintenance.add}" update="panelEdit tabla" icon="ui-icon-disk"/>
+							<p:commandButton value="#{info.key('app.catalog.button.add')}" actionListener="#{articuloMaintenance.add}" update="panelEdit tabla" icon="ui-icon-disk"/>
 						</center>
 					</f:facet>
 				</p:panelGrid>

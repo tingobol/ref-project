@@ -1,7 +1,5 @@
 package com.dahg.project.ref.view;
 
-import java.util.ResourceBundle;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedProperty;
@@ -13,8 +11,8 @@ import com.dahg.project.ref.controller.exception.ValidationException;
 
 public abstract class AbstractManagedBean {
 	
-	@ManagedProperty("#{app}")
-	private ResourceBundle bundle;
+	@ManagedProperty("#{info}")
+	private ApplicationBean info;
 
 	protected FacesContext getFacesContext() {
 		return FacesContext.getCurrentInstance();
@@ -29,7 +27,7 @@ public abstract class AbstractManagedBean {
 	}
 	
 	public String getMessageKey(String key) {
-		return bundle.getString(key);
+		return info.key(key);
 	}
 	
 	public void addInfo(String msg) {
@@ -48,13 +46,13 @@ public abstract class AbstractManagedBean {
 	public void addWarn(String msg) {
 		addMessage(msg, FacesMessage.SEVERITY_WARN);
 	}
-
-	public void setBundle(ResourceBundle bundle) {
-		this.bundle = bundle;
-	}
 	
 	protected RequestContext getRequestContext() {
 		return RequestContext.getCurrentInstance();
+	}
+
+	public void setInfo(ApplicationBean info) {
+		this.info = info;
 	}
 	
 }

@@ -12,9 +12,9 @@
 	<ui:composition template="/main.xhtml">
 		<ui:define name="formBody">
 			<p:growl id="msgparam" />
-			<p:panel header="#{app['app.menu.system.parameters.others']}">
+			<p:panel header="#{info.key('app.menu.system.parameters.others')}">
 				<f:facet name="header">
-					<p:commandButton value="#{app['app.controls.common.ok']}" action="#{parametro.guardar}" update="msgparam"/>
+					<p:commandButton value="#{info.key('app.controls.common.ok')}" action="#{parametro.guardar}" update="msgparam"/>
 				</f:facet>
 				
 				

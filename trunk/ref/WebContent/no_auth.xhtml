@@ -11,7 +11,7 @@
 				<p:panelGrid>
 					<f:facet name="header">
 						<p:row>
-							<p:column><h:outputText value="#{app['app.no_permission.header']}"/></p:column>
+							<p:column><h:outputText value="#{info.key('app.no_permission.header')}"/></p:column>
 						</p:row>
 					</f:facet>
 					<p:row>
@@ -25,13 +25,13 @@
 								<center>
 									<p:commandButton 
 									rendered="#{currentSession.enable}"
-									value="#{app['app.no_login.button']}" immediate="true" 
+									value="#{info.key('app.no_login.button')}" immediate="true" 
 									action="inicio"
 									icon="ui-icon-close" />
 									
 									<p:commandButton 
 									rendered="#{!currentSession.enable}"
-									value="#{app['app.no_login.button']}" immediate="true" 
+									value="#{info.key('app.no_login.button')}" immediate="true" 
 									action="login"
 									icon="ui-icon-close" />
 								</center>

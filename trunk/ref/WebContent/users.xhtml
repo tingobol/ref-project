@@ -12,25 +12,25 @@
 		
 		<ui:define name="formBody">
 			<p:growl autoUpdate="true" />
-			<p:panel header="#{app['app.menu.system.users']}">
+			<p:panel header="#{info.key('app.menu.system.users')}">
 				
-				<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="edit.show()" icon="ui-icon-plusthick"/>
+				<p:commandButton value="#{info.key('app.catalog.button.add')}" type="button" onclick="edit.show()" icon="ui-icon-plusthick"/>
 				<p:outputPanel autoUpdate="true">
 					<p:commandButton disabled="#{empty userMaintenance.selected}" 
 					icon="ui-icon-pencil"
-					value="#{app['app.menu.system.users.gui.edit_rol']}" onclick="permisos.show()"/>
+					value="#{info.key('app.menu.system.users.gui.edit_rol')}" onclick="permisos.show()"/>
 				</p:outputPanel>
 				
 				<p:outputPanel autoUpdate="true">
 					<p:commandButton disabled="#{empty userMaintenance.selected}" 
 					icon="ui-icon-pencil"
-					value="#{app['app.menu.system.users.gui.change_password']}" onclick="pass.show()"/>
+					value="#{info.key('app.menu.system.users.gui.change_password')}" onclick="pass.show()"/>
 				</p:outputPanel>
 				
 				<p:outputPanel autoUpdate="true">
 					<p:commandButton disabled="#{empty userMaintenance.selected}" 
 					icon="ui-icon-trash" action="#{userMaintenance.removeUsuario}"
-					value="#{app['app.controls.common.delete']}" update="tabla" onclick="if(!confirm('#{app['app.controls.common.confirmation']}')) return false;"/>
+					value="#{info.key('app.controls.common.delete')}" update="tabla" onclick="if(!confirm('#{info.key('app.controls.common.confirmation')}')) return false;"/>
 				</p:outputPanel>
 				
 				<p:dataTable id="tabla" value="#{userMaintenance.all}" var="u" editable="true" selection="#{userMaintenance.selected}" selectionMode="single" rowKey="#{u.username}">
@@ -39,16 +39,16 @@
 					<p:column>
 						<p:rowEditor/>
 					</p:column>
-					<p:column headerText="#{app['app.table.usuario.id']}">
+					<p:column headerText="#{info.key('app.table.usuario.id')}">
 						<h:outputText value="#{u.username}" />
 					</p:column>
-					<p:column headerText="#{app['app.table.usuario.apellidos']}">
+					<p:column headerText="#{info.key('app.table.usuario.apellidos')}">
 						<p:cellEditor>
 							<f:facet name="output"><h:outputText value="#{u.apellido}" /></f:facet>
 							<f:facet name="input"><p:inputText value="#{u.apellido}" /></f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{app['app.table.usuario.nombres']}">
+					<p:column headerText="#{info.key('app.table.usuario.nombres')}">
 						<p:cellEditor>
 							<f:facet name="output"><h:outputText value="#{u.nombre}" /></f:facet>
 							<f:facet name="input"><p:inputText value="#{u.nombre}" /></f:facet>
@@ -56,12 +56,12 @@
 					</p:column>
 				</p:dataTable>	
 				
-				<p:dialog widgetVar="edit" header="#{app['app.catalog.button.add']}" modal="true" >
+				<p:dialog widgetVar="edit" header="#{info.key('app.catalog.button.add')}" modal="true" >
 					<p:ajax event="close" update="tabla" />
 					<p:panelGrid>
 						<p:row>
 							<p:column>
-								<h:outputText value="#{app['app.table.usuario.id']}"/>
+								<h:outputText value="#{info.key('app.table.usuario.id')}"/>
 							</p:column>
 							<p:column>
 								<p:inputText value="#{userMaintenance.id}" />
@@ -70,7 +70,7 @@
 						<p:row>
 							<p:column colspan="2">
 								<center>
-									<p:commandButton value="#{app['app.controls.common.ok']}" action="#{userMaintenance.add}" icon="ui-icon-disk" />
+									<p:commandButton value="#{info.key('app.controls.common.ok')}" action="#{userMaintenance.add}" icon="ui-icon-disk" />
 								</center>
 							</p:column>
 						</p:row>
@@ -88,7 +88,7 @@
 						<p:row>
 							<p:column>
 								<center>
-									<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" action="#{userMaintenance.savePermisos}"/>
+									<p:commandButton value="#{info.key('app.controls.common.ok')}" icon="ui-icon-disk" action="#{userMaintenance.savePermisos}"/>
 								</center>
 							</p:column>
 						</p:row>
@@ -122,15 +122,15 @@
 						<p:row>							
 							<p:column colspan="2">
 								<center>
-									<p:commandButton value="#{app['app.controls.common.ok']}" icon="ui-icon-disk" 
-									onclick="if(!confirm('#{app['app.controls.common.confirmation']}')) return false;"
+									<p:commandButton value="#{info.key('app.controls.common.ok')}" icon="ui-icon-disk" 
+									onclick="if(!confirm('#{info.key('app.controls.common.confirmation')}')) return false;"
 									action="#{userMaintenance.changePassword}"/>
 								</center>
 							</p:column>
 						</p:row>
 						<p:row>
 							<p:column>
-								<h:outputText value="#{app['app.menu.system.users.gui.new_password']}"/>
+								<h:outputText value="#{info.key('app.menu.system.users.gui.new_password')}"/>
 							</p:column>
 							<p:column>
 								<h:inputSecret value="#{userMaintenance.passUno}" />
@@ -138,7 +138,7 @@
 						</p:row>
 						<p:row>
 							<p:column>
-								<h:outputText value="#{app['app.menu.system.users.gui.re_new_password']}"/>
+								<h:outputText value="#{info.key('app.menu.system.users.gui.re_new_password')}"/>
 							</p:column>
 							<p:column>
 								<h:inputSecret value="#{userMaintenance.passDos}" />

@@ -13,31 +13,31 @@
 			<p:growl id="editmsg" sticky="true" />
 			<p:panel>
 				<f:facet name="header">
-					<h:outputFormat value="#{app['app.catalog.title']}">
-						<f:param value="#{app['app.menu.maintenance.town']}" />
+					<h:outputFormat value="#{info.key('app.catalog.title')}">
+						<f:param value="#{info.key('app.menu.maintenance.town')}" />
 					</h:outputFormat>
 				</f:facet>
 				<p:panelGrid columns="2">
-					<p:commandButton value="#{app['app.catalog.button.add']}" type="button" onclick="edit.show()" />
+					<p:commandButton value="#{info.key('app.catalog.button.add')}" type="button" onclick="edit.show()" />
 					
 					<p:outputPanel autoUpdate="true">
 						<p:commandButton 
 						disabled="#{ empty municipioMaintenance.selected}"
-						value="#{app['app.controls.common.delete']}" immediate="true" action="#{municipioMaintenance.delete}" 
-						onclick="if(!confirm('#{app['app.controls.common.confirmation']}')) return false;"
+						value="#{info.key('app.controls.common.delete')}" immediate="true" action="#{municipioMaintenance.delete}" 
+						onclick="if(!confirm('#{info.key('app.controls.common.confirmation')}')) return false;"
 						update="editmsg,tabla"/>
 					</p:outputPanel>
 					
 				</p:panelGrid>
 				
-				<p:dataTable id="tabla" value="#{municipioMaintenance.all}" var="c" editable="true" paginator="true" rows="#{app['app.catalog.rows']}"
+				<p:dataTable id="tabla" value="#{municipioMaintenance.all}" var="c" editable="true" paginator="true" rows="#{info.key('app.catalog.rows')}"
 				selection="#{municipioMaintenance.selected}" selectionMode="single" rowKey="#{c.id}">
 					<p:ajax event="rowEdit" listener="#{municipioMaintenance.edit}"/>
 					<p:ajax event="rowSelect" listener="#{municipioMaintenance.select}"/>
 					<p:column>
 						<p:rowEditor />
 					</p:column>
-					<p:column headerText="#{app['app.catalog.field.description']}" sortBy="#{c.descripcion}">
+					<p:column headerText="#{info.key('app.catalog.field.description')}" sortBy="#{c.descripcion}">
 						<p:cellEditor>
 							<f:facet name="output">
 								<h:outputText value="#{c.descripcion}" />
@@ -47,7 +47,7 @@
 							</f:facet>
 						</p:cellEditor>						
 					</p:column>
-					<p:column headerText="#{app['app.menu.maintenance.province']}">
+					<p:column headerText="#{info.key('app.menu.maintenance.province')}">
 						<p:cellEditor>
 							<f:facet name="output">
 								<h:outputText value="#{c.departamento.descripcion}" />
@@ -63,20 +63,20 @@
 				</p:dataTable>
 				
 			</p:panel>
-			<p:dialog widgetVar="edit" appendToBody="false" modal="true" header="#{app['app.commons.new_element']}">
+			<p:dialog widgetVar="edit" appendToBody="false" modal="true" header="#{info.key('app.commons.new_element')}">
 				<p:ajax event="close" update="tabla"/>
 				<p:panelGrid id="panelEdit" columns="2">
-					<h:outputText value="#{app['app.catalog.field.description']}"/>
-					<h:outputText value="#{app['app.menu.maintenance.province']}"/>
-					<p:inputText value="#{municipioMaintenance.descripcion}" required="true" label="#{app['app.catalog.field.description']}" />
+					<h:outputText value="#{info.key('app.catalog.field.description')}"/>
+					<h:outputText value="#{info.key('app.menu.maintenance.province')}"/>
+					<p:inputText value="#{municipioMaintenance.descripcion}" required="true" label="#{info.key('app.catalog.field.description')}" />
 					
-					<p:selectOneMenu value="#{municipioMaintenance.selectedDepartament}" required="true" label="#{app['app.menu.maintenance.province']}">
+					<p:selectOneMenu value="#{municipioMaintenance.selectedDepartament}" required="true" label="#{info.key('app.menu.maintenance.province')}">
 						<f:selectItems value="#{departamentoMaintenance.all}" var="item" itemLabel="#{item.descripcion}" itemValue="#{item}"/>
 					</p:selectOneMenu>
 					
 					<f:facet name="footer">
 						
-						<p:commandButton value="#{app['app.catalog.button.add']}" actionListener="#{municipioMaintenance.add}" update="panelEdit,editmsg,tabla"/>
+						<p:commandButton value="#{info.key('app.catalog.button.add')}" actionListener="#{municipioMaintenance.add}" update="panelEdit,editmsg,tabla"/>
 					</f:facet>
 					
 				</p:panelGrid>

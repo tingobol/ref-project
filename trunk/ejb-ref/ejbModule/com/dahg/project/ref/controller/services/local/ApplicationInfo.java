@@ -7,4 +7,5 @@ public interface ApplicationInfo {
 
 	String getApplicationName();
 	String getCityName();
+	String getProperty(String key);
 }

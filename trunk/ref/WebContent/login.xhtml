@@ -17,15 +17,15 @@
 						<f:facet name="header">
 							<h:outputText value="#{info.name}"/>
 						</f:facet>
-						<h:outputText value="#{app['app.login.user']}" />  
-					    <p:inputText id="usertxt" value="#{currentSession.user.username}" required="true" requiredMessage="#{app['app.login.user.requerido']}"/>  
+						<h:outputText value="#{info.key('app.login.user')}" />  
+					    <p:inputText id="usertxt" value="#{currentSession.user.username}" required="true" requiredMessage="#{info.key('app.login.user.requerido')}"/>  
 					  
-					    <h:outputText value="#{app['app.login.pass']}" />  
-					    <p:password value="#{currentSession.user.passwordWithoutEncrypt}" required="true" requiredMessage="#{app['app.login.pass.requerido']}" />
+					    <h:outputText value="#{info.key('app.login.pass')}" />  
+					    <p:password value="#{currentSession.user.passwordWithoutEncrypt}" required="true" requiredMessage="#{info.key('app.login.pass.requerido')}" />
 					    
 					    <f:facet name="footer">
 					    	<center>
-						    	<p:commandButton value="#{app['app.login.ok']}" action="#{currentSession.validate}" 
+						    	<p:commandButton value="#{info.key('app.login.ok')}" action="#{currentSession.validate}" 
 						    	ajax="false"
 						    	icon="ui-icon-check" />
 					    	</center>
