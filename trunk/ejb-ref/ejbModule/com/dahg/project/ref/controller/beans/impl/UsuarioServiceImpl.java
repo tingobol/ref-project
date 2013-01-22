@@ -47,7 +47,7 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 			usuario = (Usuario) query.getSingleResult();			
 		} 
 		catch(NoResultException e) {
-			throw new ValidationException("Usuario o contraseña incorrectos");
+			throw new ValidationException("Contraseña incorrecta");
 		}
 		catch (Exception e) {
 			throw new ControllerException(e);
