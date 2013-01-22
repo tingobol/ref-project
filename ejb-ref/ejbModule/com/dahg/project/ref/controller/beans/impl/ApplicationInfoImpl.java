@@ -17,7 +17,7 @@ public class ApplicationInfoImpl implements ApplicationInfo {
 	
 	@Autowired
 	@Qualifier("resourceBundle")
-	private Properties resourceBundle;
+	private Properties resourceBundle;	
 	
 	@Override
 	public String getApplicationName() {
@@ -35,5 +35,8 @@ public class ApplicationInfoImpl implements ApplicationInfo {
 		if (text==null || text.isEmpty()) return String.format("@%s@", key);
 		return text;
 	}
+	
+	
 
 }
+

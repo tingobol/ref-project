@@ -20,7 +20,7 @@ public abstract class AbstractParameterServiceImpl<T extends Parametro> extends 
 		Query query = getEntityManager().createQuery(sql);
 		query.setParameter("id", nemonico);
 		param = (T) query.getSingleResult();
-		if (param==null) throw new ControllerException("No existe parametro ["+nemonico+"]");
+		if (param==null) throw new ControllerException(String.format(getMessage("app.ejb.parameter_service.no_exist"), nemonico));
 		return param;
 	}
 
