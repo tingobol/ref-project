@@ -113,7 +113,7 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 
 	@Override
 	public void isAuthorized(String section,Usuario usuario) throws ValidationException {
-		if(usuario.getUsername()==null || usuario.getUsername().isEmpty()) throw new ValidationException("Debe ingresar al sistema");
+		if(usuario.getUsername()==null || usuario.getUsername().isEmpty()) throw new ValidationException(getMessage("app.ejb.usuario_service.no_login"));
 		AutorizacionVista auth = autorizacionService.getById(section);
 		if (auth==null) throw new ValidationException(String.format(getMessage("app.ejb.usuario_service.disable_section"),section));
 		String[] roles = auth.getRoles().split(",");
