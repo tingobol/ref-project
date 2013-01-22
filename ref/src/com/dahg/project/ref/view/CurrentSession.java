@@ -44,7 +44,7 @@ public class CurrentSession extends AbstractManagedBean {
 		user.setNombre(null);
 		user.setApellido(null);
 		user.setUsuarioRols(null);
-		return null;
+		return "login";
 	}
 	
 	public Usuario getUser() {

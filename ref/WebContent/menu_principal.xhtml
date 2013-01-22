@@ -20,7 +20,7 @@
 		            <p:menuitem value="#{app['app.menu.system.users']}" immediate="true" outcome="users" />
 		            <p:menuitem value="#{app['app.menu.system.change_password']}" immediate="true" outcome="change_password" />
 		            <p:separator/>
-		            <p:menuitem value="#{app['app.menu.system.quit']}" immediate="true" action="#{currentSession.logout}" icon="ui-icon-close" oncomplete="window.location='./'" />
+		            <p:menuitem value="#{app['app.menu.system.quit']}" immediate="true" action="#{currentSession.logout}" icon="ui-icon-close" />
 		        </p:submenu>
 		
 		        <p:submenu label="#{app['app.menu.maintenance']}" icon="ui-icon-pencil">
@@ -120,6 +120,6 @@
 		            </p:submenu>
 		        </p:submenu>
 		
-		        <p:menuitem value="#{app['app.menu.system.quit']}" immediate="true" action="#{currentSession.logout}" icon="ui-icon-close" oncomplete="window.location='./'" />
+		        <p:menuitem value="#{app['app.menu.system.quit']}" immediate="true" action="#{currentSession.logout}" icon="ui-icon-close" />
 			</p:menubar>
 </ui:composition>
