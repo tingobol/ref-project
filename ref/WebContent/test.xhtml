@@ -11,9 +11,6 @@
 		<h:outputText value="#{testBean.parametro.descripcion}" />
 		<h:outputText value="#{testBean.parametro.valor}" />
 		
-		<p:commandButton value="Prueba1" rendered="#{currentSession.isAuthorized('COMMON')}"/>
-		<p:commandButton value="Prueba2" rendered="#{currentSession.isAuthorized('COMMONS')}"/>
-		
 				
 		<p:commandButton value="Ejecutar" actionListener="#{testBean.ejecutar}" process="@this" ajax="false" />
 		

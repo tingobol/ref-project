@@ -5,106 +5,106 @@
      xmlns:ui="http://java.sun.com/jsf/facelets"
      xmlns:p="http://primefaces.org/ui">
      
-     <h:outputFormat value="#{app['app.main.welcome']}" rendered="#{currentSession.enable}">
+     <h:outputFormat value="#{info.key('app.main.welcome')}" rendered="#{currentSession.enable}">
 		<f:param value="#{currentSession.user.completeName}"/>
 	</h:outputFormat>
      <p:menubar rendered="#{currentSession.enable}">
-				<p:submenu label="#{app['app.menu.system']}" icon="ui-icon-gear" >
-		            <p:submenu label="#{app['app.menu.system.parameters']}" icon="ui-icon-contact">
-		                <p:menuitem value="#{app['app.menu.system.parameters.book_access']}" immediate="true"/>
-		                <p:menuitem value="#{app['app.menu.system.parameters.others']}" immediate="true" outcome="parametros_generales" icon="ui-icon-document" />
-		                <p:menuitem value="#{app['app.menu.system.parameters.templates']}" icon="ui-icon-document" url="#" />
+				<p:submenu label="#{info.key('app.menu.system')}" icon="ui-icon-gear" >
+		            <p:submenu label="#{info.key('app.menu.system.parameters')}" icon="ui-icon-contact">
+		                <p:menuitem value="#{info.key('app.menu.system.parameters.book_access')}" immediate="true"/>
+		                <p:menuitem value="#{info.key('app.menu.system.parameters.others')}" immediate="true" outcome="parametros_generales" icon="ui-icon-document" />
+		                <p:menuitem value="#{info.key('app.menu.system.parameters.templates')}" icon="ui-icon-document" url="#" />
 		            </p:submenu>
 		            <p:separator />
-		            <p:menuitem value="#{app['app.menu.system.auth_books']}" immediate="true" outcome="test" />		            
-		            <p:menuitem value="#{app['app.menu.system.users']}" immediate="true" outcome="users" />
-		            <p:menuitem value="#{app['app.menu.system.change_password']}" immediate="true" outcome="change_password" />
+		            <p:menuitem value="#{info.key('app.menu.system.auth_books')}" immediate="true" outcome="test" />		            
+		            <p:menuitem value="#{info.key('app.menu.system.users')}" immediate="true" outcome="users" />
+		            <p:menuitem value="#{info.key('app.menu.system.change_password')}" immediate="true" outcome="change_password" />
 		            <p:separator/>
-		            <p:menuitem value="#{app['app.menu.system.quit']}" immediate="true" action="#{currentSession.logout}" icon="ui-icon-close" />
+		            <p:menuitem value="#{info.key('app.menu.system.quit')}" immediate="true" action="#{currentSession.logout}" icon="ui-icon-close" />
 		        </p:submenu>
 		
-		        <p:submenu label="#{app['app.menu.maintenance']}" icon="ui-icon-pencil">
-		            <p:menuitem value="#{app['app.menu.maintenance.province']}" immediate="true" icon="ui-icon-document" outcome="departament" />
-		            <p:menuitem value="#{app['app.menu.maintenance.town']}" immediate="true" icon="ui-icon-document" outcome="town"/>
-		            <p:menuitem value="#{app['app.menu.maintenance.language']}" immediate="true" icon="ui-icon-document" outcome="idioma"/>
-		            <p:menuitem value="#{app['app.menu.maintenance.nacionality']}" immediate="true" icon="ui-icon-document" outcome="nacionalidad"/>
-		            <p:menuitem value="#{app['app.menu.maintenance.relationship']}" immediate="true" icon="ui-icon-document" outcome="parentesco"/>
-		            <p:menuitem value="#{app['app.menu.maintenance.profesions']}" immediate="true" icon="ui-icon-document" outcome="profesion" />
+		        <p:submenu label="#{info.key('app.menu.maintenance')}" icon="ui-icon-pencil">
+		            <p:menuitem value="#{info.key('app.menu.maintenance.province')}" immediate="true" icon="ui-icon-document" outcome="departament" />
+		            <p:menuitem value="#{info.key('app.menu.maintenance.town')}" immediate="true" icon="ui-icon-document" outcome="town"/>
+		            <p:menuitem value="#{info.key('app.menu.maintenance.language')}" immediate="true" icon="ui-icon-document" outcome="idioma"/>
+		            <p:menuitem value="#{info.key('app.menu.maintenance.nacionality')}" immediate="true" icon="ui-icon-document" outcome="nacionalidad"/>
+		            <p:menuitem value="#{info.key('app.menu.maintenance.relationship')}" immediate="true" icon="ui-icon-document" outcome="parentesco"/>
+		            <p:menuitem value="#{info.key('app.menu.maintenance.profesions')}" immediate="true" icon="ui-icon-document" outcome="profesion" />
 		            <p:separator />
-		            <p:menuitem value="#{app['app.menu.maintenance.outskirts']}" immediate="true" icon="ui-icon-document" outcome="barrio" />
-		            <p:menuitem value="#{app['app.menu.maintenance.cantons']}" immediate="true" icon="ui-icon-document" outcome="canton" />
-		            <p:menuitem value="#{app['app.menu.maintenance.suburb']}" immediate="true" icon="ui-icon-document" outcome="colonia" />
-		            <p:menuitem value="#{app['app.menu.maintenance.caserios']}" immediate="true" icon="ui-icon-document" outcome="caserio" />
+		            <p:menuitem value="#{info.key('app.menu.maintenance.outskirts')}" immediate="true" icon="ui-icon-document" outcome="barrio" />
+		            <p:menuitem value="#{info.key('app.menu.maintenance.cantons')}" immediate="true" icon="ui-icon-document" outcome="canton" />
+		            <p:menuitem value="#{info.key('app.menu.maintenance.suburb')}" immediate="true" icon="ui-icon-document" outcome="colonia" />
+		            <p:menuitem value="#{info.key('app.menu.maintenance.caserios')}" immediate="true" icon="ui-icon-document" outcome="caserio" />
 		            <p:separator />
-		            <p:menuitem value="#{app['app.menu.maintenance.law']}" immediate="true" icon="ui-icon-document" outcome="articulo" />
-		            <p:menuitem value="#{app['app.menu.maintenance.marginalization_types']}" immediate="true" icon="ui-icon-document" outcome="tipo_marginacion" />
+		            <p:menuitem value="#{info.key('app.menu.maintenance.law')}" immediate="true" icon="ui-icon-document" outcome="articulo" />
+		            <p:menuitem value="#{info.key('app.menu.maintenance.marginalization_types')}" immediate="true" icon="ui-icon-document" outcome="tipo_marginacion" />
 		        </p:submenu>
 		
-		        <p:submenu label="#{app['app.menu.books']}" icon="ui-icon-gear">
-		            <p:submenu label="#{app['app.menu.books.opens']}">
-		            	<p:submenu label="#{app['app.menu.books.opens.history_books']}">
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.births']}" url="#" />
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.marriages']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.divorces']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.deaths']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.adoptions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.modifications']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.repositions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.marginations']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.history_books.judgments']}" url="#"/>
+		        <p:submenu label="#{info.key('app.menu.books')}" icon="ui-icon-gear">
+		            <p:submenu label="#{info.key('app.menu.books.opens')}">
+		            	<p:submenu label="#{info.key('app.menu.books.opens.history_books')}">
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.history_books.births')}" url="#" />
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.history_books.marriages')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.history_books.divorces')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.history_books.deaths')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.history_books.adoptions')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.history_books.modifications')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.history_books.repositions')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.history_books.marginations')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.history_books.judgments')}" url="#"/>
 		            	</p:submenu>
 		            	<p:separator />
-		            	<p:submenu label="#{app['app.menu.books.opens.yearbooks']}">
-		            	<p:menuitem value="#{app['app.menu.books.opens.yearbooks.births']}" url="#" />
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.marriages']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.divorces']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.deaths']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.adoptions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.modifications']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.repositions']}" url="#"/>		            		
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.judgments']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.opens.yearbooks.certified']}" url="#"/>
+		            	<p:submenu label="#{info.key('app.menu.books.opens.yearbooks')}">
+		            	<p:menuitem value="#{info.key('app.menu.books.opens.yearbooks.births')}" url="#" />
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.yearbooks.marriages')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.yearbooks.divorces')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.yearbooks.deaths')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.yearbooks.adoptions')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.yearbooks.modifications')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.yearbooks.repositions')}" url="#"/>		            		
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.yearbooks.judgments')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.opens.yearbooks.certified')}" url="#"/>
 		            </p:submenu>
 		            </p:submenu>
 		            <p:separator />
-		            <p:submenu label="#{app['app.menu.books.reopens']}">
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.births']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.marriages']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.divorces']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.deaths']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.adoptions']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.modifications']}" url="#"/>
-		            	<p:menuitem value="#{app['app.menu.books.reopens.history_books.repositions']}" url="#"/>
+		            <p:submenu label="#{info.key('app.menu.books.reopens')}">
+		            	<p:menuitem value="#{info.key('app.menu.books.reopens.history_books.births')}" url="#"/>
+		            	<p:menuitem value="#{info.key('app.menu.books.reopens.history_books.marriages')}" url="#"/>
+		            	<p:menuitem value="#{info.key('app.menu.books.reopens.history_books.divorces')}" url="#"/>
+		            	<p:menuitem value="#{info.key('app.menu.books.reopens.history_books.deaths')}" url="#"/>
+		            	<p:menuitem value="#{info.key('app.menu.books.reopens.history_books.adoptions')}" url="#"/>
+		            	<p:menuitem value="#{info.key('app.menu.books.reopens.history_books.modifications')}" url="#"/>
+		            	<p:menuitem value="#{info.key('app.menu.books.reopens.history_books.repositions')}" url="#"/>
 		            </p:submenu>
    		            <p:separator />
 		            
-		            <p:submenu label="#{app['app.menu.books.close']}">
-		            	<p:submenu label="#{app['app.menu.books.opens.history_books']}">
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.births']}" url="#" />
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.marriages']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.divorces']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.deaths']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.adoptions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.modifications']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.repositions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.marginations']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.history_books.judgments']}" url="#"/>
+		            <p:submenu label="#{info.key('app.menu.books.close')}">
+		            	<p:submenu label="#{info.key('app.menu.books.opens.history_books')}">
+		            		<p:menuitem value="#{info.key('app.menu.books.close.history_books.births')}" url="#" />
+		            		<p:menuitem value="#{info.key('app.menu.books.close.history_books.marriages')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.history_books.divorces')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.history_books.deaths')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.history_books.adoptions')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.history_books.modifications')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.history_books.repositions')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.history_books.marginations')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.history_books.judgments')}" url="#"/>
 		            	</p:submenu>
 		            	<p:separator />
-		            	<p:submenu label="#{app['app.menu.books.close.yearbooks']}">
-			            	<p:menuitem value="#{app['app.menu.books.close.yearbooks.births']}" url="#" />
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.marriages']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.divorces']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.deaths']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.adoptions']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.modifications']}" url="#"/>
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.repositions']}" url="#"/>		            		
-		            		<p:menuitem value="#{app['app.menu.books.close.yearbooks.judgments']}" url="#"/>
+		            	<p:submenu label="#{info.key('app.menu.books.close.yearbooks')}">
+			            	<p:menuitem value="#{info.key('app.menu.books.close.yearbooks.births')}" url="#" />
+		            		<p:menuitem value="#{info.key('app.menu.books.close.yearbooks.marriages')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.yearbooks.divorces')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.yearbooks.deaths')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.yearbooks.adoptions')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.yearbooks.modifications')}" url="#"/>
+		            		<p:menuitem value="#{info.key('app.menu.books.close.yearbooks.repositions')}" url="#"/>		            		
+		            		<p:menuitem value="#{info.key('app.menu.books.close.yearbooks.judgments')}" url="#"/>
 		   				</p:submenu>
 		            </p:submenu>
 		            <p:separator />
 		            
-		            <p:submenu label="#{app['app.menu.books.confrontations']}">
+		            <p:submenu label="#{info.key('app.menu.books.confrontations')}">
 		            
 		            </p:submenu>
 		        </p:submenu>
@@ -120,6 +120,6 @@
 		            </p:submenu>
 		        </p:submenu>
 		
-		        <p:menuitem value="#{app['app.menu.system.quit']}" immediate="true" action="#{currentSession.logout}" icon="ui-icon-close" />
+		        <p:menuitem value="#{info.key('app.menu.system.quit')}" immediate="true" action="#{currentSession.logout}" icon="ui-icon-close" />
 			</p:menubar>
 </ui:composition>

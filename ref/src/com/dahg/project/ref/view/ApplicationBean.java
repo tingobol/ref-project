@@ -21,4 +21,8 @@ public class ApplicationBean {
 		return info.getCityName();
 	}
 	
+	public String key(String key) {
+		return info.getProperty(key);
+	}
+	
 }

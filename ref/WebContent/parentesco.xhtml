@@ -12,7 +12,7 @@
 	<ui:composition template="/main.xhtml">
 		<ui:define name="formBody">
 			<dahg:maintenance 	catalogBean="#{parentescoMaintenance}"
-								maintenanceTypeText="#{app['app.menu.maintenance.relationship']}"/>
+								maintenanceTypeText="#{info.key('app.menu.maintenance.relationship')}"/>
 		</ui:define>
 	</ui:composition>
 </html>

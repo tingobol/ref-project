@@ -2,9 +2,6 @@ package com.dahg.project.ref.model.impl;
 
 import javax.persistence.*;
 
-import com.dahg.project.ref.model.AbtractCatalog;
-import com.dahg.project.ref.model.ICatalog;
-
 import java.io.Serializable;
 import java.util.List;
 
