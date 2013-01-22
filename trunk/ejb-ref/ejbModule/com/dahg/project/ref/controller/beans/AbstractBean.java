@@ -1,5 +1,7 @@
 package com.dahg.project.ref.controller.beans;
 
+import java.util.Properties;
+
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -21,6 +23,9 @@ public abstract class AbstractBean<T> implements Service<T> {
 	@Autowired
 	@Qualifier("persistence")
 	private SpringPersistence persistence;
+	@Autowired
+	@Qualifier("resourceEJB")
+	private Properties resourceEJB;
 	
 	@Autowired
 	@Qualifier("encrypt")
@@ -64,5 +69,9 @@ public abstract class AbstractBean<T> implements Service<T> {
 		return decrypt;
 	}
 	
-	
+	protected String getMessage(String key) {
+		String text = resourceEJB.getProperty(key);
+		if(text==null || text.isEmpty()) return String.format("@%s@", key);
+		return text;
+	}
 }

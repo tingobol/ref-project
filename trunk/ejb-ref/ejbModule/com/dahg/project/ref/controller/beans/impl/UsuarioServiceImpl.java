@@ -36,7 +36,7 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 	@Override
 	public Usuario validate(String user, String pass) throws ValidationException,ControllerException {
 		boolean existe = getById(user)!=null;
-		if(!existe) throw new ValidationException("Usuario no existe");
+		if(!existe) throw new ValidationException(getMessage("app.ejb.usuario_service.wrong_user"));
 		
 		Usuario usuario=null;
 		String jpql="Select u From Usuario u where u.username=:id and u.password=:pass";
@@ -47,12 +47,12 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 			usuario = (Usuario) query.getSingleResult();			
 		} 
 		catch(NoResultException e) {
-			throw new ValidationException("Contraseña incorrecta");
+			throw new ValidationException(getMessage("app.ejb.usuario_service.wrong_password"));
 		}
 		catch (Exception e) {
 			throw new ControllerException(e);
 		}
-		if (usuario.getUsuarioRols()==null || usuario.getUsuarioRols().isEmpty()) throw new ValidationException("Usuario deshabilitado");
+		if (usuario.getUsuarioRols()==null || usuario.getUsuarioRols().isEmpty()) throw new ValidationException(getMessage("app.ejb.usuario_service.disable_user"));
 		return usuario;
 	}
 
@@ -75,7 +75,7 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	public void persist(Usuario obj) throws ControllerException {
 		Usuario u = getById(obj.getUsername());
-		if (u!=null) throw new ControllerException("ID en uso");
+		if (u!=null) throw new ControllerException(getMessage("app.ejb.usuario_service.user_in_use"));
 		try {
 			String passTemporal = this.getDecrypt().hash(obj.getUsername());
 			obj.setPassword(passTemporal);
@@ -115,11 +115,11 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 	public void isAuthorized(String section,Usuario usuario) throws ValidationException {
 		if(usuario.getUsername()==null || usuario.getUsername().isEmpty()) throw new ValidationException("Debe ingresar al sistema");
 		AutorizacionVista auth = autorizacionService.getById(section);
-		if (auth==null) throw new ValidationException(String.format("Seccion %s Deshabilitada",section));
+		if (auth==null) throw new ValidationException(String.format(getMessage("app.ejb.usuario_service.disable_section"),section));
 		String[] roles = auth.getRoles().split(",");
-		if (roles==null || roles.length==0) throw new ValidationException(String.format("Seccion %s Deshabilitada", section));
-		for(String rol:roles)
-			if (!hasUserRol(rol, usuario)) throw new ValidationException(String.format("El usuario %s no tiene permiso para ver %s", usuario.getUsername(),section));
+		if (roles==null || roles.length==0) throw new ValidationException(String.format(getMessage("app.ejb.usuario_service.disable_section"), section));
+		for(String rol:roles)			
+			if (!hasUserRol(rol, usuario)) throw new ValidationException(String.format(getMessage("app.ejb.usuario_service.no_auth"), usuario.getUsername(),section));
 	}
 	
 	private boolean hasUserRol(String rol,Usuario user) {

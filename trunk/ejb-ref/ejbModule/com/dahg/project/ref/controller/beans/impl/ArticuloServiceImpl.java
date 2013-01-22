@@ -18,7 +18,7 @@ public class ArticuloServiceImpl extends AbstractCatalogService<Articulo> implem
 	@Override
 	public void persist(Articulo obj) throws ControllerException {
 		Articulo a = getById(obj.getId());
-		if (a!=null) throw new ControllerException("Articulo ya existe");
+		if (a!=null) throw new ControllerException(getMessage("app.ejb.product_exist"));
 		super.persist(obj);
 	}
 	
