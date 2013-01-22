@@ -47,6 +47,6 @@
 
 <bean id="persistence" class="com.dahg.project.ref.controller.persist.SpringPersistence"/>
 
-<bean id="decrypt" class="com.dahg.project.ref.controller.util.MD5Impl"/>
+<bean id="encrypt" class="com.dahg.project.ref.controller.util.MD5Impl"/>
 
 </beans>
