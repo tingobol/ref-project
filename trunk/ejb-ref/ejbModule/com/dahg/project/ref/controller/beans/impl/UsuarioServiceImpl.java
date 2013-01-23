@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dahg.project.ref.controller.beans.AbstractBean;
 import com.dahg.project.ref.controller.exception.ControllerException;
 import com.dahg.project.ref.controller.exception.ValidationException;
+import com.dahg.project.ref.controller.services.local.ApplicationInfo;
 import com.dahg.project.ref.controller.services.local.RolService;
 import com.dahg.project.ref.controller.services.local.UsuarioService;
 import com.dahg.project.ref.model.impl.AutorizacionVista;
@@ -26,7 +27,8 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 	private RolService rolService;
 	@EJB
 	private AutorizacionServiceImpl autorizacionService;
-	
+	@EJB
+	private ApplicationInfo info;
 	
 	@Override
 	protected Class<Usuario> getClazz() {
@@ -117,9 +119,9 @@ public class UsuarioServiceImpl extends AbstractBean<Usuario> implements Usuario
 		AutorizacionVista auth = autorizacionService.getById(section);
 		if (auth==null) throw new ValidationException(String.format(getMessage("app.ejb.usuario_service.disable_section"),section));
 		String[] roles = auth.getRoles().split(",");
-		if (roles==null || roles.length==0) throw new ValidationException(String.format(getMessage("app.ejb.usuario_service.disable_section"), section));
+		if (roles==null || roles.length==0) throw new ValidationException(String.format(getMessage("app.ejb.usuario_service.disable_section"), info.getProperty(auth.getKey())));
 		for(String rol:roles)			
-			if (!hasUserRol(rol, usuario)) throw new ValidationException(String.format(getMessage("app.ejb.usuario_service.no_auth"), usuario.getUsername(),section));
+			if (!hasUserRol(rol, usuario)) throw new ValidationException(String.format(getMessage("app.ejb.usuario_service.no_auth"), usuario.getUsername(),info.getProperty(auth.getKey())));
 	}
 	
 	private boolean hasUserRol(String rol,Usuario user) {

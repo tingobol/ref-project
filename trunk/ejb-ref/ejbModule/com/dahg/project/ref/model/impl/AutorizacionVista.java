@@ -12,12 +12,21 @@ public class AutorizacionVista implements Serializable {
 
 	@Id
 	private String seccion;
+	private String key;
 	private String roles;
+	
 	public String getSeccion() {
 		return seccion;
 	}
 	public void setSeccion(String seccion) {
 		this.seccion = seccion;
+	}
+	
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
 	}
 	public String getRoles() {
 		return roles;
