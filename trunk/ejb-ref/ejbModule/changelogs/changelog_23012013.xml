@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">    
+    
+    <changeSet author="dani" id="1">
+    
+    	<createTable tableName="departamento">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="municipio">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    		<column name="fk_departamento" type="int">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<addForeignKeyConstraint constraintName="municipio_departamento"    	
+    	 referencedTableName="departamento" baseColumnNames="fk_departamento" baseTableName="municipio" referencedColumnNames="id"/>
+    	 
+    	 <createTable tableName="idioma">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="nacionalidad">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="parentesco">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="profesion">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="barrio">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="canton">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="colonia">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="caserio">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="articulo">
+    		<column name="id" type="int">
+    			<constraints primaryKey="true" nullable="true"/>
+    		</column>
+    		<column name="texto" type="text">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<createTable tableName="tipo_marginacion">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="texto" type="text">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    
+    </changeSet>
+    
+    <changeSet author="dani" id="2">
+    
+    	<createTable tableName="usuario">
+    		<column name="username" type="varchar(20)">
+    			<constraints primaryKey="true" nullable="false"/>
+    		</column>
+    		<column name="nombre" type="varchar"/>
+    		<column name="apellido" type="varchar"/>
+    		
+    		<column name="password" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    
+    	<createTable tableName="rol">
+    		<column name="id" type="varchar(6)">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<insert tableName="rol">
+    		<column name="id" value="ADMIN"/>
+    		<column name="descripcion" value="Administrador"/>
+    	</insert>
+    	
+    	<insert tableName="rol">
+    		<column name="id" value="COMMON"/>
+    		<column name="descripcion" value="Usuario comun"/>
+    	</insert>
+    	
+    	<createTable tableName="usuario_rol">
+    		<column name="id" autoIncrement="true" type="int">
+    			<constraints primaryKey="true" nullable="false"/>
+    		</column>
+    		<column name="fk_usuario" type="varchar(20)">
+    			<constraints nullable="false"/>
+    		</column>
+    		<column name="fk_rol" type="varchar(6)">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    	
+    	<addUniqueConstraint tableName="usuario_rol" columnNames="fk_usuario,fk_rol"/>
+    	
+    	<insert tableName="usuario">
+    		<column name="username" value="admin"/>
+    		<column name="password" value="21232f297a57a5a743894a0e4a801fc3"/>
+    		<column name="nombre" value="Daniel"/>
+    		<column name="apellido" value="Herrera"/>
+    	</insert>
+    	<insert tableName="usuario_rol">
+    		<column name="fk_usuario" value="admin"/>
+    		<column name="fk_rol" value="ADMIN"/>
+    	</insert>
+    	
+    </changeSet>
+    <changeSet author="dani" id="3">
+    
+    	<addForeignKeyConstraint constraintName="ur_usuario" referencedTableName="usuario" baseColumnNames="fk_usuario" baseTableName="usuario_rol"
+    	 referencedColumnNames="username"/>
+    	 
+    	 <addForeignKeyConstraint constraintName="ur_rol" referencedTableName="rol" baseColumnNames="fk_rol" baseTableName="usuario_rol"
+    	 referencedColumnNames="id"/>
+    </changeSet>
+    
+    <changeSet author="dani" id="4">
+    	<dropColumn tableName="articulo" columnName="texto"/>
+    	<addColumn tableName="articulo">
+    		<column name="descripcion" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</addColumn>
+    </changeSet>
+
+    <changeSet author="dani" id="5">
+    	<dropNotNullConstraint tableName="articulo" columnName="descripcion"/>
+    </changeSet>
+    
+    <changeSet author="dani" id="6">
+    	<dropColumn tableName="tipo_marginacion" columnName="texto"/>
+    	<addColumn tableName="tipo_marginacion">
+    		<column name="descripcion" type="varchar"/>
+    	</addColumn>    	
+    </changeSet>
+    
+    <changeSet author="dani" id="7">
+    
+    	<createTable tableName="parametro">
+    		<column name="nemonico" type="varchar(15)">
+    			<constraints primaryKey="true" nullable="false"/>
+    		</column>
+    		<column name="descripcion" type="varchar"/>
+    		<column name="tipo" type="varchar(5)">
+    			<constraints nullable="false"/>
+    		</column>
+    		<column name="texto" type="varchar"/>
+    		<column name="numero" type="double"/>
+    		<column name="logico" type="boolean"/>
+    	</createTable>
+    </changeSet>
+    <changeSet author="dani" id="8">
+    
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="JEFEREF" />
+    		<column name="descripcion" value="Jefe del REF" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="CARGOJEFEREF" />
+    		<column name="descripcion" value="Nombre del cargo" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="RUBRICAJEFEREF" />
+    		<column name="descripcion" value="Rubricas" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="SUBJREF" />
+    		<column name="descripcion" value="Sub Jefe del REF" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="CARGOSUBJREF" />
+    		<column name="descripcion" value="Nombre del cargo" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="RUBRICASUBJREF" />
+    		<column name="descripcion" value="Rubricas" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="FA" />
+    		<column name="descripcion" value="Firma autentica" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="CARGOFA" />
+    		<column name="descripcion" value="Nombre del cargo" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="RUBRICAFA" />
+    		<column name="descripcion" value="Rubricas" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="NOMBRECONFRONTA" />
+    		<column name="descripcion" value="Nombre confronta" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="CARGONCONFRONTA" />
+    		<column name="descripcion" value="Nombre del cargo" />
+    		<column name="tipo" value="TEXTO" />
+    		<column name="texto" value="" />
+    	</insert>
+    	
+    	<insert tableName="parametro">
+    		<column name="nemonico" value="FIRMAJEFEREF" />
+    		<column name="descripcion" value="Firma jefe REF" />
+    		<column name="tipo" value="LOGIC" />
+    		<column name="logico" valueBoolean="false" />
+    	</insert>
+    	
+    </changeSet>
+    <changeSet author="dani" id="9">
+    	<createTable tableName="autorizacion_vista">
+    		<column name="seccion" type="varchar">
+    			<constraints primaryKey="true"/>
+    		</column>
+    		<column name="roles" type="varchar">
+    			<constraints nullable="false"/>
+    		</column>
+    	</createTable>
+    </changeSet>
+    <changeSet author="dani" id="10">
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/inicio.xhtml"/>
+    		<column name="roles" value="COMMON"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/articulo.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/barrio.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/canton.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/caserio.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/change_password.xhtml"/>
+    		<column name="roles" value="COMMON"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/colonia.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/departament.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/idioma.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/nacionalidad.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/parametros_generales.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/parentesco.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/profesion.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/tipo_marginacion.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/town.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    	<insert tableName="autorizacion_vista">
+    		<column name="seccion" value="/users.xhtml"/>
+    		<column name="roles" value="ADMIN"/>
+    	</insert>
+    </changeSet>
+    
+    <changeSet author="dani" id="11">
+    	<addColumn tableName="autorizacion_vista">
+    		<column name="key" type="varchar"/>
+    	</addColumn>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.system"/>
+    		<where>seccion='/inicio.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.law"/>
+    		<where>seccion='/articulo.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.outskirts"/>
+    		<where>seccion='/barrio.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.cantons"/>
+    		<where>seccion='/canton.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.caserios"/>
+    		<where>seccion='/caserio.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.system.change_password"/>
+    		<where>seccion='/change_password.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.suburb"/>
+    		<where>seccion='/colonia.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.province"/>
+    		<where>seccion='/departament.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.language"/>
+    		<where>seccion='/idioma.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.nacionality"/>
+    		<where>seccion='/nacionalidad.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.system.parameters.others"/>
+    		<where>seccion='/parametros_generales.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.relationship"/>
+    		<where>seccion='/parentesco.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.profesions"/>
+    		<where>seccion='/profesion.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.marginalization_types"/>
+    		<where>seccion='/tipo_marginacion.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.maintenance.town"/>
+    		<where>seccion='/town.xhtml'</where>
+    	</update>
+    	
+    	<update tableName="autorizacion_vista">
+    		<column name="key" value="app.menu.system.users"/>
+    		<where>seccion='/users.xhtml'</where>
+    	</update>
+    </changeSet>
+    
+</databaseChangeLog>
