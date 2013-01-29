@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+	<changeSet author="dani" id="1">	
+		
+		<createTable tableName="libro">
+			<column name="id" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="tipo">
+				<constraints nullable="false"/>
+			</column>
+			<column name="inicio" type="int">
+				<constraints nullable="false"/>
+			</column>
+			<column name="hasta" type="int">
+				<constraints nullable="true"/>
+			</column>
+			<column name="vigencia" type="boolean">
+				<constraints nullable="false"/>
+			</column>
+			<column name="firmador_por" type="varchar"/>
+			<column name="estado_fisico" type="varchar"/>
+			<column name="cierre" type="varchar"/>
+			<column name="observaciones" type="varchar"/>
+			<column name="siglas" type="varchar(8)"/>
+		</createTable>
+		
+		<addPrimaryKey tableName="libro" columnNames="id,tipo"/>
+		
+	</changeSet>
+
+</databaseChangeLog>
