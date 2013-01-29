@@ -7,7 +7,7 @@
 			<column name="id" type="int">
 				<constraints nullable="false" />
 			</column>
-			<column name="tipo">
+			<column name="tipo" type="varchar(10)">
 				<constraints nullable="false"/>
 			</column>
 			<column name="inicio" type="int">
@@ -15,9 +15,6 @@
 			</column>
 			<column name="hasta" type="int">
 				<constraints nullable="true"/>
-			</column>
-			<column name="vigencia" type="boolean">
-				<constraints nullable="false"/>
 			</column>
 			<column name="firmador_por" type="varchar"/>
 			<column name="estado_fisico" type="varchar"/>
@@ -27,6 +24,73 @@
 		</createTable>
 		
 		<addPrimaryKey tableName="libro" columnNames="id,tipo"/>
+		
+		<createTable tableName="tomo">
+			<column name="id" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="fk_libro" type="int">
+				<constraints nullable="false"/>
+			</column>
+			<column name="tipo" type="varchar(10)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="vigencia" type="boolean" defaultValueBoolean="true">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		
+		<addPrimaryKey tableName="tomo" columnNames="id,fk_libro"/>
+		
+		<addForeignKeyConstraint constraintName="libro_tomo" baseColumnNames="fk_libro,tipo" baseTableName="tomo"
+		referencedTableName="libro" referencedColumnNames="id,tipo"/>
+	</changeSet>
+	
+	<changeSet author="dani" id="2">
+	
+		<createTable tableName="partida_nacimiento">
+			<column name="id"  type="int">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="fk_tomo" type="int">
+				<constraints nullable="false"/>
+			</column>
+			<column name="fk_libro" type="int">
+				<constraints nullable="false"/>
+			</column>
+			<column name="nombre" type="varchar"/>
+			<column name="primer_apellido" type="varchar"/>
+			<column name="segundo_apellido" type="varchar"/>
+			<column name="parto" type="varchar(1)"/>
+			<column name="sexo" type="varchar(1)"/>
+			<column name="fecha_nacimiento" type="date"/>
+			<column name="lugar_nacimiento" type="varchar"/>
+			
+			<column name="madre" type="varchar"/>
+			<column name="primer_apellido_madre" type="varchar"/>
+			<column name="segundo_apellido_madre" type="varchar"/>
+			<column name="edad_madre" type="varchar"/>
+			<column name="origen_madre" type="varchar"/>
+			<column name="domicilio_madre" type="varchar"/>
+			<column name="fk_profesion_madre" type="int"/>
+			<column name="fk_nacionalidad_madre" type="int"/>
+			<column name="tipo_doc_madre" type="varchar(5)"/>
+			<column name="documento_madre" type="varchar"/>
+			<column name="conocido_por_madre" type="varchar"/>
+			
+			
+		</createTable>
+		
+		<addForeignKeyConstraint constraintName="p_nac_tomo" baseColumnNames="fk_tomo,fk_libro"
+		baseTableName="partida_nacimiento" referencedTableName="tomo" referencedColumnNames="id,fk_libro"/>
+		
+		<addUniqueConstraint tableName="partida_nacimiento" columnNames="id,fk_tomo,fk_libro"/>
+		
+		<addForeignKeyConstraint constraintName="profesion_madre" baseColumnNames="fk_profesion_madre"
+		baseTableName="partida_nacimiento" referencedTableName="profesion" referencedColumnNames="id"/>
+		
+		<addForeignKeyConstraint constraintName="nacionalidad_madre" baseColumnNames="fk_nacionalidad_madre"
+		baseTableName="partida_nacimiento" referencedTableName="nacionalidad" referencedColumnNames="id"/>
 		
 	</changeSet>
 
