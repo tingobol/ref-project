@@ -76,6 +76,7 @@
 			<column name="fk_nacionalidad_madre" type="int"/>
 			<column name="tipo_doc_madre" type="varchar(5)"/>
 			<column name="documento_madre" type="varchar"/>
+			<column name="dui_madre" type="varchar"/>
 			<column name="conocido_por_madre" type="varchar"/>
 			
 			
