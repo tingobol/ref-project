@@ -5,5 +5,5 @@
     </preConditions>
 
     <include file="changelogs/changelog_23012013.xml"/>
-    <include file="changelogs/changelog_24012012.xml"/>
+    <include file="changelogs/changelog_24012013.xml"/>
 </databaseChangeLog>
