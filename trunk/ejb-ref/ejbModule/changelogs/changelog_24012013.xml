@@ -65,6 +65,11 @@
 			<column name="sexo" type="varchar(1)"/>
 			<column name="fecha_nacimiento" type="date"/>
 			<column name="lugar_nacimiento" type="varchar"/>
+			<column name="area_nacimiento" type="varchar"/>
+			<column name="fk_colonia" type="int"/>
+			<column name="fk_barrio" type="int"/>
+			<column name="fk_caserio" type="int"/>
+			<column name="fk_canton" type="int"/>
 			
 			<column name="madre" type="varchar"/>
 			<column name="primer_apellido_madre" type="varchar"/>
@@ -79,7 +84,36 @@
 			<column name="dui_madre" type="varchar"/>
 			<column name="conocido_por_madre" type="varchar"/>
 			
+			<column name="padre" type="varchar"/>
+			<column name="primer_apellido_padre" type="varchar"/>
+			<column name="segundo_apellido_padre" type="varchar"/>
+			<column name="edad_padre" type="varchar"/>
+			<column name="origen_padre" type="varchar"/>
+			<column name="domicilio_padre" type="varchar"/>
+			<column name="fk_profesion_padre" type="int"/>
+			<column name="fk_nacionalidad_padre" type="int"/>
+			<column name="tipo_doc_padre" type="varchar(5)"/>
+			<column name="documento_padre" type="varchar"/>
+			<column name="dui_padre" type="varchar"/>
+			<column name="conocido_por_padre" type="varchar"/>
 			
+			<column name="informante" type="varchar"/>
+			<column name="dui_informante" type="varchar"/>
+			<column name="conocido_por_informante" type="varchar"/>
+			<column name="fk_parentesco_informante" type="int"/>
+			<column name="expedida" type="varchar"/>
+			<column name="enmendado" type="varchar"/>
+			<column name="partida_literal_juicio_subsidiario" type="boolean" defaultValueBoolean="false"/>
+			<column name="firma_informante" type="boolean" defaultValueBoolean="false"/>
+			<column name="sustituto_firma" type="varchar"/>
+			<column name="rubricas" type="varchar"/>
+			<column name="fecha_inscripcion" type="date"/>
+			<column name="jefe_ref" type="varchar"/>
+			
+			<column name="marginaciones" type="varchar"/>
+			
+			<column name="activar_partida_literal" type="boolean" defaultValueBoolean="false"/>
+			<column name="partida_literal" type="varchar"/>
 		</createTable>
 		
 		<addForeignKeyConstraint constraintName="p_nac_tomo" baseColumnNames="fk_tomo,fk_libro"
@@ -87,10 +121,30 @@
 		
 		<addUniqueConstraint tableName="partida_nacimiento" columnNames="id,fk_tomo,fk_libro"/>
 		
+		<addForeignKeyConstraint constraintName="partidanac_colonia" 
+		referencedTableName="colonia" baseColumnNames="fk_colonia" baseTableName="partida_nacimiento" referencedColumnNames="id"/>
+		
+		<addForeignKeyConstraint constraintName="partidanac_barrio" 
+		referencedTableName="barrio" baseColumnNames="fk_barrio" baseTableName="partida_nacimiento" referencedColumnNames="id"/>
+		
+		<addForeignKeyConstraint constraintName="partidanac_caserio" 
+		referencedTableName="caserio" baseColumnNames="fk_caserio" baseTableName="partida_nacimiento" referencedColumnNames="id"/>
+		
+		<addForeignKeyConstraint constraintName="partidanac_canton" 
+		referencedTableName="canton" baseColumnNames="fk_canton" baseTableName="partida_nacimiento" referencedColumnNames="id"/>
+		
+		<comment>Foreign key de madre</comment>
 		<addForeignKeyConstraint constraintName="profesion_madre" baseColumnNames="fk_profesion_madre"
 		baseTableName="partida_nacimiento" referencedTableName="profesion" referencedColumnNames="id"/>
 		
 		<addForeignKeyConstraint constraintName="nacionalidad_madre" baseColumnNames="fk_nacionalidad_madre"
+		baseTableName="partida_nacimiento" referencedTableName="nacionalidad" referencedColumnNames="id"/>
+		
+		<comment>Foreign key de padre</comment>
+		<addForeignKeyConstraint constraintName="profesion_padre" baseColumnNames="fk_profesion_padre"
+		baseTableName="partida_nacimiento" referencedTableName="profesion" referencedColumnNames="id"/>
+		
+		<addForeignKeyConstraint constraintName="nacionalidad_padre" baseColumnNames="fk_nacionalidad_padre"
 		baseTableName="partida_nacimiento" referencedTableName="nacionalidad" referencedColumnNames="id"/>
 		
 	</changeSet>
