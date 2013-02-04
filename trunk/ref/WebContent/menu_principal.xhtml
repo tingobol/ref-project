@@ -5,10 +5,9 @@
      xmlns:ui="http://java.sun.com/jsf/facelets"
      xmlns:p="http://primefaces.org/ui">
      
-     <h:outputFormat value="#{info.key('app.main.welcome')}" rendered="#{currentSession.enable}">
-		<f:param value="#{currentSession.user.completeName}"/>
-	</h:outputFormat>
-     <p:menubar rendered="#{currentSession.enable}">
+     <p:toolbar>
+     	<p:toolbarGroup align="left">
+     		<p:menubar rendered="#{currentSession.enable}">
 				<p:submenu label="#{info.key('app.menu.system')}" icon="ui-icon-gear" >
 		            <p:submenu label="#{info.key('app.menu.system.parameters')}" icon="ui-icon-contact">
 		                <p:menuitem value="#{info.key('app.menu.system.parameters.book_access')}" immediate="true"/>
@@ -122,4 +121,17 @@
 		
 		        <p:menuitem value="#{info.key('app.menu.system.quit')}" immediate="true" action="#{currentSession.logout}" icon="ui-icon-close" />
 			</p:menubar>
+     	
+     	
+     	
+     	</p:toolbarGroup>
+     	<p:toolbarGroup align="right">
+     		<h:outputFormat value="#{info.key('app.main.welcome')}" rendered="#{currentSession.enable}">
+				<f:param value="#{currentSession.user.completeName}"/>
+			</h:outputFormat>	
+     	</p:toolbarGroup>
+     </p:toolbar>
+     
+     
+     
 </ui:composition>
